@@ -158,6 +158,10 @@ git remote add github git@github.com:michaelliao/learngit.git
 ~~~
 git remote add gitee git@gitee.com:liaoxuefeng/learngit.git
 ~~~
+移除关联: 
+~~~
+git remote remove {REMOVE_NAME}
+~~~
 
 ## Summary
 git上手难度还是比较高的, 只有理解和多练习了, 才能熟练掌握git.

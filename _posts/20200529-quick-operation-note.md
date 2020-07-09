@@ -106,6 +106,14 @@ net.ipv4.ip_forward=1
  systemctl restart network
 ~~~
 
+
+## CentOS7网卡地址, 路径
+
+~~~
+/etc/sysconfig/network-scripts/
+~~~
+
+
 # Java
 
 ~~~
