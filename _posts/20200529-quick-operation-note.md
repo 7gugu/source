@@ -12,6 +12,19 @@ urlname: quick-operation-note
 
 # Linux
 
+## CentOS7配置静态ip
+
+~~~
+/etc/sysconfig/network-scripts/ifcfg-ens33
+
+BOOTPROTO=static
+IPADDR=
+NETMASK=
+GATEWAY=
+DNS1=
+DNS2=
+~~~
+
 ## CentOS7 ifconfig command not found
 
 ~~~
@@ -121,4 +134,86 @@ net.ipv4.ip_forward=1
 nohup java -jar getCimiss-surf.jar >consoleMsg.log 2>&1 &
 
 tail -fn 50 nohup.out
+~~~
+
+# Docker
+
+~~~
+docker pull centos // 从镜像仓库下载镜像
+docker images // 列出所有本地镜像
+docker run -it {id}  // 运行某个容器 --name给它名字
+docker run -it -p {外部暴露端口}:{容器内部端口} {name} // 小p是指定端口, 大P是随机端口
+
+exit  // 关闭退出容器
+Ctrl P Q  // 不关闭退出容器
+docker attach {id} // 重新回到容器
+
+docker start {id} // 启动容器
+
+stop // 停止容器
+kill // 强制停止
+
+docker ps -l   // 上一次运行的容器
+docker ps -n {n} // 上n次运行的
+
+docker rmi {id} // 删除镜像
+docker rm {id} // 删除已停止容器
+
+docker run -d {name} // 运行在后台了, 如果它没有什么任务会自动关闭
+
+docker logs -t时间 -f实时刷新 {id} // 查看容器日志
+
+docker top {id} // 查看容器内进程
+
+docker inspect {id} // 查看容器内部细节(盒子)
+
+docker exec -t {id} {command} // 直接执行命令, 不需要进入容器
+
+docker cp {id}:{容器文件路径} {宿主机路径} // 将文件拷贝到宿主机持久化
+
+docker commit -a="作者名" -m="描述" {id} {命名空间/镜像名}:{version} // 就是保存为自己的镜像
+
+// 容器数据卷(相当于外部硬盘, 用来持久化容器数据, 可以修改读写权限)
+docker run -it -v {宿主机目录}:{容器内目录} {name}
+
+docker inspect {id} // 查看容器详情
+
+// DockerFile相当于描述Docker镜像的文件(添加卷或者命令等), 可以通过image+DockerFile生成新的image: 
+docker build -f {DockerFile路径} -t {命名空间/镜像名}
+
+// 容器继承, 继承的容器卷内容能实现共享. 容器之间配置信息的传递, 数据卷的生命周期一直持续到没有容器使用它为止. 
+
+// 保留字指令: 
+FROM 基础镜像, 当前镜像基于哪个镜像, 顶层是scratch
+MAINTAINER 维护者的名字邮箱
+RUN 容器构建时需要运行的命令
+EXPOSE 当前容器对外暴露出的端口号
+WORKDIR 登录容器后的默认路径
+ENV 构建时设置环境变量
+ADD 将宿主机目录下的文件拷贝+解压缩进镜像, ADD会自动解压tar
+COPY 类似ADD但直接拷贝没有解压
+VOLUME 容器数据卷, 用于数据保存和持久化工作
+CMD 指定容器启动时要运行的命令, 可以有多个CMD命令, 但是只有最后一个命令会生效, CMD会被docker run之后的参数覆盖
+ENTRYPOINT 和CMD一样, 都是在指定容器启动程序及参数(不会覆盖, 会被追加组合使用)
+ONBUILD 父镜像在被子镜像继承后这个命令构建时会被触发
+
+dockerfile示例: 
+FROM centos // 父镜像
+MAINTAINER xxxyyy<xxyyy@qq.com>
+
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
+
+RUN yum -y install vim // 安装vim
+RUN yum -y install net-tools // 安装网络工具
+
+EXPOSE 80 // 暴露端口
+
+CMD echo $MYPATH
+CMD echo "success ===== ok"
+CMD /bin/bash
+构建示例: 
+docker build -f /mydocker/Dockerfile -t mycentos:1.3 .
+
+docker history {镜像id} // 列出镜像变更历史
 ~~~

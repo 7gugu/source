@@ -7,5 +7,5 @@ title: 链接
 - [h404bi](https://www.h404bi.com)
 - [smallchili](http://www.smallchili.com/)
 - [Fengz' notes](https://sync.sh/)
-
-
+- [Alex](https://vincent1q84.github.io)
+- [yinwang](http://www.yinwang.org/)
