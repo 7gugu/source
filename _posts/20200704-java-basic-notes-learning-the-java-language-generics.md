@@ -416,6 +416,72 @@ interface PayloadList<E,P> extends List<E> {
 
 ## 类型推断Type Inference
 
+类型推断是Java编译器根据方法调用和对应的类型声明来决定类型参数使得语句能合法执行的能力. (说着很晕大概就是你使用泛型时, 有时不用指定类型编译器会帮你做决策) 推断算法决定了后面的参数类型, 如果可用的话, 那么就会自动分配. 最后推断算法会尝试寻找到最合适的类型来匹配你没有填写的类型. 
+
+为了说明最后一点, 在下面的例子中推断算法决定了第二个传进pick方法中的参数类型是Serializable. 因为ArrayList实现了Serializable接口所以这里没有问题. 
+~~~
+static <T> T pick(T a1, T a2) { return a2; } // 方法中声明了返回值是泛型T, 那个尖括号说明用到了泛型T
+Serializable s = pick("d", new ArrayList<String>()); 
+~~~
+
+### 类型推断和泛型方法
+
+泛型方法来给你介绍一下这个类型推断, 它使得你可以像调用普通方法一样调用泛型方法, 不需要加过多尖括号的修饰. 来看看下面的例子你就知道了: 
+~~~
+public class BoxDemo {
+
+  public static <U> void addBox(U u, 
+      java.util.List<Box<U>> boxes) {
+    Box<U> box = new Box<>();
+    box.set(u);
+    boxes.add(box);
+  }
+
+  public static <U> void outputBoxes(java.util.List<Box<U>> boxes) {
+    int counter = 0;
+    for (Box<U> box: boxes) {
+      U boxContents = box.get();
+      System.out.println("Box #" + counter + " contains [" +
+             boxContents.toString() + "]");
+      counter++;
+    }
+  }
+
+  public static void main(String[] args) {
+    java.util.ArrayList<Box<Integer>> listOfIntegerBoxes =
+      new java.util.ArrayList<>();
+    BoxDemo.<Integer>addBox(Integer.valueOf(10), listOfIntegerBoxes);
+    BoxDemo.addBox(Integer.valueOf(20), listOfIntegerBoxes);
+    BoxDemo.addBox(Integer.valueOf(30), listOfIntegerBoxes);
+    BoxDemo.outputBoxes(listOfIntegerBoxes);
+  }
+}
+~~~
+上面的输出是: 
+~~~
+Box #0 contains [10]
+Box #1 contains [20]
+Box #2 contains [30]
+~~~
+上面的泛型方法addBox定义了一个泛型类型U. 一般来说Java编译器能够推断出泛型方法调用的类型参数. 因此在大多数情况下, 你不需要单独指定他. 例如上面的例子, 为了调用addBox方法你可以用尖括号指定泛型方法中的泛型类型为Integer: 
+~~~
+BoxDemo.<Integer>addBox(Integer.valueOf(10), listOfIntegerBoxes);
+~~~
+如果你忽略这个尖括号指定的类型, 那么Java编译器会自动推断(根据方法参数)那个类型参数是Integer: 
+~~~
+BoxDemo.addBox(Integer.valueOf(20), listOfIntegerBoxes);
+~~~
+
+### 类型推断和实例化泛型类
+
+
+
+
+
+
+
+
+
 
 
 参考: [Generics](https://docs.oracle.com/javase/tutorial/java/generics/index.html)

@@ -3,7 +3,7 @@ title: 打开电脑的时候你电脑发生了什么
 date: 2019-10-19
 updated: 2020-04-30
 tags:
-  - 笔记
+  - Note
   - Win10
 urlname: what-happens-when-you-turn-on-your-computer
 original: true

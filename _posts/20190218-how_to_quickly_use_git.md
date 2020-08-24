@@ -4,7 +4,7 @@ date: 2019-02-18 20:39:13
 updated: 2020-04-30
 tags:
   - Git
-  - 笔记
+  - Note
 urlname: how_to_quickly_use_git
 original: false
 ---

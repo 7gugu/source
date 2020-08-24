@@ -3,7 +3,7 @@ title: 关于图像的DPI和PPI
 date: 2018-06-22
 updated: 2020-04-30
 tags:
-  - 笔记
+  - Note
 urlname: about_dpi_and_ppi_of_image
 original: false
 ---

@@ -4,7 +4,7 @@ date: 2019-02-18 16:47:58
 updated: 2020-04-30
 tags:
   - Hexo
-  - 笔记
+  - Note
 urlname: how_to_quickly_use_hexo
 original: false
 ---

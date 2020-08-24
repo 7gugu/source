@@ -5,7 +5,7 @@ updated: 2020-04-30
 tags:
   - Java
   - Java Web
-  - 笔记
+  - Note
 urlname: javaweb_notes
 original: true
 ---

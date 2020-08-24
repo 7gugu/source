@@ -4,7 +4,7 @@ original: false
 date: 2020-05-29
 updated: 2020-05-29
 tags: 
-- 笔记
+- Note
 urlname: quick-operation-note
 ---
 那些搜索过两次以上的解决办法. 
@@ -216,4 +216,22 @@ CMD /bin/bash
 docker build -f /mydocker/Dockerfile -t mycentos:1.3 .
 
 docker history {镜像id} // 列出镜像变更历史
+
+docker配置代理示例: 
+mkdir /etc/systemd/system/docker.service.d
+vi /etc/systemd/system/docker.service.d/http-proxy.conf
+
+[Service]
+Environment="HTTP_PROXY=http://192.168.52.1:7890/" "HTTPS_PROXY=http://192.168.52.1:7890/"
+
+systemctl daemon-reload
+systemctl restart docker
 ~~~
+
+# GIT
+
+## 添加错文件
+
+git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了
+然后再checkout就好了
+

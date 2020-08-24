@@ -6,28 +6,20 @@ updated: 2020-06-13
 tags: 
 - Nginx
 - Docker
-- 笔记
+- Note
 urlname: serve-image-with-nginx
 ---
 示例
 <!--more-->
 // docker挂载
 ~~~
-mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf
+mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf /home/nginx/www/image /home/nginx/www/image/ /home/nginx/www/image/info_detail
+touch /home/nginx/conf/nginx.conf
 ~~~
 
-创建并运行Nginx容器, 443为https端口. 但这里没有用到https 
+修改配置文件nginx.conf: 
 ~~~
-docker run -d -p 80:80 --name nginx-image-server \
--v /home/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
--v /home/nginx/www:/usr/share/nginx/html \
--v /home/nginx/logs:/var/log/nginx \
-nginx
-~~~
-
-配置文件: 
-~~~
-user  root owner;
+user  root root;
 worker_processes  1;
  
 error_log  /var/log/nginx/error.log warn;
@@ -74,6 +66,16 @@ http {
     }
 }        
 ~~~
+创建并运行Nginx容器, 443为https端口. 但这里没有用到https 
+~~~
+docker run -d -p 80:80 --name nginx-image-server \
+-v /home/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+-v /home/nginx/www:/usr/share/nginx/html \
+-v /home/nginx/logs:/var/log/nginx \
+nginx
+~~~
+这时候nginx服务器就已经搭建好了, 可以在/home/nginx/www下创建index.html, 然后通过ip可以直接访问这时候就成功了. 
+
 安装vsftpd
 ~~~
 yum -y install vsftpd
@@ -130,6 +132,9 @@ vi /etc/pam.d/vsftpd
 #auth required pam_shells.so
 ~~~
 重启
+~~~
+systemctl restart vsftpd.service
+~~~
 
 头像路径
 ~~~
@@ -144,7 +149,7 @@ infoimage
 45g2rVaZ8R9GGka8
 ~~~
 
-如果不显示文件夹
+如果连接上后不显示文件夹
 解决办法：
 ~~~
 1、vi /etc/selinux/config
@@ -153,8 +158,8 @@ infoimage
 4、重启vsftpd
 ~~~
 
-图片示例地址(虚拟机ip): 
-http://192.168.76.56/head/20200505_14-36-29.jpg
+上传图片到image后, 图片示例地址(虚拟机ip): 
+http://虚拟机ip/image/20200505_14-36-29.jpg
 
 # 服务出问题的终极解决办法
 
