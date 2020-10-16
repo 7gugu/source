@@ -49,7 +49,7 @@ original: true
 通过上面你可以看到我的电脑配置比你们的还低, 多么瞩目的2代i3. 
 我日常使用觉得不错的软件: 
 解压: 7-zip
-浏览器: firefox, chrome, 新版Edge
+浏览器: firefox[https://www.mozilla.org/en-US/firefox/all.html](https://www.mozilla.org/en-US/firefox/all.html), chrome, 新版Edge
 截屏: Snipaste
 录屏: OBS Studio
 视频播放器: VLC

@@ -119,7 +119,6 @@ net.ipv4.ip_forward=1
  systemctl restart network
 ~~~
 
-
 ## CentOS7网卡地址, 路径
 
 ~~~
@@ -228,6 +227,24 @@ systemctl daemon-reload
 systemctl restart docker
 ~~~
 
+## Docker使用Redis
+
+~~~
+// 进入容器
+docker exec -it container_id /bin/bash
+
+// 使用redis-cli, h-host, p-port, a-password
+redis-cli -h 127.0.0.1 -p 6379 -a 123456
+
+~~~
+
+## Docker使用Mysql
+
+~~~
+// 忽略大小写敏感
+docker run --name WinMysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.30 --lower_case_table_names=1
+~~~
+
 # GIT
 
 ## 添加错文件
@@ -235,3 +252,9 @@ systemctl restart docker
 git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了
 然后再checkout就好了
 
+# Mysql
+
+清空表数据, id从1开始: 
+~~~
+truncate table TABLE_NAME
+~~~
