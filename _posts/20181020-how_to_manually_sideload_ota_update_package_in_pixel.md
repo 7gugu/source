@@ -1,7 +1,7 @@
 ---
 title: 如何手动sideload升级包(Pixel)
 date: 2018-10-20 
-updated: 2020-04-30
+updated: 2020-10-19
 tags:
   - 手机
 urlname: how_to_manually_sideload_ota_update_package_in_pixel
@@ -21,7 +21,7 @@ Pixel官方OTA包下载地址:[https://developers.google.cn/android/ota#sailfish
 ## 3.手机进入recovery模式
 直接在命令行窗口输入:
 <pre>./adb reboot recovery</pre>
-然后手机可能出现一个倒地的机器人和No Command,这时候同时按 [音量上] + [电源键]就出现选择的画面了(如果是安卓4.4以下就三个实体键一起按),然后选择从OTA升级Apply update from ADB
+然后手机可能出现一个倒地的机器人和No Command,这时候同时按 [音量上] + [电源键]就出现选择的画面了(如果是安卓4.4以下就三个实体键一起按)(好久都没捣鼓过Pixel了, 这次是按了电源键然后再按下音量上),然后选择从OTA升级Apply update from ADB
 之后执行:
 <pre>./adb sideload 文件名.zip</pre>
 这里的'文件名'是指你下载的那个OTA包的名字,要是名字长你可以改成update.zip之类的直接写update.zip代替就好.然后等待刷完重启就好.
