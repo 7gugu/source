@@ -4,7 +4,7 @@ original: true
 date: 2020-08-13
 updated: 2020-08-13
 tags: 
-- Essay
+  - Essay
 urlname: why-i-don't-want-to-translate-the-official-guidelines
 ---
 Immerse myself in English. 

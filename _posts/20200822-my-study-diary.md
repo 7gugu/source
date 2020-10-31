@@ -4,7 +4,7 @@ original: true
 date: 2020-08-22
 updated: 
 tags: 
-- Note
+  - Note
 urlname: my-study-diary
 ---
 记录一下每天的疑问, 以及解答, 回顾. 
@@ -19,3 +19,4 @@ urlname: my-study-diary
 08/31 SLF4J了解? 单元测试中的assert验证? 常见的攻击以及正确的预防CSRF, XSS, 重放等? Mysql Explain的使用? Mysql分页原理? 
 09/10 mysql数据库底层是用什么结构, 插入或者删除修改发生了什么? MySQL的BTREE索引和HASH索引? 
 09/22 架构学习, 优秀的后端架构应该如何设计? (入参怎么接收, 参数校验, 分页, 数据库时间, 删除, 错误处理, 响应封装, 各层关系与调用, 其他层调用时返回实体还是vo, )
+10/29 数据库表分区? 

@@ -3,7 +3,7 @@ title: 如何选购电暖水袋
 date: 2019-02-04 
 updated: 2020-04-30
 tags: 
-  - 生活
+  - Lifestyle
 urlname: how_to_choose_electric_heat_water_bag
 original: true
 ---

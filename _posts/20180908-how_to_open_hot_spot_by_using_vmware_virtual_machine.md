@@ -3,7 +3,7 @@ title: 如何利用VMware绕开天翼校园网检测开热点
 date: 2018-09-08
 updated: 2020-04-30
 tags: 
-  - 虚拟机
+  - Virtual Machine
 urlname: how_to_open_hot_spot_by_using_vmware_virtual_machine
 original: true
 ---

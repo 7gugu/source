@@ -3,7 +3,7 @@ title: 我喜欢的安卓游戏
 date: 2019-03-16 23:40:13
 updated: 2020-04-30
 tags: 
-  - 游戏
+  - Game
 urlname: my_favorite_android_games
 original: true
 ---

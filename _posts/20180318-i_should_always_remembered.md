@@ -3,7 +3,7 @@ title: 时常要明白
 date: 2018-03-18 
 updated: 2020-04-30
 tags:
-  - 随笔
+  - Essay
 urlname: i_should_always_remembered
 original: true
 ---

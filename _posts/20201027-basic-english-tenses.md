@@ -4,8 +4,8 @@ original: false
 date: 2020-10-27
 updated: 
 tags: 
-- Note
-urlname: 20201027-basic-english-tenses
+  - Note
+urlname: basic-english-tenses
 ---
 一些时态的学习. 
 <!--more-->

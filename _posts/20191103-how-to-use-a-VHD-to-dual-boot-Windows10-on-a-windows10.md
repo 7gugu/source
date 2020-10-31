@@ -4,7 +4,7 @@ date: 2019-11-03
 updated: 2020-04-30
 tags:
   - Win10
-  - 虚拟机
+  - Virtual Machine
 urlname: how-to-use-a-VHD-to-dual-boot-Windows10-on-a-windows10
 original: true
 ---

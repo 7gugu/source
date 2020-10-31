@@ -4,9 +4,9 @@ original: false
 date: 2020-06-13
 updated: 2020-06-13
 tags: 
-- Nginx
-- Docker
-- Note
+  - Nginx
+  - Docker
+  - Note
 urlname: serve-image-with-nginx
 ---
 示例

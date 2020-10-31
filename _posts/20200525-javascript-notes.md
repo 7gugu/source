@@ -4,7 +4,7 @@ original: false
 date: 2020-05-25
 updated: 2020-05-25
 tags: 
-- JavaScript
+  - JavaScript
 urlname: javascript-notes
 ---
 复习回顾JavaScript. 摘录一些内容. 

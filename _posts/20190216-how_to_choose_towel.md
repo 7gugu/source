@@ -3,7 +3,7 @@ title: 如何选购毛巾
 date: 2019-02-16 16:16:11
 updated: 2020-04-30
 tags:
-  - 生活
+  - Lifestyle
 urlname: how_to_choose_towel
 original: true
 ---

@@ -4,7 +4,7 @@ original: false
 date: 2020-05-29
 updated: 2020-05-29
 tags: 
-- Note
+  - Note
 urlname: quick-operation-note
 ---
 那些搜索过两次以上的解决办法. 
@@ -257,4 +257,20 @@ git reset HEAD XXX/XXX/XXX.java 就是对某个文件进行撤销了
 清空表数据, id从1开始: 
 ~~~
 truncate table TABLE_NAME
+~~~
+
+# Navicat
+
+## 导出数据字典
+
+~~~
+SELECT
+TABLE_NAME '表名',
+COLUMN_NAME '字段名',
+COLUMN_TYPE '数据类型',
+COLUMN_COMMENT '备注'
+FROM
+information_schema.COLUMNS
+WHERE
+TABLE_SCHEMA = 'admin' and table_name = 'sys_menu';
 ~~~

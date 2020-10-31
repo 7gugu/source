@@ -4,7 +4,7 @@ original: true
 date: 2020-05-14
 updated: 2020-06-24
 tags: 
-- 随笔
+  - Essay
 urlname: the-book-i-read
 ---
 整理一些内容, 突然想整理一下以前看过的书. 

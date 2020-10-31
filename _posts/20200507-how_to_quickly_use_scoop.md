@@ -4,7 +4,7 @@ original: false
 date: 2020-05-07
 updated: 2020-05-07
 tags: 
-- Win10
+  - Win10
 urlname: how_to_quickly_use_scoop
 ---
 快速上手类内容注意更新日期, 因为技术迭代很快教程可能对不上, 以官网为主. 

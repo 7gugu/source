@@ -4,9 +4,9 @@ original: false
 date: 2020-05-28
 updated: 2020-05-28
 tags: 
-- Spring Boot
-- Vue
-- Spring Cloud
+  - Spring Boot
+  - Vue
+  - Spring Cloud
 urlname: spring-boot-vue-integration-notes
 ---
 集成Spring Boot+Vue, 列出踩坑过程. 

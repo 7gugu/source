@@ -3,7 +3,7 @@ title: 交流应该简明扼要
 date: 2017-07-23 
 updated: 2020-04-30 
 tags:
-  - 随笔
+  - Essay
 urlname: communication_should_be_concise
 original: true
 ---

@@ -3,7 +3,7 @@ title: 2017年年度小结
 date: 2018-01-01
 updated: 2018-01-01
 tags:
-  - 随笔
+  - Essay
 urlname: annual_summary_2017
 original: true
 ---

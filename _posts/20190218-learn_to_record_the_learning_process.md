@@ -3,7 +3,7 @@ title: 学会记录学习过程
 date: 2019-02-18
 updated: 2020-04-30
 tags:
-  - 随笔
+  - Essay
 urlname: learn_to_record_the_learning_process
 original: true
 ---

@@ -3,7 +3,7 @@ title: 如何选择防晒霜
 date: 2019-01-27 09:48:04
 updated: 2020-04-30
 tags:
-  - 生活
+  - Lifestyle
 urlname: how_to_choose_sunblock
 original: true
 ---

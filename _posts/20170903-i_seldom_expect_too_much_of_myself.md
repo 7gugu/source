@@ -3,7 +3,7 @@ title: 我很少对自己抱太高期望
 date: 2017-09-03
 updated: 2017-09-03 
 tags:
-  - 随笔
+  - Essay
 urlname: i_seldom_expect_too_much_of_myself
 original: true
 ---

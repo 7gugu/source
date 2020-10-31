@@ -3,7 +3,7 @@ title: 搭建个人博客的历史
 date: 2017-07-11
 updated: 2020-07-31
 tags: 
-  - 博客
+  - Blog
 urlname: history_of_myblog
 original: true
 ---

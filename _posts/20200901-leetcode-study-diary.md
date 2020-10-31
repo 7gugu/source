@@ -4,7 +4,7 @@ original: true
 date: 2020-09-01
 updated: 
 tags: 
-- Note
+  - Note
 urlname: leetcode-study-diary
 ---
 Write the Study Note. 

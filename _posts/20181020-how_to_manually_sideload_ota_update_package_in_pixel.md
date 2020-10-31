@@ -3,7 +3,7 @@ title: 如何手动sideload升级包(Pixel)
 date: 2018-10-20 
 updated: 2020-10-19
 tags:
-  - 手机
+  - Phone
 urlname: how_to_manually_sideload_ota_update_package_in_pixel
 original: true
 ---
