@@ -175,8 +175,76 @@ Content-Type: text/html
 通过**内容分发网络**(Content Distribution Network, CDN), Web缓存器在因特网中发挥着越来越重要的作用. 
 Web缓存器给初始服务器发送的**条件GET方法**(conditional GET)的首部行包含一个" If-Modified -Since :", 如果资源对象没有被修改那么返回空对象的响应, 否则返回修改后的对象和日期. 它给判断缓存中的内容是否是陈旧的行为提高了效率. 
 
+### 3.2.2 文件传输协议:FTP
 
+FTP使用了两个并行的TCP连接来传输文件: 
+- **控制连接**(control connection): 用于两主机之间传输控制信息, 如用户标识, 口令, 改变远程目录的命令以及存放(put)和获取(get)命令等. 
+- **数据连接**(data connection): 实际用于发送一个文件. 
 
+因为FTP协议使用一个独立的TCP控制连接, 所以我们也称FTP的控制信息是**带外**(out-of-band)传送的. 而HTTP协议在传输文件的同一个TCP连接中发送请求和响应首部行的, 因此可以说是**带内**(in-band)发送控制信息的. 
+
+当用户主机与远程主机开始一个FTP会话时, FTP客户端首先在21端口与服务器端发起一个用于控制的TCP连接. 当FTP服务端从控制连接中接收到一个文件传输命令后, 服务端便向客户端发起一个TCP数据连接传输数据然后关闭连接. 所以在一个会话期间, 用户还需要传输另一个文件, FTP则要打开另一个数据连接. FTP必须在整个会话期间保留用户的**状态**(state), 把特定的用户账户与连接联系起来, 对每一个用户会话状态信息进行追踪, 这限制了FTP同时维持的会话数. 
+
+### 3.2.3 因特网中的电子邮件
+
+// TODO
+
+### 3.2.4 DNS: 因特网的目录服务
+
+DNS能提供**主机名**(hosename)转换成**IP地址**(IP address)的目录服务, 这就是**域名系统**(Domain Name System, DNS)的主要任务. 它是: 
+- 由分层的**DNS服务器**(DNS server)实现的分布式数据库
+- 一个使得主机能查询分布式数据库的应用层协议, DNS协议使用53端口运行在UDP上
+
+它不直接与用户打交道, 而是为因特网上的用户应用程序以及其他软件提供一种核心功能, 就是将主机名转换为IP地址. 
+它还提供一些重要的服务: 
+- **主机别名**(host aliasing): 有复杂主机名的主机能够拥有一个或者多个别名. 比如一台名为relay1.west-coast.enterprise.com的主机, 可能还有两个别名为enterprise.com和www.enterprise.com. 在这种情况下relay1.west-coast.enterprise.com也称为**规范主机名**(canonical hostname). 主机别名比规范主机名更容易记忆. 应用程序可以调用DNS来获得主机别名对应的规范主机名以及主机的IP地址. 
+- **邮件服务器别名**(mail server aliasing): MX记录(后面介绍)允许一个公司的邮件服务器和Web服务器使用相同(别名化)的主机名. 
+- **负载均衡**(load distribution): 一些繁忙的站点它可能有很多台服务器来冗余该站点, 所以这些冗余的服务器每一台都有不同的IP地址, 而DNS数据库中能存储这些IP地址的集合, 当用户请求某个主机别名时, DNS服务器从数据库拿出的IP集合中选取一条返回. 
+
+大致来说有三种DNS服务器: 根DNS服务器(Root DNS Server), 顶级域DNS服务器(Top-Level Domain, TLD DNS Server), 权威DNS服务器(Authoritative DNS Server). 
+
+它们的层次结构如下: 
+![](/picture/2020-11-02-15-29-38.png)
+如果DNS客户要决定主机名 www.someexp.com 的IP地址, 用户首先和根服务器之一联系, 它返回顶级域名com的TLD服务器的IP地址, 然后客户与这些TLD服务器之一联系, 它将为 someexp.com 返回权威服务器地址的IP, 最后客户与 someexp.com 权威服务器之一联系, 它为主机名 www.someexp.com 返回其IP地址. 得到IP地址后客户就能带着IP地址访问相关的服务了. 细看一下这三种类型的DNS服务器: 
+- **根DNS服务器**(Root DNS Server): 在因特网上有13个根DNS服务器, 但每台"服务器"实际上是一个冗余服务器的网络, 到了2011年秋季共有247个根服务器. 
+- **顶级域DNS服务器**(Top-Level Domain, TLD DNS Server): 这些服务器负责顶级域名如com, org, net, edu和gov, 以及所有国家的顶级域名如cn, uk, fr, ca和jp等. 
+- **权威DNS服务器**(Authoritative DNS Server): 该服务器用来存储一些DNS记录, DNS记录能将主机名映射为IP地址. 一个组织机构能够实现它自己的权威DNS服务器来保存这些记录. 当然这些组织机构也能支付费用, 让一些记录存储在别的服务提供商的权威DNS服务器中. 多数大学和大公司实现和维护他们自己基本和辅助(备份)的DNS服务器. 
+
+还有另一类重要的DNS称为**本地DNS服务器**(local DNS server). 每个ISP(如一个大学, 一个系, 一个公司或居民区ISP)都有一台本地DNS服务器. 当主机与某个ISP连接时, 该ISP提供一台主机的IP地址, 这个主机具有一台或者多台其本地DNS服务器的IP地址(通过DHCP, 会在后面讲到), 然后你就能得到DNS服务器地址. 当主机发出DNS请求时, 该请求会被发往本地DNS服务器, 它起着代理的作用, 并将请求转发到DNS服务器结构层次中. 
+
+例子: 
+假设主机cis.poly.edu想知道主机gaia.cs.umass.edu的IP地址, 假设理工大学(Polytechnic)的本地DNS服务器为dns.poly.edu, 并且gaia.cs.umass.edu的权威DNS服务器为dns.umass.edu. 如下图: 
+![](/picture/2020-11-02-15-53-34.png)
+- 1. 请求主机cis.poly.edu首先向本地DNS服务器发送DNS查询报文, 报文含有被转换的主机名gaia.cs.umass.edu. 
+- 2. 本地DNS服务器将该报文转发到根DNS服务器. 
+- 3. 根服务器根据edu前缀向本地DNS服务器返回负责edu的TLD的IP地址列表. 
+- 4. 本地DNS服务器向这些TLD服务器之一发送查询报文. 
+- 5. TLD服务器注意到umass.edu前缀, 并返回权威DNS服务器的IP地址, 这个权威DNS服务器负责马赛诸塞大学的dns.umass.edu. 
+- 6. 本地DNS服务器向dns.umass.edu发查询报文. 
+- 7. dns.umass.edu用gaia.cs.umass.edu的IP地址进行响应. 
+- 8. 本地服务器再把详情转发回请求主机. 
+
+上面为了获得一台主机名的映射, 发送了8份DNS报文, 4份查询4份响应. 而在实际场景中为了改善时延性能并减少在因特网上到处传输的DNS报文数量, DNS广泛使用了缓存技术, 也就是**DNS缓存**(DNS caching), 比方说上面的例子中的本地DNS服务器会缓存响应的信息. 例子假设了TLD服务器知道了目标主机的权威DNS服务器的IP地址, 一般而言这并不总是正确的. 相反, TLD服务器只是知道目标主机到TLD服务器之间的其中某个权威DNS服务器(这个前提是有多个权威DNS服务器). 在例子中我们可以假设该大学的DNS服务器下还有根据院系分开的DNS服务器, 那么假设目标主机以cs.umass.edu结尾, 也就是计算机系下的一个主机, 那么在这种情况下: 
+![](/picture/2020-11-02-18-08-31.png)
+- 6. 本地DNS服务器向dns.umass.edu发查询报文(报文的主机名为cs.umass.edu结尾). 
+- 7. dns.umass.edu返回权威服务器cs.umass.edu的地址. 
+- 8. 本地DNS服务器向cs.umass.edu发查询报文. 
+- 9. cs.umass.edu用gaia.cs.umass.edu的IP地址进行响应. 
+- 10. 本地服务器再把详情转发回请求主机. 
+
+在这个例子中共发送了10份DNS报文! 在这些例子中利用到了**递归查询**(recursive query)和**迭代查询**(iterative query). 理论上任何DNS查询向上面的例子一样既可以是迭代的也能是递归的. 下图展示了两种查询的区别: 
+![](/picture/2020-11-02-17-25-16.png)
+
+共同实现DNS分布式数据库的所有DNS服务器存储了**资源记录**(Resource Record, RR), RR提供了主机名到IP地址的映射. 每个DNS回答报文包含了一个或多条资源记录. 
+资源记录是一个包含了下列字段的4元组: 
+(Name, Value, Type, TTL)
+而TTL是记录的生存时间, 也就是决定了资源记录应当从缓存中删除的时间, 下面就忽略TTL. 而Name和Value的值取决于Type: 
+- 如果Type = A, 则Name是主机名, Value是该主机名对应的IP地址. 这是一条提供了标准的主机名到IP地址的映射. 例如(relay1.bar.foo.com, 145.37.93.126, A)就是一条类型A记录. 
+- 如果Type = NS, 则Name是一个域(如foo.com), 而Value是一个知道如何获得该域中主机IP地址的权威DNS服务器的主机名. 这个记录用于沿着查询链路来路由DNS查询. 例如(foo.com, dns.foo.com, NS)就是一条类型为NS的记录. 
+- 如果Type = CNAME, 则Name是一个别名, Value是别名为Name的主机对应的规范主机名. 该记录能够向查询的主机提供一个主机名对应的规范主机名. 例如(foo.com, relay1.bar.foo.com, CNAME)就是一条类型为CNAME的记录. 
+- 如果Type = MX, 则Name是一个别名, 而Value为该别名的邮件服务器的规范主机名. 举例来说(foo.com, mail.bar.foo.com, MX)就是一条MX记录. 通过MX记录, 公司的邮件服务器和其他服务器可以使用相同的别名, 为了获得邮件服务器的规范主机名, DNS客户应当请求一条MX记录, 而为了获得其他服务器的规范主机名, DNS客户应当请求CNAME记录. 
+
+DNS的查询和回答报文有着相同的格式, 其字段语义什么的就不在这里说了. 
 
 ## 2.2. 协议
 
