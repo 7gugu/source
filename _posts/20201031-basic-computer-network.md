@@ -246,6 +246,8 @@ DNS能提供**主机名**(hosename)转换成**IP地址**(IP address)的目录服
 
 DNS的查询和回答报文有着相同的格式, 其字段语义什么的就不在这里说了. 
 
+文章配套有两个使用Python的套接字编程练习, 分别是UDP和TCP的, 两者的区别就是UDP每次向服务端发送消息都需要显示指明目标套接字的IP地址和端口, 而TCP建立了连接之后就不需要显示指明, 我自己对着改了的代码在[这里](https://github.com/thesomeexp/ComputerNetworkingPractice). 
+
 ## 2.2. 协议
 
 ### 2.2.1 IP协议

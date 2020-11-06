@@ -136,6 +136,218 @@ Spring通过jdk和cglib两个精彩的实现了AOP, 虽然我们用起来很简�
 
 在此之前先学习一下[计算机网络基础知识](/post/basic-computer-network). 
 
+在BS结构中使用到了DNS协议, 而且在HTTP上层还有相关规范, 如Java Web开发中使用的是Servlet标准. 标准就是规范, 都是不能干活的, 能干活的就是实现了Servlet标准的Tomcat这种Servlet容器. 
+
+### 4.1.1 Java中的Socket
+
+Java中的Socket可以分为**普通Socket**和**NioSocket**两种. 
+
+#### 普通Socket
+
+Java中的网络通信是通过Socket实现的, java.net包里的Socket主要分为**Socket**和**ServerSocket**两类. 
+- java.net.ServerSocket: 用于服务端, 可以通过accept方法监听请求, 监听到Socket请求后用该Socket完成数据传输. 
+- java.net.Socket: 用于客户端发起请求并传输数据. 
+
+#### new IO模式Socket
+
+// TODO 以后再说
+
+这两个例子书中的代码我都放在[这里](https://github.com/thesomeexp/JavaExample/tree/master/KanTouSpringMVC)啦. 
+
+
+### 4.1.2 Servlet详解
+
+Servlet是Server+Applet的缩写, 表示一个服务器应用. 它是一套规范, 按照这套规范写的代码就可以直接在Java的服务器上运行. 
+
+![](/picture/2020-11-05-11-18-18.png)
+
+Servlet一些方法: 
+- init(): 在容器启动时被容器调用. (当load-on-startup设置为负数或者不设置时会在Servlet第一次用到时才被调用)
+- getServletConfig(): 用于获取ServletConfig. 
+- getServletInfo(): 获取Servlet相关信息, 如作者, 版权等, 默认空. 
+- service(): 具体处理请求的方法
+- destroy(): Servlet销毁(关闭服务器)时释放一些资源, 调用一次. 
+
+ServletConfig一些方法: 
+- getServletName(): 获取Servlet名字, web.xml中定义的servlet-name. 
+- getInitParameter(): 获取init-param配置参数. 
+- getInitParameterNames(): 获取配置所有init-param的名字的集合. 
+- getServletContext(): 这个非常重要, 它的返回值ServletContext就是这个应用本身. 所以这里面的参数就可以被当前应用的所有Servlet共享. 比如我们项目中参数可以保存在Session中, 也可以在Application中, 而这个Application多数就是保存在ServletContext. 
+
+简单来说ServletConfig能获取一些web.xml配置好的servlet信息, 然后还能获得整个Servlet上下文. Servlet容器通过把这个ServletConfig作为参数传入Servlet的init()方法中, 便于Servlet的配置. 
+
+GenericServlet作为一个协议无关的Servlet的默认实现, 主要做了三件事: 
+- 1. 实现ServletConfig接口, 使得可以直接调用里面的方法. 
+- 2. 提供无参的init()模板方法. (带参的init方法做了config的配置, 所以子类只需要覆盖无参init()专注于完成逻辑就好了)
+- 3. 提供log()方法. 一般我们都有自己的日志处理, 这个用得不多. 
+
+HttpServlet做的比较重要的事情: 
+- 1. 覆盖service()方法, 主要将ServletRequest和ServletResponse转换为HttpServletRequest和HttpServletResponse. 然后调用自己的service()方法. 
+- 2. 自身的service()方法, 根据HttpServletRequest的请求方法, 用不同的doXXX结构的处理方法处理. 
+
+注意到doGet方法处理前它判断了if-modified-since, 如果缓存没过期就返回304使用缓存. 
+而doHead调用了doGet请求, 然后返回空body的Response. 
+而doOptions和doTrace正常不需要使用, 主要用来做调试, 它会对header原封不动的返回, 这种做法很容易被黑客利用, 存在安全漏洞, 如果不是必须使用最好禁用. 
+
+简单来说HttpServlet把不同请求方式路由到了不同的处理方法. 
+
+## 4.2 Tomcat
+
+### 4.2.1 Tomcat的顶层结构
+
+Tomcat中最顶层的容器叫Server. 
+- Server: 这是Tomcat中最顶层的容器, 它代表整个服务器. 它包含至少一个Service, 用于提供服务. 
+- Service: 它包含一个Container和一个或多个Connector(一个服务可以有多个连接, 如同时提供http与https, 也可以提供同协议不同端口的连接). 
+- Connector: 它用于处理连接相关的事情, 并提供Socket与request, response的转换. 
+- Container: 用于封装和管理Servlet, 具体处理request请求. 
+
+![](/picture/2020-11-05-14-54-04.png)
+
+而Tomcat的Server是由org.apache.catalina.startup.Catalina来管理的, Catalina是整个Tomcat的管理类. 它的方法: 
+- 1. load(): 用于根据conf/server.xml文件创建Server并调用Server的init()方法进行初始化. 
+- 2. start(): 用于启动服务器. 在内部调用Server的start()方法. 
+- 3. stop(): 用于停止服务器. 在内部调用Server的stop()方法. 
+- await(): 该方法调用Server的await()方法, 作用是进入一个循环让主线程不会退出. 
+
+上面的三个方法会按照容器的结构逐层调用相应的方法. 比如Server的start()会调用Service的start(), 而Service的start()会调用包含的Connector和Container的start(). 
+
+而Tomcat的入口方法并不在Catalina类里面, 而是在org.apache.catalina.startup.Bootstrap里面. 这个Bootstrap类似一个CatalinaAdaptor, 具体过程还是Catalina来完成的, 这样的好处是把启动入口和具体的管理类分开, 可以方便的创造出不同的启动方式, 每种启动方式只需要写相应的CatalinaAdaptor就好了. 
+
+### 4.2.2 Bootstrap的启动过程
+
+- 1. main(): 新建一个Bootstrap对象, 执行init()方法, 然后处理main方法传入的args参数命令, 如果为空默认执行setAwait() ---> load(args) ---> start(). 
+- 2. init(): 初始化ClassLoader创建Catalina实例赋值给catalinaDaemon变量, 后面对命令操作都是用catalinaDaemon. 
+- 3. setAwait(): 通过反射调用对应Catalina的setAwait(). 
+- 4. load(args): 通过反射调用对应Catalina的load(args). 
+- 5. start(): 通过反射调用对应的Catalina的start(). 
+
+### 4.2.3 Catalina的启动过程
+
+- 1. setAwait(): 用于设置Server启动后是否进入等待的await标志. 可以看到start()后会用await标志判断是否执行await(). 
+- 2. load(args): 根据conf/server.xml加载配置文件创建并初始化Server对象, 然后赋值给server属性(具体操作是通过开源项目Digester完成的), 然后调用server的init(). 
+- 3. start(): 调用server的start(), 然后根据await属性判断是否让程序进入等待状态. (server的await()方法内部会执行一个while循环, 当await()方法退出时会执行stop()从而关闭服务器)
+
+### 4.2.4 Server的启动过程
+
+Server接口提供addService(), removeService来添加和删除Service. 而Server的init()和start()方法分别循环调用每个Service的init()和start()方法来启动所有Service. 
+
+Server的默认实现是org.apache.catalina.core.StandardServer, 而StandardServer继承自LifecycleMBeanBase, LifecycleMBeanBase又继承自LifecycleBase: 
+![](/picture/2020-11-05-16-04-08.png)
+init()和start()方法就定义在LifecycleBase中, LifecycleBase里的init()和start()方法又调用initInternal()和startInternal()这两个模板方法, 所以调用StandardServer的init()和start()方法时会执行StandardServer自己的initInternal()和startInternal()这两个方法, 这就是Tomcat生命周期的管理方式. initInternal()和startInternal()这两个方法分别循环调用了每一个Service的start()和init()方法. 
+
+StandardServer还实现了**await()**方法, Catalina就是调用它让服务器进入等待状态的. 但是啥时候退出呢? 这就是await()方法要干的活了. 它根据Server设置的端口号来关闭(这个端口号不是服务的端口号, 是专门用来监听停止容器命令的端口, 默认是8005). 根据这个端口号的值, 它有三种处理方法: 
+- port为-2, 则直接退出, 不进入循环. 
+- port为-1, 进入一个循环, 只有调用了stopAwait方法才会退出循环. (方法关闭)
+- port为其他值, 会在port所在端口启动一个ServerSocket来监听关闭命令(默认为"SHUTDOWN"), 默认为8005, 如果接收到了则跳出循环. (网络命令关闭)
+
+### 4.2.5 Service的启动过程
+
+Service接口的默认实现是org.apache.catalina.core.StandardService, StandardService也继承LifecycleMBeanBase类, 所以init()和start()方法最终也会调用initInternal()和startInternal()方法. 
+![](/picture/2020-11-05-16-21-49.png)
+
+我们看StandardService中的initInternal()和startInternal()方法, 它其实是调用了container, executors, mapperListener, connectors的init()和start()方法. container和connectors前已经介绍过, mapperListener是Mapper的监听器, 它可以监听container容器的变化, executors是用在connectors中管理线程的线程池, 在server.xml配置文件中有参考用法, 不过默认是注释起来的: 
+~~~
+    <!--The connectors can use a shared executor, you can define one or more named thread pools-->
+    <!--
+    <Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
+        maxThreads="150" minSpareThreads="4"/>
+    -->
+~~~
+把上面的注释放开, Connector就会配置一个叫tomcatThreadPool的线程池, 最多可以同时启动150个线程, 最少要有4个可用线程. 
+
+整个Tomcat服务器启动流程就是: 
+![](/picture/2020-11-05-17-23-55.png)
+
+### 4.2.6 Tomcat的生命周期管理
+
+下面的内容需要学习**观察者模式**才能看懂哦. 
+Tomcat通过org.apache.catalina.Lifecycle接口统一管理生命周期, 所有有生命周期的组件都要实现Lifecycle接口. 
+而这个生命周期管理的Lifecycle接口是拿来干嘛的呢? 由Lifecycle接口上面的注释我们可以了解到, 实现了这个接口的组件, 他们就会有以下的这些合法的状态值, 以及状态之间的转换, 在状态转换之间触发事件, 然后监听器们通过判断事件的类型来做相应处理. 下面这个是组件的状态机图(这个图看着难受, 过一眼就行了): 
+![](/picture/2020-11-06-10-10-10.png)
+
+这个接口主要有这些内容: 
+- 1. 定义了13个String类型常量, 这是LifecycleEvent事件中的**事件类型**. 用于LifecycleEvent事件中的type属性, 作用是区分组件发出的LifecycleEvent事件时的状态(如初始化前, 启动前, 启动中等). 这种设计方式可以让多种状态都发送同一种类型的事件, 然后用其中的一个属性来区分状态而不用定义多种事件. 书本作者大佬说我们要学习借鉴这种方式. 
+- 2. 定义了三个管理监听器的方法: addLifecycleListener(), findLifecycleListeners(), removeLifecycleListener(), 分别用来添加, 查找, 删除LifecycleListener类型的监听器. 
+- 3. 定义了4个生命周期的方法: init(), start(), stop(), destroy(), 用于执行生命周期的各个阶段的操作. 
+- 4. 定义了获取当前状态的两个方法, getState()和getStateName()分别用来获取当前的状态. getState()返回值LifecycleState是枚举类型, 里面列举了**生命周期的各个节点**, getStateName()方法返回String类型的状态名字, 主要用于JMX中. 
+
+
+### 4.2.7 Container分析
+
+Container是Tomcat中容器的接口, 因为作为Tomcat的容器组件所有有生命周期继承Lifecycle接口. 
+它有4个子接口(子容器)和一个默认实现ContainerBase, 而且子容器都继承默认实现ContainerBase: 
+![Container结构图](/picture/2020-11-06-14-54-35.png)
+Container的子容器Engine, Host, Context, Wrapper是逐层包含的关系, 其中Engine是最顶层, 每个Service最多只能有一个Engine, 每个Engine里面可以有多个Host, 每个Host下可以有多个Context, 每个Context下可以有多个Wrapper. 
+![](/picture/2020-11-06-14-59-25.png)
+- Engine: 引擎, 用来管理多个站点, 一个Service最多只能有一个Engine. (也就是很久之前结构图的Container)
+- Host: 代表一个站点, 也可以叫虚拟主机, 通过配置Host就可以添加站点. 
+- Context: 代表一个应用程序, 对应着平时开发的一套程序, 或者一个WEB-INF目录以及下面的web.xml文件. 
+- Wrapper: 每个Wrapper封装着一个Servlet. 
+
+上面写得我觉得比较抽象, 还是直接看Tomcat目录吧: 
+**Host**: Tomcat的默认Host(主机名)为localhost, 在conf/server.xml也能看到相关配置(这里简单的抽取一些配置): 
+~~~
+<Server port="8005" shutdown="SHUTDOWN">
+  <Service name="Catalina">
+    <Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" />
+    <Engine name="Catalina" defaultHost="localhost">
+      <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
+~~~
+Tomcat启动时默认监听所有IP地址, 如果仅仅本地测试可以在Service下的Connector中配置address="127.0.0.1"来设置仅监听本地. 
+![](/picture/2020-11-06-15-04-52.png)
+**Context**: 代表应用, 而ROOT目录里的应用就是主应用, 直接使用主机名/应用名就能访问对应的应用, 比如我们启动Tomcat后访问127.0.0.1/docs就能访问docs这个应用了. 
+![](/picture/2020-11-06-15-07-58.png)
+![](/picture/2020-11-06-15-48-24.png)
+
+4种容器的配置方法: 
+作者简化了默认配置来供我们学习哦: 
+~~~
+<?xml version='1.0' encoding='utf-8'?>
+<Server port='8005' shutdown='SHUTDOWN'>
+    <Service name='Catalina'>
+        <Connector port='8080' protocol='HTTP/1.1' connectionTimeout='20000' redirectPort='8443' />
+        <Connector port='8009' protocol='AJP/1.3' redirectPort='8443' />
+        <Engine name='Catalina' defaultHost='localhost'>
+            <Host name='localhost'  appBase='webapps' unpackWARs='true' autoDeploy='true'>
+            </Host>
+        </Engine>
+    </Service>
+</Server>
+~~~
+- Server: Server代表整个服务器, 在8005端口监听关闭命令"SHUTDOWN". Server下有一个叫Catalina的默认Service. 
+- Service: Service里定义了两个Connector, 一个是HTTP协议一个是AJP协议; 还定义了一个叫Catalina的Engine. 
+- Engine: Engine里定义了一个名为localhost的Host. 
+  - defaultHost属性代表接收到的请求域名如果在所有Host的name和Alias都找不到时使用默认的Host. 如果使用IP直接访问也会用到defaultHost, 如果删掉该属性, 启动后通过IP就没有办法访问咯. 
+- Host: 一个Host就代表一个主机咯. 
+  - name属性代表主机名, 上面定义的主机名为localhost, 所以可以通过localhost可以访问. 
+  - appBase属性指定站点的位置, 比如上面定义的站点就是默认的webapps目录. 
+  - unpackWARs属性代表是否自动解压war文件
+  - autoDeploy属性为true代表Tomcat在运行过程中在webapps目录中加入新的应用将会自动部署并启动. 
+- Alias: 这个是Host下的一个标签, 这个标签定义主机别名. 比如你可以把Engine的defaultHost属性删掉, 然后再加上Alias标签, 标签内的值为www.localhost, 那么就能通过 www.localhost 主机别名也能访问了. 
+
+Context的三种配置方法: 
+- 1. 通过文件配置(有5个位置)
+  - 1.1 conf/server.xml文件中的Context标签. (配置单独的应用)
+  - 1.2 conf/[enginename]/[hostname]/目录下以应用命名的xml文件. (配置单独的应用)
+  - 1.3 应用自己的/META-INF/context.xml文件. (配置单独的应用)
+  - 1.4 conf/context.xml文件. (整个Tomcat中共享, Tomcat重启时才重新加载)
+  - 1.5 conf/[enginename]/[hostname]/context.xml.default文件. (整个Host中共享)
+- 2. 将WAR应用直接放到Host目录下, Tomcat会自动查找并添加到Host中. 
+- 3. 将应用文件夹放到Host目录下, Tomcat也会自动查找并添加到Host中. 
+
+Wrapper的配置就是再web.xml中配置的Servlet, 一个Servlet对应一个Wrapper. 也可以在conf/web.xml文件中配置全局的Wrapper, 处理Jsp的JspServlet就配置在这里, 所有不需要自己配置Jsp就可以处理Jsp请求了. 
+
+注: conf/web.xml配置了两个全局Servlet, 一个是DefaultServlet, 另一个是JspServlet, 分别负责处理一些媒体文件和jsp文件. 如果应用中配置了对应的url-pattern标签将会覆盖这两个默认的Servlet. 所有在使用SpringMVC配置DispatcherServlet的mapping为/的时候, 会覆盖DefaultServlet, 这时类似.jpg, .png这种静态资源就得不到处理, 所以就会报404错误, 所以对于这些静态资源在SpringMVC里需要做格外的处理. 
+
+由于Service下的所有站点都是共享Connector, 所以监听的端口都一样. 如果想要添加监听不同端口的站点可以通过不同的Service配置, Service也是在conf/server.xml文件中配置的. 
+
+### 4.2.8 Pipeline-Value管道
+
+### 4.2.9 Connector分析
+
+
+## 4.3 Spring MVC简介
+
 
 
 
