@@ -341,16 +341,120 @@ Wrapper的配置就是再web.xml中配置的Servlet, 一个Servlet对应一个Wr
 
 由于Service下的所有站点都是共享Connector, 所以监听的端口都一样. 如果想要添加监听不同端口的站点可以通过不同的Service配置, Service也是在conf/server.xml文件中配置的. 
 
+// TODO 然后巴拉巴拉就是Container启动的内容了, 这我懒了不写了, 启动完就会启动下面的管道了
+
 ### 4.2.8 Pipeline-Value管道
+
+Container处理请求是使用Pipeline-Value管道来处理的. 这种处理方式能确保每一层都能有序的执行到, 从顶层Engine到Host到Context再到Wrapper...
+这个模式类似于设计模式中的**责任链模式**. 但又有几点不同: 
+- 1. 每个Pipeline都有特定的Valve(对, 是Valve不是Value), 且是最后一个执行, 这个Valve叫BaseValve, 是不可删除滴. 
+- 2. 上层容器的管道的BaseValve会调用下层容器的管道. 四个容器的BaseValve分别是StandardEngineValve, StandardHostValve, StandardContextValve, StandardWrapperValve. 
+
+它们的执行流程如下图: 
+![](/picture/2020-11-09-10-45-31.png)
+在Engine的管道中依次执行Engine的各个Valve, 最后执行StandardEngineValve用于调用Host的管道, 然后执行Host的Valve, 这样依此类推执行Wrapper管道中的StandardWrapperValve. 
+
+在Filter中用到的FilterChain其实就是这种模式, FilterChain相当于Pipeline, 每个Filter都相当于一个Valve, Servlet相当于最后的BaseValve. 
+
+管道呢既是一个组件(所以有生命周期), 又是拿来处理请求的, 所以就分两部分咯. 
+- 首先就是org.apache.catalina.core.ContainerBase的startInternal()和stopInternal()对管道进行启动和关闭. 
+- 然后处理请求是调用Valve的invoke()方法, 比如org.apache.catalina.core.StandardEngineValve中处理完会调用host的首个Valve, 一层一层下来直到最后的StandardWrapperValve. 
+
+所以总的流程就是, Connector在接收到请求之后会调用最顶层容器的Pipeline来处理, 最顶层处理完会在BaseValve里调用下一层容器的Pipeline处理, 这样可以逐层调用所有容器的Pipeline来处理. 处理到最后, Wrapper的Pipeline最后会在其BaseValue(StandardWrapperValve)中创建FilterChain并调用其doFilter方法来处理请求, FilterChain包含着我们配置的与请求相匹配的Filter和Servlet, 其doFilter方法会依次调用所有Filter的doFilter方法和Servlet的service方法, 这样请求就得到处理了. 
 
 ### 4.2.9 Connector分析
 
+简单来说Connector用来接收请求然后封装成Request和Response来具体处理, 它的底层就是使用Socket来进行连接的, Request和Response是按照HTTP协议来封装的, 所以Connector同时实现了TCP/IP协议和HTTP协议, 封装完之后就交给Container进行处理, Container就是Servlet的容器, 处理完后再返回给Connector最后Connector使用Socket将处理结果返回给客户端, 整个请求就处理完了. 作者提供的结构关系图: 
+![](/picture/2020-11-09-11-54-34.png)
+// TODO: 砍刀部动手, 这部分细节就砍了
 
-## 4.3 Spring MVC简介
+## 4.3 Spring MVC
 
+### 4.3.1 整体结构
 
+上一波Spring MVC中核心的继承结构图: 
+![](/picture/2020-11-09-14-24-42.png)
 
+图中Java方面的三个类之前已经讲过了, 下面都是讲SpringMVC中的HttpServletBean, FrameworkServlet和DispatcherServlet这三个类. 
+这三个类直接实现三个接口, EnvironmentAware, EnvironmentCapable, ApplicationContextAware. 这种XXXAware在Spring里表示对XXX可感知, 也就是说某个类想使用Spring的一些东西, 可以实现这个接口然后实现对应的set方法, Spring就会给你带过来. 
 
+### 4.3.2 HttpServletBean介绍
+
+在之前对Servlet的分析时, 我们知道创建Servlet时, 它的init()方法会被容器调用, 而org.springframework.web.servlet.HttpServletBean的init()方法将Servlet中配置的参数使用BeanWrapper设置到DispatcherServlet的相关属性中, 然后调用模板方法initServletBean(), 子类就通过这个方法初始化. 
+
+对于这个HttpServletBean, 它的上一级GenericServlet有一个使用transient修饰的ServletConfig, 这个修饰符表示修饰的内容不会被序列化, 在这里可能是config不是很重要所以不用序列化吧. 
+
+注: BeanWrapper怎么用? 它是Spring提供的操作JavaBean属性的工具, 用它可以直接修改一个对象的属性. 作者举了个例子: 
+~~~
+public class User {
+    String userName;
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+}
+public class BeanWrapperTest {
+    public static void main(String[] args) {
+        User user = new User();
+        BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(user);
+        bw.setPropertyValue("userName", "张三");
+        System.out.println(user.getUserName());
+        PropertyValue value = new PropertyValue("userName", "李四");
+        bw.setPropertyValue(value);
+        System.out.println(user.getUserName());
+    }
+}
+~~~
+
+### 4.3.3 FrameworkServlet介绍
+
+根据上面HttpServletBean可知, 这个FrameworkServlet的初始化入口方法是initServletBean(), 然后它的核心代码主要是初始化WebApplicationContext还有初始化FrameworkServlet. // TODO: 下面巴拉巴拉就懒得写了
+
+### 4.3.4 DispatcherServlet介绍
+
+onRefresh()方法是DispatcherServlet入口方法, DispatcherServlet的创建过程主要是对9大组件进行初始化. 
+
+### 4.3.5 HttpServletBean使用
+
+作者说这个东西主要参与了创建工作, 没有涉及请求的处理. 
+
+### 4.3.6 FrameworkServlet使用
+
+- 对service()方法添加了对PATCH的处理, 将需要自己处理的请求都集中到了processRequest()进行统一处理, 这和HttpServlet中根据request的类型分开到不同方法处理相反. 
+- processRequest里面主要的处理逻辑交给了doService, 这是一个模板方法等子类实现. 然后就是对request获取到的LocaleContext和RequestAttributes进行了保存, 处理完之后恢复, 最后发布了ServletRequestHandleEvent事件. 
+
+### 4.3.7 DispatcherServlet使用
+
+通过前面分析, 它的入口方法是doService()...// TODO: 具体的就不再写了, 这个类主要解释三个概念: HandlerMapping, Handler和HandlerAdapter. 
+
+- Handler: 也就是处理器, 它直接对应MVC中的C也就是Controller层, 它的具体表现形式有很多, 可以是类也可以是方法, 作者说如果你想到别的表现形式也可以使用, 它的类型是Object嘛. 在平常我们写Controller时标注的@RequestMapping的方法都可以看成一个Handler, 只要可以实际处理请求就可以是Handler. 
+- HandlerMapping: SpringMVC中会处理很多请求, 每个请求都需要一个Handler来处理, 而它就是拿来查找Handler的. 
+- HandlerAdapter: 从名字能看出它是一个适配器, 因为Handler可以是任意形式的, 但是Servlet处理的方法结构是固定的, 都是以request和response为参数的方法(如doService方法), 而这个HandlerAdapter就是让固定的Servlet处理方法调用灵活的Handler来处理. 
+
+另外View和ViewResolver的原理也和这个类似. View是用来展示数据的, 而ViewResolver用来查找View. View就像是模板, Model就是数据, ViewResolver就是使用哪个模板. 
+
+这一节doDispatch()内容有点多, //TODO: 以后再补了直接上图: 
+![](/picture/2020-11-09-17-07-08.png)
+
+三个Servlet的处理过程大致如下: 
+- HttpServletBean: 没有参与实际请求的处理. 
+- FrameworkServlet: 将不同类型的请求合并到了processRequest方法统一处理, processRequest主要做了: 
+  - 调用doService模板方法具体处理请求. 
+  - 将LocaleContext和ServletRequestAttributes在请求前设置到了LocaleContextHolder和RequestContextHolder, 并在请求处理完成后恢复. 
+  - 请求处理完后发布了ServletRequestHandledEvent事件. 
+- DispatcherServlet: doService方法给request设置了一些属性并将请求交给doDispatch方法具体处理. 
+
+DispatcherServlet中的doDispatch方法完成了SpringMVC中请求处理过程的顶层设计, 它使用了DispatcherServlet中的九大组件完成了具体的请求处理. 
+
+## 4.4 Spring MVC组件
+
+作者要跟我们讲讲DispatcherServlet中直接初始化的那9个组件啦. 
+
+### 4.4.1 组件整体概览
+
+### 4.5 总结与补充
 
 
 参考: 
