@@ -454,8 +454,31 @@ DispatcherServlet中的doDispatch方法完成了SpringMVC中请求处理过程�
 
 ### 4.4.1 组件整体概览
 
+#### HandlerMapping
+
+它只有一个getHandler()方法返回HandlerExecutionChain. 
+它的作用是根据request找到相应的处理器Handler和Interceptor. 
+查找Handler是按照顺序遍历所有的HandlerMapping, 当找到一个HandlerMapping后立即停止查找并返回. 
+在org.springframework.web.servlet.DispatcherServlet中, getHandler()会遍历所有的HandlerMapping, 当其中一个HandlerMapping返回了HandlerExecutionChain之后就直接返回. 
+
+#### HandlerAdapter
+
+它有三个方法: 
+- supports() 判断是否可以使用某个Handler
+- handle() 是用来具体使用Handler干活. 
+- getLastModified() 是获取资源的LastModified, 资源最后一次修改时间
+
+在org.springframework.web.servlet.DispatcherServlet中, getHandlerAdapter()将遍历所有的HandlerAdapter, 找到一个support对应handler的Adapter就直接返回. 
+
+#### HandlerExceptionResolver
+
+其他工作的组件工作中可能出现问题, 那出现问题后咋办咧? 很明显我们需要一个专门的角色对异常情况进行处理. 在SpringMVC中这个角色就是HandlerExceptionResolver. 
+简单来说这个组件就是根据异常解析出ModelAndView, 然后再交给render方法进行渲染. 因为它在render之前工作的, 解析出ModelAndView之后render才去渲染, 所以它就不能处理render过程中的异常了. 
+
+// TODO 懒了
 ### 4.5 总结与补充
 
+// TODO 后面Servlet3.0提供了使用异步处理请求的内容. 
 
 参考: 
 - 书籍: Spring技术内幕：深入解析Spring架
