@@ -15,6 +15,12 @@ urlname: spring-learning
 
 # 2. Spring Ioc
 
+## 2.1 IOC是啥
+
+IOC是(Inversion Of Control)的简写, 翻译过来叫控制反转, 是一种思想. 简单来说本来一些东西是你自己控制的, 而IOC控制反转的意思是控制权交给别人了, 不需要自己控制. 
+
+
+
 # 3. Spring AOP
 
 ## 3.1 为什么会有AOP? 
