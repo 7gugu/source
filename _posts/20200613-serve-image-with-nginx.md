@@ -204,5 +204,7 @@ docker run -d -p 80:80 --name nginx-image-server \
 nginx
 ~~~
 
+有时候上面的配置都没问题, 就是ping不通, 可以禁用对应的网卡再启用试试. 
+
 参考: 
 https://www.cnblogs.com/lyuzt/p/12575390.html
