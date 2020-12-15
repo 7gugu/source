@@ -441,13 +441,14 @@ This issue is a matter of opinion.
 opinion poll 民意调查 -> poll 
 idea n.意见 想法 主意 -> ideal n.理想 a.理想的 
 As a classic saying goes: 
-Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth. --Marcus Aurelius <Meditation> 沉思录 
+Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth. --Marcus Aurelius ,Meditation 沉思录 
 
 ## outlook n.观点 见解 景色 景致 
 
 Mr.Foot faced a vitriolic media campaign against him but it did not define his outlook on the media. 
 campaign n.战役 活动 -> camp 营地 
 charity campaign 慈善活动
+charity begins at home
 vitriolic a.硫酸的 尖刻的 辛辣的 = pointing 指指点点的 = mean 苛刻的 吝啬的 尖锐的 讽刺的 
 ironic a.讽刺的 -> irony n.讽刺 
 cynical a.愤世嫉俗的 冷嘲的 
@@ -496,4 +497,593 @@ bleak a.心寒的 暗淡的 荒凉的 无希望的
 to capture the panorama of English society 
 
 P10 
+
+# benefit n.(对人体的)益处 (公司提供的)福利 v.对(某人)有用 使受益 
+
+measurable benefits 可量化的利益 明显的利益 显而易见的利益
+[派] beneficial (be beneficial for ... to ) 
+It is beneficial for you to ... 
+
+[近] 
+# n.益处 好处 
+
+## sake n.目的 缘故 
+
+for the sake of benefit 
+For God's sake, = Oh my God, 
+
+## interest n.兴趣 爱好 利益 利息 v.使感兴趣 
+
+interest groups 利益集团 
+
+[拓] interest rates/rates of interest 利率 
+exchange rate 汇率 
+
+## reward n.(付出就有)回报 报酬 奖励 赏金 v.奖励 奖赏 
+
+to reward companies for job creation 
+[派] rewarding 报答的 值得做的 
+[拓] award n.奖 奖项 奖金 奖品 -> prize 奖杯 
+Academy Award 奥斯卡奖 OSCAR只是颁奖礼的名字 
+bonus n.奖金 红利 津贴 -> year-end bouns 年终奖 annual bonus 
+
+# n.优势 
+
+## advantage n.优势 有利条件 优点 
+
+to take advantage of college resources 利用了大学的资源 
+[派] advantageous 有利的 
+[拓] strength n.优点 长处 长项 -> weakness n.弱项 短处 
+disadvantage n.劣势 不利因素 
+
+## virtue n.美德 高尚品德 
+
+the virtue of work 工作中的好习惯 
+[派] virtuous a.有道德的 有美德的 
+virtual 虚拟的 
+[拓] merit n.优点 价值 业绩 
+vice n.堕落 不良习气 恶习 
+
+Virtue has a veil, vice (has) a mask. (美德是一层纱, 罪恶有一层面具) 罪恶反而最难看清楚. --Victor Hugo 
+
+# measure v.测量 判定(重要性, 价值或影响等) n.方式 方法 程度 尺度 标准 衡量 措施 
+
+Such values are not easy to measure and can take years to cement in a company's culture. 
+take years to 需要花很多年... 
+cement v.巩固 加强 n.水泥 
+to enhance security measures. 提高安全标准 
+[派] measurable a.可测量的 清楚的 明显的
+measurement n.测量 (-ment 侧重动词的含义, 所以这里不是'方法'而是动词的'测量') 
+
+[近] 
+# v.测量 度量 估量 
+
+## gauge v.测量 估算 判定 (gage 担保 抵押 -> mortgage 抵押 担保 -> house mortgage 房屋担保) 
+
+## calculate v.计算 估计 推测 
+
+gross domestic product (GDP) 
+gross 大概的 
+domestic 本国的 家庭的 
+gross profits 毛利 
+net profits 净利
+[派] calculation 计算 
+calculator 计算器 
+calculating 计算的 算账的 
+
+## compute v.计算 估算 
+
+[派] computerize 使计算机化 
+
+## count v.数数 计算 重要 有价值(matter) (被)正式接纳 正式认可 认为 看作 n.计数 总数 (讨论或争论的)论点
+
+count ... as ... 把...当作...
+to count for no more than 10% of their grades 占据了不超过它们分数的10%
+count for 占据了 = account for = take 
+count on 指望...(不要算在我身上...别指望我...) / calculate on
+
+## estimate v.估算 估价 n.(对数量, 成本等的)估计 估价 
+
+# v.衡量 判定 
+
+## judge v.(认真考虑后)认为 判断 断定 评价 (以不公正过批评的方式)(对...)做出评价 (在法庭上)审判 n.法官 审判员 裁判员 
+
+to judge complex aspects of personality 判断个性的复杂方面 
+[派] judgment 
+Day of Judgment 审判日 世界末日 
+You can't judge a book by its cover. 不能只看封面来评判一本书. 
+You can't judge a person by its appearance. 
+
+## evaluate v.评估 估价 
+
+[派] evaluation 估价 
+
+## assess (se see) v.评估 评定(性质, 性能) 估算 核定(数量, 价值) 
+
+to assess the implications 评估影响
+implicate v.表示 表明 发挥作用 涉及 牵连 
+imply 暗示 
+[派] assessment 估价 make an assess on/of... 对...做估价
+
+## appraise v.估量 估价 (对某人的工作)做出评价 
+
+praise 称赞 赞美
+[派] appraisal n.评估 
+ap- 表示加强或引申意义 to 
+-prais 表示"价格price"
+
+# n.措施 办法 
+
+## means n.方法 手段 财富 收入 
+
+a means of livelihood 多种多样的生活方式 
+
+[拓] by no means / not by any means 决不 一点都不 
+
+## method n.方法 办法 措施 条理 
+
+[派] methodical 有条不紊 
+methodology 方法论 
+
+## initiative n.新措施 倡议 积极性 主动权 
+
+-ive 一般又可以做a.又可以做n.
+take initiative in doing... 主动做...
+[拓] step n.(一系列行动中的)一步 措施 
+step by step 一步一步做... 
+
+P11
+# appear v.似乎 看来 露面 
+
+to appear to be speeding up 显得速度有点加快 
+to appear at political events 在政治事件中露面 
+[派] appearance 外貌 
+![](/picture/2020-12-11-09-01-58.png)
+
+[近]
+# v.似乎 看来 
+
+## seem v.(涉及推断)好像 似乎 看来 
+
+# v.出现 问世 
+
+## surface n.表面 外表 v.浮出水面 显现 
+
+## arrive v.到达 抵达(at/in) (新产品或发明)出现 问世 (经过等待或期盼后)来临 到来 做出(决定) 得出(结果)(at) 
+
+arrive at an indisputable conclusion that... 得出一个无可争议的结论 
+dispute 争辩 争论 
+
+arrival n.到达 抵达 
+
+## emerge v.出现 露出 (从困境中)摆脱出来 (机构, 行业等)兴起  
+
+an emerging country 新兴国家 
+
+pave v.铺设 -> pavement n.人行道
+set the stage for... 为...搭好舞台 
+golden age 黄金年代 
+literal a.文化有关的 逐字的 文字的 
+literate a.有文化的 受过教育的 n.学者 -> illiterate a.没文化的 n.文盲 
+[派] emergency n.紧急状况 
+
+## loom n.织布机 v.显得突出 逼近 若隐若现 朦胧的出现 
+
+looming memory 若隐若现的回忆(有点模糊) 
+So, unless those volumes can actually be sold, and economies of scale achieved, bankruptcy looms. 
+volume n.体积 卷 数量 音量 
+sales volume 销售额 
+scale n.刻度 比例 数量范围 范围 规模 v.攀登 剥落 
+bankrupt n.破产 a.破产的 -> rupt = break 崩溃 瓦解 破裂 -> disrupt vt.使混乱 扰乱 -> disruption n.分裂 
+loom large 显得突出 显得严重 
+
+# average n.平均数 a.平均的 中等的 v.平均为 
+
+average people 普通人 = mass n.大多数 群众 -> massive a.大多数的 
+[拓] average age 平均年龄 
+on average 平均 一般来说 大概 
+
+[近]
+# n.平均数
+
+## mean v.意味着 意思是 a.吝啬的 刻薄的 平均的 一般的 (偶数 odd 基数的 古怪的) n.平均值 中庸
+
+I never mean to... 我从来没想过... 
+[派] meaning 意义 meaningful 有重大意义的 
+
+# a.平常的 普通的 
+
+## common a.常见的 普通的 平凡的 
+
+[拓] plain a.普通的 
+
+## ordinary a.平常的 普通的 平凡的 
+
+extraordinary 非同寻常的 ~= unusual 
+
+## commonplace a.常见的 平凡的 普通的 n.平常的事 老生常谈 stereotype 老套 stereotypical 老生常谈的 过时的 典型的 
+
+procedure n.过程 程序 
+owe...to... 把...归因于... 欠...债
+
+## regular a.规则的 平常的 n.常客 (patron n.主顾老板 赞助人 -> patronize vt.照顾 惠顾 )
+
+regulate v.调节 规定 -> regulation n.规则 
+[派] regularity n.规律性 
+irregular a.不规则的 
+
+# a.中等的 适中的 
+
+## medium a.中等的 n.(表现)方式 (交流)手段 [复数形式media]媒介 媒介物
+
+(modest a.谦虚的 -> increase modestly 增长得不多 -> moderate a.合适的 适度的 温和有节制的) 
+How do you like it cooked? 
+全生 raw 
+一成熟 rare
+三/四分 medium rare 
+半分 medium 
+七八分 medium well 
+全熟 well done 
+
+social media 
+
+## intermediate a.(两地,两物,两种状态等)之间的 中间的 中级的 中等的
+
+mediator n.调解员 
+advanced a.高级的 
+supreme a.顶级的 
+[派] intermediary n.中间人 调解人 
+
+# justice n.公正 公平 法官 
+
+[派] justify vt.证明...有理 为...辩护 
+justification n.正当 合理 
+[拓] Justice League 正义联盟 
+fairness n.公正 合理性 
+just a.正义的 公正的 公平的 
+
+[近]
+# n.公正 正义 
+
+## equity n.公平 公正 (公司的)资产净值 
+
+[派] equitable 相等的 等同的 
+[拓] equal a.(地位, 待遇)平等的 同等的 
+equality n.(地位, 权力的)平等 (机会)均等 
+![](/picture/2020-12-11-11-38-55.png)
+
+# n.合理 正当 
+
+## legitimacy n.合法性 合理性 正当性 
+
+to maintain its legitimacy as guardian of the rule of law. 
+[拓] reasonability n.合理性 reasonable a.合理的 -> unreasonable
+rational a.理性的 合理的 n.有理数 -> irrational 
+
+# n.司法制度 法律制裁 
+
+## legislation n.法律 法规 (legislate v.立法 legislator n.立法者)
+
+[拓] law n.法 法律 法律制度 法律体系 
+rule n.规则 法则 规章 条例 
+regulation n.规则 条例 法规 
+act n.法案 法令 行为
+bill n.议案 法案
+
+# n.法官 
+
+## magistrate n.地方法官 
+
+mag- meg- 大 -> magnify v.扩大 放大 -> magnificent a.壮观的 宏伟的
+megastar n.巨星 superstar n.明星 
+[拓] judge n.法官 审判员
+
+P12
+
+# provide v.提供 供给 
+
+[派] provision n.供应 准备 规定 
+provided 只有...才...
+What material success does is (to) provide you with the ability to concentrate on other things that really matter. 
+materialism n.拜金主义 拜物主义 
+concentrate 聚焦 集中 专心于(on) -> central 中心的
+
+[近] 
+# v.供给 提供 给予 
+
+## supply v.(大量)供应 供给 n.供应量 储备量 补给品 
+
+roughly 85 percent of the world's energy supply. 大约是全球能量供给的85%. 
+[派] supplier 供应商 供应者 
+[拓] storage n.储存 储藏 储备 store v.储备 
+reserve n.贮藏(物) 储备(物) 备用(物) v.保留(某物) 
+
+## offer v.提供 供应 提议 n.主动提议 报价 邀约 
+
+job offers 工作机会 
+[拓] special offer 特价 
+an offer of marriage 求婚 -> proposal n.提议 求婚
+
+## serve v.(为...)工作 服务 可用作 能满足...的需要 提供 
+
+to serve on state juries 在 国家/州 的陪审团当中任职 
+[派] service n.服务 a.服现役的 服务的 v.维修 检修 
+serving n.(共一人食用的)食物 
+servant n.服务员 雇工 
+[拓] serve the people 为人民服务
+public servant 公务员 人民公仆 
+
+untouchable a.碰不到的 无形的 n.被遗弃的人 贱民 
+tangible a.有形的 可触摸的 n.有形资产 -> intangible a.难以捉摸的 无形的 
+
+## dispense v.分配 分发 施与 提供(服务) 
+
+[派] dispensable a.非必需的 可省去的 -> indispensable = essential = necessary 必要的 
+
+## afford v.买得起 负担 承担得起(后果) 提供 
+
+to afford to pay my monthly mortgage payments. 能负担得起每个月的贷款. 
+gauge v.估算 -> mortgage 抵押
+[派] affordable a.能负担得起的 
+
+## render v.致使(cause) 递交(submit) 表达(interpret) 翻译
+
+A recent study from Colorado State University found that just thinking about having to answer email at home renders employees "emotionally exhausted", which can hurt morale. 
+employee n.雇员 employer n.雇主
+morale n.士气 moral a.道德的 精神上的 n.道德 
+exhaust v.耗尽 用尽 -> exhaustible a.可耗尽的 不可再生的 -> inexhaustible a.可再生的 
+
+## furnish v.布置家具 供应 提供
+
+furniture n.家居
+
+# survey n.调查 v.查看 
+
+Last year, Oklahoma State University researchers found that 47% of those they surveyed want to ban slaughterhouses, and 47% support banning factory farming. 
+slaughter v.屠宰 
+
+[近] 
+# n.民意调查 民意测验 
+
+## poll n.民意调查 选举投票 v.对...进行民意测验 
+
+[派] pollster 民意调查员 
+
+## questionnaire n.调查表 问卷 
+
+## census n.人口普查 (官方的)统计 
+
+# n.总体研究 概述 
+
+## overview n.概观 概述 
+
+[拓] summary n.总结 摘要 
+outline n.大纲 概要 
+
+# v.做民意调查 进行民意测验 
+
+## investigate v.调查 研究
+
+vest n.背心 马甲
+to investigate formation flight. 调查编队飞行 
+form v.构成 组成 n.形式 形状 -> formation n.构成 编队 排列
+[派] investigation n.调查 
+[拓] look into 调查 研究 
+CSI: Crime Scene Investigation 美剧: 犯罪现场调查 
+probe 刺探调查 
+inspect v.审查 检查 
+
+## inquire v.(=enquire)询问 打听 
+
+[派] inquiry n.
+
+## interrogate v.讯问 审问 盘问 
+
+inter- 面对面... 
+Do u copy? 
+roger that. 
+
+# approach v.靠近 接近 n.通道 途径 方式 方法 
+
+At the 30-meter mark, the likelihood of regular communication approached zero. 
+likelihood 可能性
+a number of approaches to mastering the art of deep work(深度工作的技能). 
+master v.掌控 -> have a great mastery of 对...有强大的掌控力 ...擅长...
+[派] approachable a.能够接近的 能够解决的 
+
+[近] 
+# n.通道 道路 
+
+## access n.通道 通路 v.读取(计算机)信息 到达 
+
+to access bank accounts in electronic payments systems. 
+[派] accessible a.能够进入的 容易亲近容易交流 
+[拓] have access to sth. 有...的机会 有...的权利 
+give sb. an easy access to... 让...很容易得到... 
+gain/get access to... 进入... 见到...
+
+# n.方法 方式 
+
+## avenue n.街道 林荫大道 方法 
+
+to open up new avenues of knowledge to explore. 开辟一条新的道路来探索知识 
+[拓] Fifth Avenue 第五大道 
+
+## channel n.电视台 电视频道 渠道 途径 v.(利用某途径)输送资金 提供 
+
+## mode n.方式 方法 (设备的)模式 
+
+model n.模特 -> role model 榜样 
+in passive consumption mode 被动消费模式 
+[拓] pattern n.图案 样式 
+manner n.行为举止 方法 
+new paradigm 新范式 
+thinking mode 思维模式 critical thinking mode 批判性思维模式 
+marketing mode / business mode / service mode 
+市场营销(对消费者) / 商业模式(对投资者) / 服务模式(对消费者)
+
+P13
+
+# argue v.争论 争辩 主张 认为 
+
+[派] argument n.争论 争吵 理由 论据 
+arguable a.可论证的 不确定的 有疑问的 
+
+[近] 
+# 争吵 争论 争辩 
+
+## quarrel v.吵架(较长时间涉及许多不同的事情) n.口角 拌嘴 
+
+People generally quarrel because they cannot argue. 
+[派] quarrelsome a.爱争吵的 
+[拓] quarrel with 抱怨 与...争吵 
+quarrel about 为...争吵 
+
+## row v.划船 n.一排 一行 一列 v.(与恋人或家人)争吵 吵架 n.(熟人之间的)争吵 
+
+the inevitable row over... 关于...不可避免的争吵 
+[拓] in a row 连续地 接连地 
+row about/over 为了...争吵 
+
+## clash v.发生冲突 争论 n.冲突 
+
+## dispute n.(涉及公共事务或法律的)争论 v.对...提出质疑 
+
+[派] disputable a.有争议的 
+indisputable a.没有争议的 
+
+dispute -> negotiate -> compromise -> agree -> resolved 
+有争议 -> 谈判 -> 妥协 -> 达成一致 -> 解决 
+
+[拓] beyond (all) dispute = certainly 毫无争议地 无可争辩地 = indisputably
+in dispute = being doubted 受到怀疑的 
+open to dispute = not certain 不确定的 不肯定的 
+
+## feud v.长期争斗 结仇 结怨 n.(个人或群体间的)长期不和 
+
+fraud v.诈骗 欺骗 n.骗子 
+[拓] blood feud 世仇 
+
+## debate v.(正式地)讨论 辩论 n.辩论
+
+# define v.解释 下定义 规定 限定 把...定义为(~ ... as)
+
+[近] 
+# v.阐明 规定 
+
+## stipulate v.(协议, 法律, 规则等)规定 约定 
+
+[派] stipulation n.条款 约定的条件 
+
+## prescribe v.开(药) (人,法律,规则)规定 指定 
+
+[派] prescription n.处方 药方 建议 秘诀 
+
+# mental a.精神上的 
+
+[派] mentality n.心态 思维方式 
+physical a.身体的 
+It's okay to not be okay. 
+头脑特工队 
+
+[近]
+# a.思考的 智力的 
+
+## intellectual a.智力的 有才智的(知识的才智) n.知识分子 (intelligent a.聪明的(和有才智有点区别,知识分子不一定聪明))
+
+counterbalance 抵消平衡 抗衡
+[拓] intellectual property 知识产权 著作权 
+
+# a.心理上的 精神上的 
+
+## psychological a.心理的 精神的 
+
+-psych- 心理 精神
+
+## spiritual a.精神的 心灵的 宗教的
+
+[拓] spiritual civilization 精神文明 
+material civilization 物质文明 
+spiritual pillar 精神支柱 
+
+# require v.需要 必需 指令 
+
+[派] requirement n.需求 必需 必需品 
+
+# v.需要 有赖于 使需要 使必要 
+
+## necessitate v.使成为必需 必要 
+
+## involve v.包含 需要 使成为必然 (使)加入 
+
+[派] involved a.参与的 涉及的 专心于...的 投入的 
+[拓] involve sb. in (doing) sth. 使某人参与到某事中 
+
+## entail v.牵涉 需要 使必需 (lead to...)
+
+# v.指示 命令 要求 
+
+## request v.(正式或礼貌地)请求 要求 索取 n.请求 
+
+[拓] request for 要求 对...有要求 
+at the request of 应...的要求 
+on request 应要求 
+
+## demand v.强烈要求 命令 n.需求 (特别紧缺的东西)
+
+供需Demand 需求 Supply 供给 
+[派] demanding a.费时费力的 难满足的 
+
+## command v.(军官,国王等)命令 指示 n.命令 指挥 
+
+[派] commander n.指挥官 长官 marshal n.司令官
+
+## decree n.(国家统治者颁布的)命令 法令 (法院的)裁定 判决 v.发布命令 颁布法令 
+
+## order n.命令 条理 订单 v.命令 要求 排列 整理 
+
+[派] orderly a.整洁的 有条理的 
+
+## instruct v.(详细地)给出指示 命令 传授 
+
+[派] instruction n.指示 命令 
+instructor n.教练 导师 
+tutor 陪读 陪练 家教 
+coach 教练 
+
+## direct a.直接的 正好的 恰好的 v.指导 命令 adv.中途不停地 
+
+[派] direction n.方向 方位 [~s]用法说明 
+director n.董事 理事 
+directory n.名录 通讯录 
+
+## dictate v.口述 命令 n.命令 
+
+[派] dictation n.口述 听写 命令 专断 
+dictator n.独裁者 -> dictatorship n.独裁 
+No man has the right to dictate what other men should perceive, create or produce. But all should be encouraged to reveal themselves, their perceptions and emotions, and to build confidence in the creative spirit. 
+
+# improve v.改善 改进 提高 
+
+to improve their teaching quality 
+[派] improvement n.改进 改善 
+To improve is to change; to be perfect is to change often. 
+
+[近] 
+# v.改善 改进 
+
+## polish v.擦 擦亮 改进 使完美 抛光 n.上光剂 优雅 精致 
+
+[派] polished a.抛光的 精湛的 完美的 
+[拓] polish sth. up 提高 改善 
+mental polish 金属擦光剂 磨光剂
+nail polish 指甲油 -> snail 蜗牛 
+
+## refine v.提炼 精炼 改进 
+
+[派] refinery n.精炼厂 提炼厂 
+
+## cultivate v.耕种 种植 培养 陶冶
+
+[派] cultivation n.耕种 培养 
 

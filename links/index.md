@@ -9,3 +9,4 @@ title: 链接
 - [Fengz' notes](https://sync.sh/)
 - [Alex](https://vincent1q84.github.io)
 - [yinwang](http://www.yinwang.org/)
+- [others](/others/)
