@@ -53,3 +53,17 @@ Shiro的Filter, 判断header是否有合法的jwt, 无则返回未登录, 有则
 
 我的思路是做一个Shiro过滤器, 除了注册与登录接口, 其余接口都需要在header里携带登录后所颁发的jwt. 然后在过滤器内对传来的jwt进行合法性验证, 如果合法将会在Shiro框架中再次执行shiro的登录(也就是根据请求获得Subject, 对本次请求进行登录), 而shiro的登录只是实现将jwt中的id作为AuthenticationInfo的凭证而已. 
 
+
+# https
+
+前端要在/build/webpack.dev.conf.js下添加
+```
+devServer: {
+    https: true,
+  },
+```
+https://blog.csdn.net/lyn1772671980/article/details/81390089?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.not_use_machine_learn_pai&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.not_use_machine_learn_pai
+
+然后是服务器: 
+
+https://www.cnblogs.com/hyh123/p/13660700.html

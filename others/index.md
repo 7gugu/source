@@ -5,3 +5,4 @@ title: 其他
 [锻炼](/workout/index.html)
 [英语](/english/index.html)
 [读书笔记](/books/index.html)
+[日程表](/others/calendar.html)

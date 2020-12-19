@@ -1006,6 +1006,7 @@ counterbalance 抵消平衡 抗衡
 material civilization 物质文明 
 spiritual pillar 精神支柱 
 
+P14
 # require v.需要 必需 指令 
 
 [派] requirement n.需求 必需 必需品 
@@ -1087,3 +1088,123 @@ nail polish 指甲油 -> snail 蜗牛
 
 [派] cultivation n.耕种 培养 
 
+P15
+# enhance v.提高 提升 
+
+...can enhance cognition. ...可以提高认知
+to enhance ... sense of responsibility. 提升...的责任意识
+
+[近] 
+# v.提高 增进 增强 
+
+## augment v.增加 提高 增强 
+
+## strengthen v.加强 增强 巩固 
+
+to strengthen the link 加强这种联系 
+
+## heighten v.(使)提高 加强 增加 
+
+## intensify v.(使)加强 增强 加剧
+
+# design v.设计 n.设计 (头脑中的)计划 意图 
+
+be designed to set law apart from politics. 意图让法律远离政治 
+
+[派] designer n.设计者 构思者 adj.名牌的 
+[拓] by design 故意地 by accident 意外的 
+
+[近] 
+# v.设计 (为特定目的)计划 
+
+## devise (device n.小型设备) v.设计 发明 策划 想出 
+
+Shea devised the approach along with Jacqueline Jeruss, a breast cancer surgeon. 
+approach 方法 
+surgeon n.外科医生 -> surgery n.外科手术 -> plastic surgery 整容手术 
+
+## intrigue v.密谋 迷住 激起...的好奇心 n.阴谋 诡计 引人入胜的情节 
+
+[派] intriguing a.引人入胜的 非常有趣的 
+
+## maneuver n.(以欺骗为目的的)策略 花招 细致巧妙的移动 v.操作 控制 
+
+## contrive (strive for 为...努力) v.(秘密)谋划 策划 发明 设计 设法做到 
+
+## formulate v.制定 构想 
+
+to formulate and conduct the nation's foreign policy 
+conduct v.带领 引领 实施
+
+## engineer n.工程师 v.设计 制造 
+
+[派] engineering n.工程 工程学 
+
+## scheme n.(造福他人的)计划 体系 v.密谋 秘密策划 
+
+voucher 代金券 coupon 打折卡 
+pilot v.实验 n.试飞员 
+
+the grand scheme of life 关于生活的宏大计划 
+
+## plot n.阴谋 密谋 (叙述的)情节 v.图谋 
+
+# conspire (sprite n.鬼怪 小精灵 雪碧) v.密谋 共谋 搞阴谋 
+
+-spir- 呼吸 
+
+to conspire to hack phones. 
+...to conspire... 密谋...
+
+[派] conspiracy n.密谋 阴谋 
+
+## layout n.布局 布置 设计 安排 
+
+## format n.(出版物)版式 总体安排 布局 设计 
+
+P16
+# develop v.(使)成长 发展 推进... 
+
+to develop calcium deficiency. 病情的进一步恶化...
+calcium deficiency 钙缺乏
+[派] development n.发展 成长 
+developer n.开发商 开发者 
+developed a.(国家或地区) 发达的 
+developing a.(国家或地区) 发展中的 
+
+[近] 
+# v.成长 发展 壮大 
+
+## evolve v.(使)逐渐形成 (动植物)进化 
+
+[派] evolution n.进化 演变 发展 
+evolutionary a.进化的 演变的 逐渐发展的
+
+## grow v.(使)成长 
+
+to grow at the same sluggish pace as the retail market 
+retail a.零售的
+sluggard n.懒汉
+
+to grow unfashionable 呈现不大时尚的特征 
+[派] grown a.成年的 成熟的 长大的 
+growth n.发展 发育 增长 
+[拓] to pull up the seedlings to help them grow 拔苗助长 
+seedlings 秧苗 
+
+## thrive v.茁壮成长 兴旺 繁荣 崛起 
+
+## prosper v.兴旺 繁荣 蓬勃发展 
+
+[派] prosperity n.兴旺 繁荣 
+prosperous a.繁荣的 成功的 
+
+## flourish v.繁荣 兴盛 茁壮成长 
+
+## bloom n.花朵 健康的气色 v.开花 绽放 精神焕发 兴旺 蓬勃发展 
+
+## blossom n.花朵 花簇 v.开花 健康发展 繁荣 发展 
+
+## boom n.(经济的)繁荣 兴旺 v.(商业,贸易或某一地区)迅速发展 繁荣 
+
+# fund 

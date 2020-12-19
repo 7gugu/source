@@ -117,6 +117,14 @@ WARNING: IPv4 forwarding is disabled. Networking will not work.
 net.ipv4.ip_forward=1
 // 再重启
  systemctl restart network
+
+ // mysql时区问题 
+ # docker exec -it 5c02cf9db889 bash
+# date
+# ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+退出重启docker
+# exit
+# docker restart 5c02cf9db889
 ~~~
 
 ## CentOS7网卡地址, 路径
