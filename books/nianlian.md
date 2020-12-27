@@ -1,4 +1,6 @@
-
+---
+title: 恋念有词
+---
 
 P6
 # allow 允许 许可 
@@ -1207,4 +1209,131 @@ prosperous a.繁荣的 成功的
 
 ## boom n.(经济的)繁荣 兴旺 v.(商业,贸易或某一地区)迅速发展 繁荣 
 
-# fund 
+# fund n.资金 基金 v.资助
+
+[派] funding n.资金 基金
+[拓] in fund 有足够多的钱
+
+[近]
+# 资金
+
+## capital n.资本 资金 首都 (cap- 1.首部 head 2.catch captive 俘虏 capture) a.资本的 资金的 大写的 死刑的 
+
+[派] capitalism n.资本主义 
+capitalist a.资本主义社会的 
+[拓] capitalist society 资本主义社会 
+socialist society 社会主义社会
+
+## purse n.(女式)钱包 财力 
+
+[拓] public purse 公共资金 国库 
+
+## endow v.资助 赋予 捐钱 
+
+[派] endowment n.捐款 资助 天赋 才能 
+[拓] endow sb./sth. with sth. 使(认为) ...具有(某种品质) 
+be endowed with sth. 天生具有(某种好的特点或品质) 
+
+## sponsor v.赞助 n.赞助商 倡导者
+
+[派] sponsorship n.资助 
+
+## subsidize v.资助 补助 补贴 subsidy n.补助金
+
+## invest v.投资 投入 
+
+[派] investment n.投资物
+
+## finance n.资金 金融 v.提供资金 
+
+[拓] financial crisis 金融危机
+
+P17 
+
+# gap n.缺口 空缺 
+
+[近]
+
+# 豁口 缺口 
+
+## gulf n.海湾 裂口 鸿沟 
+
+## hole n.洞 孔 坑 错误 
+
+# produce v.生产 引起 产生 n.农产品 
+
+[近]
+
+# 生产 制造 
+
+## manufacture v.(在工厂)大量生产 实业的制造 n.[-s]工业品
+
+hep 肝 -itis 炎症 
+
+## fabricate v.制造 编造 捏造 
+
+## yield v.出产(作物) 产生(收益等) 屈服 让步(yield to) n.产量 
+
+# v.引起 产生 造成 cause
+
+## generate v.引发(某种情感) 
+
+[派] generator n.促使...发生的人 发电机 
+
+## cause n.原因 理由 v.导致 
+
+## trigger n.(枪的)扳机 诱因 起因 v.引爆 触发 启动 
+
+## provoke v.激怒 挑衅 激起 引起(强烈或令人不快的反应或情绪) 
+
+前缀 pro- 前
+词根 -voc- -vok- 声音 叫喊 
+[派] provocative adj.(行为)使人生气的 
+
+## ignite v.燃烧 点燃 激起 引发(强烈情绪) 
+
+[派] ignition n.(汽车引擎)的点火装置 
+
+## contribute (~to)造成 v.贡献 
+
+[派] contribution n.贡献 捐款 
+contributor n.捐献者 促成因素 原因之一 
+contributory a.促成的 促进的 起作用的 
+
+## induce v.诱因 诱导(做似乎不明智的事) 
+
+[派] inducement n.引诱物 诱因 动机 (incentive) 
+
+## incur v.招致 带来 遭受 
+
+## spark n.火花 火星 起因 导火线 v.引起 导致(骚乱或暴力) 
+
+# single a.单个的 唯一的 单身的 n.一个 单一 (~s)单身者 
+
+[近]
+# 单一的 唯一的 
+
+## sole a.唯一的 仅有的 专有的 (console vt.安慰) 
+
+## solitary a.单个的 唯一的 独自的 喜欢独处的 
+
+# account n.叙述 描写 报道 账户 v.视为 认为 
+
+[派] accountant n.会计师 会计 
+accountable a.负责任的 可解释的 
+
+[拓] account for 占...比例 解释 说明 
+on account of 由于 因为 = due to = for the sake(缘由 利益 目的) of... 
+take account of sth. / take sth. into account 考虑到某事/把某事考虑进去 
+
+[近] 
+# 叙述 描写 报告 
+
+## narrative n.(小说中的)叙述 记叙 
+
+## narration n.(正式)叙述 解说 旁白 = story -> narrate v.描述 叙述
+
+## description n.描述 描写 
+
+be beyond / past description 无法形容 
+

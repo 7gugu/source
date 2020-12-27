@@ -36,6 +36,7 @@ Maven其实就是约定了项目的一些结构:
 <artifactId></artifactId>  模块名, 通常是工程名
 <version></version>  版本号
 ~~~
+
 三部分组成. 
 
 ### 1.3 依赖(dependency)
