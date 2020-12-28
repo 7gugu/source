@@ -481,7 +481,7 @@ We use the past simple for a finished time in the past.
 
 14.3 
 2 When I got home last night, I was very tired and I went straight to bed. (go -> went -> gone)
-6 Mr Lee worked in a bank for 15 years. Then he gave it up. Now he works as a gardener. (不是最近放弃的, 是之前就放弃了所以用gave)
+6 Mr.Lee worked in a bank for 15 years. Then he gave it up. Now he works as a gardener. (不是最近放弃的, 是之前就放弃了所以用gave)
 9 My grandfather died before I was born. I never met him. [头疼的问题](https://ell.stackexchange.com/questions/52750/my-grandpa-died-30-years-ago-i-have-never-met-never-met-him-which-one)
 
 # Unit 15
@@ -580,4 +580,111 @@ The negative form is didn't use to ... (used not to ... is also possible)
 # Unit 19 
 
 ## Present tenses (I am doing / I do) for the future 
+
+1. I'm doing something (tomorrow) = I have already decided and arranged to do it. 
+'I'm going to (do) ' is also possible in these sentences. 
+But the present continuous is more natural when we talk about arrangements. 
+Do not use will to talk about what you have arranged to do. 
+You can also use the present continuous for an action just before you begin to do it. This happens especially with verbs of movement(go/come/leave etc.). 
+
+2. We use the present simple (I do) when we talk about timetables, programmes etc. (for public transport, cinemas etc.). 
+You can use the present simple to talk about people if their plans are fixed like a timetable. 
+But the continuous is more usual for personal arrangements. 
+
+19.1 
+5 Are you traveling by car (这里不能用I do, 因为不是timetables, programmes等的)
+
+19.4 
+11 Helen, I'm going to the supermarket. Are you come with me? (这里考将来时还是不用Can)
+
+# Unit 20 
+
+## (I'm) going to (do) 
+
+1. I am going to do something = I have already decided to do it, I intend to do it. 
+
+2. I am doing & I am going to do 
+We use I am doing (present continuous) when we say what we have arranged to do. (for example: arranged to meet somebody, arranged to go somewhere)
+I am going to do something = I've decided to do it (but perhaps not arranged to do it). 
+Often the difference is very small and either form is possible. 
+
+3. You can also say that 'something is going to happen' in the future. 
+
+4. I was going to do something = I intended to do it, but didn't do it. 
+You can say that 'something was going to happen' (but didn't happen) 
+
+20.2 
+5 You are in a restaurant. The food is awful and you've decided to complain. 
+This food is awful, isn't it? 
+Yes, it's disgusting. I'm going to complain. (complain 也可以vi, 后面也不用加it)
+
+20.3 
+2 He is going to be late. (late a.迟的 忘了be)
+
+# Unit 21 
+
+## Will / shall 1
+
+1. We use I'll (= I will) when we've just decided to do something. When we say 'I'll do something', we announce our decision. 
+We often use I think I'll ... and I don't think I'll ... 
+In spoken English the negative of will is usually won't (= will not) 
+
+2. Do not use will to talk about what you decided before. 
+
+3. We often use will in these situations: 
+- Offering to do something
+- Agreeing to do something 
+- Promising to do something 
+- Asking somebody to do something (Will you ... ?)
+
+You can use won't to say that somebody refuses to do something. 
+
+4. Shall I ... ? Shall we ... ? 
+Shall is used mostly in the questions shall I ... ? / shall we ... ? 
+We use shall I ... ? / shall we ... ? to ask somebody's opinion (especially in offers or suggestions) 
+Compare shall I ... ? and will you ... ? 
+
+21.1 
+5 'I don't know how to shut down this computer.' 'OK, I'll show you.' (居然不是help, show你啊)
+6 'Would you like tea or coffee?' 'I'll have coffee, please.' (是 have而不是order???) 
+9 A: I know you're busy, but can you finish this report this afternoon? 
+B: Well, I'll try, but I can't promise. (是try不是finish) 
+
+21.4 
+3 What shall I give Helen. 
+
+# Unit 22 
+
+## Will/shall 2 
+
+1. We do not use will to say what somebody has already arranged or decided to do. 
+When we predict a future happening or situation, we use will/won't. 
+
+2. We often use will with: 
+**probably, (I'm) sure, (I) think, I wonder** 
+After **I hope**, we generally use the present (will is also possible). 
+
+3. Generally we use will to talk about the future, but sometimes we use will to talk about now. 
+
+4. I shall ... / we shall ... 
+Normally we use shall only with I and we. 
+I shall or I will 
+we shall or we will 
+The negative of shall is shall not or shan't 
+Do not use shall with he/she/it/you/they
+
+22.1 
+5 A: Have you decided where to go for your holidays? 
+B: Yes, we're going to Italy. (It's already decided, not use will)
+
+22.3 
+3 You must meet Daniel sometime. I think you'll like him. 
+6 Bye! I'm sure we'll meet again before long. 
+
+22.4 
+The future situation is uncertain. What do you think will happen. (没有加it) 
+
+# Unit 23 
+
+## I will & I'm going to 
 

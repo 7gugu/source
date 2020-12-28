@@ -2,5 +2,5 @@
     "pasteImage.path": "${projectRoot}/picture",
     "pasteImage.basePath": "${projectRoot}",
     "pasteImage.prefix": "/",
-    "editor.fontSize": 18
+    "editor.fontSize": 18,
 }
