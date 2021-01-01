@@ -46,7 +46,23 @@ plan
 - English: Vocabulary: Maimemo; U9-U10
 - English: Grammar: U16-U17
 
-2020.12.26
+2020.12.27
 
 - English: Vocabulary: Maimemo; U9-U10
 - English: Grammar: U18-U19
+
+2020.12.28
+
+- English: Vocabulary: Maimemo; U9-U10
+- English: Grammar: U20-U21
+
+2020.12.29
+
+- English: Vocabulary: Maimemo; U9-U10
+- English: Grammar: U22-U23
+
+2020.12.30
+
+- English: Vocabulary: Maimemo; U9-U10
+- English: Grammar: U24-U26
+

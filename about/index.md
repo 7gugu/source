@@ -14,3 +14,6 @@ title: 关于
 - Telegram:[someexp](https://t.me/someexp)
 - GitHub:[thesomeexp](https://github.com/thesomeexp)
 
+书单: 
+- [工作相关](/post/books-for-work)
+- [非工作相关](/post/the-book-i-read)

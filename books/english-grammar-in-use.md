@@ -688,3 +688,98 @@ The future situation is uncertain. What do you think will happen. (没有加it)
 
 ## I will & I'm going to 
 
+1. We use **will** to announce a new decision. 
+We use **(be) going to** when we have already decided to do something. 
+
+2. We use both **will** and **going to** to predict future happenings and situations. 
+When we say something **is going to** happen, we know this <u>from the situation now.</u> What is happening now shows that something **is going to** happen in the future. Do not use **will** in this type of situation. 
+
+23.1 
+8 A: What would you like to eat? 
+B: I'll have a pizza, please. (这个问题应该是现在决定的) 
+
+23.2 
+5 You and a friend are stuck in traffic. You have to be in a meeting in five minutes and you need at least another 20 minutes to get there. 
+YOU: The meeting begins in five minutes. <u>We're going to be late.</u> (something **is going to** happen, we know this <u>from the situation now.</u>)
+
+# Unit 24 
+
+## Will be doing & will have done 
+
+1. 
+- now: These people are standing in a queue to get into the cinema. 
+- half an hour from now: Half an hour from now, the cinema will be full. Everyone will be watching the film. 
+- three hours from now: Three hours from now, the cinema will be empty. The film will have finished. Everyone will have gone home. 
+
+2. I will be doing something (future continuous) = I will be in the middle of doing it. 就是将来正在做某事
+Compare will be (do)ing and will (do). 
+Compare will be -ing with other continuous forms. 
+
+3. We also use **will be -ing** to talk about complete actions in the future. 将来将会完成的事情
+
+4. We use **will have (done)** (future perfect) to say that something will already be complete before a time in the future. 在未来某个时间段之前事情已经完成了
+
+24.2 
+6 Ben is on holiday and he is spending his money very quickly. If he continues like this, <u>he'll have spent</u> all his money before the end of his holiday. 
+
+# Unit 25 
+
+## When I do / When I've done When and if 
+
+1. 'I'll phone you when I get home' is a sentence with two parts. 
+- the main part: I'll phone you 
+- the when-part: when I get home 
+
+The time in the sentence is future (tomorrow), but we use a present tense (I get) in the when-part of the sentence. We do not use will in the when-part of the sentence. 
+
+The same thing happens after **while / before / after / as soon as / until / till**. 
+
+2. You can also use the present perfect (have done) after when / after / until / as soon as . 
+If you use the present perfect, one thing must be complete before the other (so the two things do not happen together).  
+Do not use the present perfect if the two things happen together. 
+It is often possible to use either the present simple or the present perfect. 
+
+3. After **if**, we normally use the present simple (**if I do / if I see** etc.) for the future. 
+
+4. When & if 
+We use **when** for things which are sure to happen. 
+We use **if** (not when) for things that will possibly happen. 
+
+25.1 
+9 I'm going to be away for a few days. If you need to contact me while <u>I'm</u> away, here's my mobile number. (while后不能用have done )
+
+25.3 
+3 Can you let me know as soon as you decide. (you不用三单)
+5 I think things will be better when they have built the new road. (build -> built -> built)
+
+# Unit 26 
+
+## Can, could, (be) able to 
+
+1. We use **can** to say that something is possible or allowed, or that somebody has the ability to do something. We use **can** + infinitive. 
+
+2. You can say that somebody **is able to** do something, but **can** is more usual. 
+But **can** has only two forms: **can** (present) and **could** (past). So sometimes it is necessary to use **(be) able to**. 
+
+3. Could 
+Sometimes **could** is the past of **can**. We use **could** especially with. 
+**see hear smell taste feel remember understand** 
+
+We also use **could** to say somebody had the general ability or permission to do something. 
+
+4. **Could** and **was able to** 
+We use **could** for general ability. But if you want to say that somebody did something in a specific situation, use **was/were able to** or **managed to** (not could). 
+
+The negative **couldn't (could not)** is possible in all situations. 
+
+26.1 
+5 I've never <u>been able to</u> understand him. (漏了been)
+7 She might <u>be able to</u> help you. (漏了be)
+
+26.5 
+7 I wanted to buy some tomatoes. The first shop I went to didn't have any, but I <u>managed to</u> get some in the next shop. (不是说明一种通常的能力, 用be able to/managed to)
+
+# Unit 27 
+
+## Could (do) and could have (done) 
+
