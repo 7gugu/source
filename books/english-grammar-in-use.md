@@ -783,3 +783,9 @@ The negative **couldn't (could not)** is possible in all situations.
 
 ## Could (do) and could have (done) 
 
+1. **could** not only used be a past of **can**. We also use **could** to talk about possible actions now or in the future (especially to make suggestions). 
+**Can** is also possible in these sentences. **Could** is less sure than **can**. 
+
+2. We also use **could** (not **can**) for actions that are not realistic. 
+
+3. 

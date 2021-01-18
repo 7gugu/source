@@ -282,3 +282,11 @@ information_schema.COLUMNS
 WHERE
 TABLE_SCHEMA = 'admin' and table_name = 'sys_menu';
 ~~~
+
+# Photoshop
+
+对你没看错还有ps的. 
+
+## 抠出照片的文字
+
+选择 -> 色彩范围 -> 然后选择选'阴影', 下面选'灰度', 容易看些. 
