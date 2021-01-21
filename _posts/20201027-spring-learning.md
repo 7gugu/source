@@ -1,16 +1,19 @@
 ---
 title: Spring的学习
 original: false
-date: 2020-10-29
-updated: 
+date: 2020-10-27
+updated: 2021-01-21
 tags: 
   - Spring
   - Java
   - Note
 urlname: spring-learning
 ---
+
 记录Spring的学习笔记
+
 <!--more-->
+
 # 1. Spring整体设计理念和整体架构
 
 # 2. Spring Ioc
@@ -18,8 +21,6 @@ urlname: spring-learning
 ## 2.1 IOC是啥
 
 IOC是(Inversion Of Control)的简写, 翻译过来叫控制反转, 是一种思想. 简单来说本来一些东西是你自己控制的, 而IOC控制反转的意思是控制权交给别人了, 不需要自己控制. 
-
-
 
 # 3. Spring AOP
 
@@ -96,32 +97,40 @@ Advice是AOP联盟定义的一个接口, 可以在org.aopalliance.aop.Advice中�
 - ThrowsAdvice接口: 一般抛出异常就由这个接口处理. 
 
 Spring中比BeforeAdvice接口更具体一点的实现是MethodBeforeAdvice接口: 
-~~~
+
+~~~ java
 public interface MethodBeforeAdvice extends BeforeAdvice {
 	void before(Method method, Object[] args, @Nullable Object target) throws Throwable;
 }
 ~~~
+
 它提供了一个before方法, 它会在方法被调用前被调用. 这个通知不能阻止方法调用的过程, 除非它抛出Throwable. 如果方法签名允许, 它抛出的任何异常都会返回给调用方. 否则异常会被包装为运行时异常. 而它的method参数是目标方法的反射对象; args对象数组中包含目标方法的输入参数; target为目标对象. 
 
 下面是AfterAdvice更具体的AfterReturningAdvice接口: 
-~~~
+
+~~~ java
 public interface AfterReturningAdvice extends AfterAdvice {
 	void afterReturning(@Nullable Object returnValue, Method method, Object[] args, @Nullable Object target) throws Throwable;
 
 }
 ~~~
+
 它提供了afterReturning方法, 顾名思义就是在目标对象方法成功返回值了之后执行. (前提当然目标方法也没抛异常) 它可以获得返回值但是无法改变返回值. 参数returnValue为返回值; 
 
 然后是ThrowsAdvice, 它是继承AfterAdvice: 
-~~~
+
+~~~ java
 public interface ThrowsAdvice extends AfterAdvice {
 
 }
 ~~~
+
 但是这个接口并没有规定的方法, 如果需要你需要实现这种形式的方法: 
-~~~
+
+~~~ java
 void afterThrowing([Method, args, target], ThrowableSubclass);
 ~~~
+
 其中方括号内的参数是可选的. 如果该异常通知抛出新的异常, 将会覆盖原来的异常. 
 
 ### 3.4.2 Pointcut 切点
@@ -238,7 +247,9 @@ Tomcat中最顶层的容器叫Server.
 Server接口提供addService(), removeService来添加和删除Service. 而Server的init()和start()方法分别循环调用每个Service的init()和start()方法来启动所有Service. 
 
 Server的默认实现是org.apache.catalina.core.StandardServer, 而StandardServer继承自LifecycleMBeanBase, LifecycleMBeanBase又继承自LifecycleBase: 
+
 ![](/picture/2020-11-05-16-04-08.png)
+
 init()和start()方法就定义在LifecycleBase中, LifecycleBase里的init()和start()方法又调用initInternal()和startInternal()这两个模板方法, 所以调用StandardServer的init()和start()方法时会执行StandardServer自己的initInternal()和startInternal()这两个方法, 这就是Tomcat生命周期的管理方式. initInternal()和startInternal()这两个方法分别循环调用了每一个Service的start()和init()方法. 
 
 StandardServer还实现了**await()**方法, Catalina就是调用它让服务器进入等待状态的. 但是啥时候退出呢? 这就是await()方法要干的活了. 它根据Server设置的端口号来关闭(这个端口号不是服务的端口号, 是专门用来监听停止容器命令的端口, 默认是8005). 根据这个端口号的值, 它有三种处理方法: 
@@ -249,19 +260,23 @@ StandardServer还实现了**await()**方法, Catalina就是调用它让服务器
 ### 4.2.5 Service的启动过程
 
 Service接口的默认实现是org.apache.catalina.core.StandardService, StandardService也继承LifecycleMBeanBase类, 所以init()和start()方法最终也会调用initInternal()和startInternal()方法. 
+
 ![](/picture/2020-11-05-16-21-49.png)
 
 我们看StandardService中的initInternal()和startInternal()方法, 它其实是调用了container, executors, mapperListener, connectors的init()和start()方法. container和connectors前已经介绍过, mapperListener是Mapper的监听器, 它可以监听container容器的变化, executors是用在connectors中管理线程的线程池, 在server.xml配置文件中有参考用法, 不过默认是注释起来的: 
-~~~
+
+~~~ xml
     <!--The connectors can use a shared executor, you can define one or more named thread pools-->
     <!--
     <Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
         maxThreads="150" minSpareThreads="4"/>
     -->
 ~~~
+
 把上面的注释放开, Connector就会配置一个叫tomcatThreadPool的线程池, 最多可以同时启动150个线程, 最少要有4个可用线程. 
 
 整个Tomcat服务器启动流程就是: 
+
 ![](/picture/2020-11-05-17-23-55.png)
 
 ### 4.2.6 Tomcat的生命周期管理
@@ -269,6 +284,7 @@ Service接口的默认实现是org.apache.catalina.core.StandardService, Standar
 下面的内容需要学习**观察者模式**才能看懂哦. 
 Tomcat通过org.apache.catalina.Lifecycle接口统一管理生命周期, 所有有生命周期的组件都要实现Lifecycle接口. 
 而这个生命周期管理的Lifecycle接口是拿来干嘛的呢? 由Lifecycle接口上面的注释我们可以了解到, 实现了这个接口的组件, 他们就会有以下的这些合法的状态值, 以及状态之间的转换, 在状态转换之间触发事件, 然后监听器们通过判断事件的类型来做相应处理. 下面这个是组件的状态机图(这个图看着难受, 过一眼就行了): 
+
 ![](/picture/2020-11-06-10-10-10.png)
 
 这个接口主要有这些内容: 
@@ -282,9 +298,13 @@ Tomcat通过org.apache.catalina.Lifecycle接口统一管理生命周期, 所有�
 
 Container是Tomcat中容器的接口, 因为作为Tomcat的容器组件所有有生命周期继承Lifecycle接口. 
 它有4个子接口(子容器)和一个默认实现ContainerBase, 而且子容器都继承默认实现ContainerBase: 
+
 ![Container结构图](/picture/2020-11-06-14-54-35.png)
+
 Container的子容器Engine, Host, Context, Wrapper是逐层包含的关系, 其中Engine是最顶层, 每个Service最多只能有一个Engine, 每个Engine里面可以有多个Host, 每个Host下可以有多个Context, 每个Context下可以有多个Wrapper. 
+
 ![](/picture/2020-11-06-14-59-25.png)
+
 - Engine: 引擎, 用来管理多个站点, 一个Service最多只能有一个Engine. (也就是很久之前结构图的Container)
 - Host: 代表一个站点, 也可以叫虚拟主机, 通过配置Host就可以添加站点. 
 - Context: 代表一个应用程序, 对应着平时开发的一套程序, 或者一个WEB-INF目录以及下面的web.xml文件. 
@@ -292,7 +312,8 @@ Container的子容器Engine, Host, Context, Wrapper是逐层包含的关系, 其
 
 上面写得我觉得比较抽象, 还是直接看Tomcat目录吧: 
 **Host**: Tomcat的默认Host(主机名)为localhost, 在conf/server.xml也能看到相关配置(这里简单的抽取一些配置): 
-~~~
+
+~~~ xml
 <Server port="8005" shutdown="SHUTDOWN">
   <Service name="Catalina">
     <Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" />
@@ -300,14 +321,18 @@ Container的子容器Engine, Host, Context, Wrapper是逐层包含的关系, 其
       <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
 ~~~
 Tomcat启动时默认监听所有IP地址, 如果仅仅本地测试可以在Service下的Connector中配置address="127.0.0.1"来设置仅监听本地. 
+
 ![](/picture/2020-11-06-15-04-52.png)
+
 **Context**: 代表应用, 而ROOT目录里的应用就是主应用, 直接使用主机名/应用名就能访问对应的应用, 比如我们启动Tomcat后访问127.0.0.1/docs就能访问docs这个应用了. 
+
 ![](/picture/2020-11-06-15-07-58.png)
 ![](/picture/2020-11-06-15-48-24.png)
 
 4种容器的配置方法: 
 作者简化了默认配置来供我们学习哦: 
-~~~
+
+~~~ xml
 <?xml version='1.0' encoding='utf-8'?>
 <Server port='8005' shutdown='SHUTDOWN'>
     <Service name='Catalina'>
@@ -320,6 +345,7 @@ Tomcat启动时默认监听所有IP地址, 如果仅仅本地测试可以在Serv
     </Service>
 </Server>
 ~~~
+
 - Server: Server代表整个服务器, 在8005端口监听关闭命令"SHUTDOWN". Server下有一个叫Catalina的默认Service. 
 - Service: Service里定义了两个Connector, 一个是HTTP协议一个是AJP协议; 还定义了一个叫Catalina的Engine. 
 - Engine: Engine里定义了一个名为localhost的Host. 
@@ -338,6 +364,7 @@ Context的三种配置方法:
   - 1.3 应用自己的/META-INF/context.xml文件. (配置单独的应用)
   - 1.4 conf/context.xml文件. (整个Tomcat中共享, Tomcat重启时才重新加载)
   - 1.5 conf/[enginename]/[hostname]/context.xml.default文件. (整个Host中共享)
+  
 - 2. 将WAR应用直接放到Host目录下, Tomcat会自动查找并添加到Host中. 
 - 3. 将应用文件夹放到Host目录下, Tomcat也会自动查找并添加到Host中. 
 
@@ -357,7 +384,9 @@ Container处理请求是使用Pipeline-Value管道来处理的. 这种处理方�
 - 2. 上层容器的管道的BaseValve会调用下层容器的管道. 四个容器的BaseValve分别是StandardEngineValve, StandardHostValve, StandardContextValve, StandardWrapperValve. 
 
 它们的执行流程如下图: 
+
 ![](/picture/2020-11-09-10-45-31.png)
+
 在Engine的管道中依次执行Engine的各个Valve, 最后执行StandardEngineValve用于调用Host的管道, 然后执行Host的Valve, 这样依此类推执行Wrapper管道中的StandardWrapperValve. 
 
 在Filter中用到的FilterChain其实就是这种模式, FilterChain相当于Pipeline, 每个Filter都相当于一个Valve, Servlet相当于最后的BaseValve. 
@@ -371,7 +400,9 @@ Container处理请求是使用Pipeline-Value管道来处理的. 这种处理方�
 ### 4.2.9 Connector分析
 
 简单来说Connector用来接收请求然后封装成Request和Response来具体处理, 它的底层就是使用Socket来进行连接的, Request和Response是按照HTTP协议来封装的, 所以Connector同时实现了TCP/IP协议和HTTP协议, 封装完之后就交给Container进行处理, Container就是Servlet的容器, 处理完后再返回给Connector最后Connector使用Socket将处理结果返回给客户端, 整个请求就处理完了. 作者提供的结构关系图: 
+
 ![](/picture/2020-11-09-11-54-34.png)
+
 // TODO: 砍刀部动手, 这部分细节就砍了
 
 ## 4.3 Spring MVC
@@ -379,6 +410,7 @@ Container处理请求是使用Pipeline-Value管道来处理的. 这种处理方�
 ### 4.3.1 整体结构
 
 上一波Spring MVC中核心的继承结构图: 
+
 ![](/picture/2020-11-09-14-24-42.png)
 
 图中Java方面的三个类之前已经讲过了, 下面都是讲SpringMVC中的HttpServletBean, FrameworkServlet和DispatcherServlet这三个类. 
@@ -391,7 +423,8 @@ Container处理请求是使用Pipeline-Value管道来处理的. 这种处理方�
 对于这个HttpServletBean, 它的上一级GenericServlet有一个使用transient修饰的ServletConfig, 这个修饰符表示修饰的内容不会被序列化, 在这里可能是config不是很重要所以不用序列化吧. 
 
 注: BeanWrapper怎么用? 它是Spring提供的操作JavaBean属性的工具, 用它可以直接修改一个对象的属性. 作者举了个例子: 
-~~~
+
+~~~ java
 public class User {
     String userName;
     public String getUserName() {
@@ -442,6 +475,7 @@ onRefresh()方法是DispatcherServlet入口方法, DispatcherServlet的创建过
 另外View和ViewResolver的原理也和这个类似. View是用来展示数据的, 而ViewResolver用来查找View. View就像是模板, Model就是数据, ViewResolver就是使用哪个模板. 
 
 这一节doDispatch()内容有点多, //TODO: 以后再补了直接上图: 
+
 ![](/picture/2020-11-09-17-07-08.png)
 
 三个Servlet的处理过程大致如下: 
@@ -450,6 +484,7 @@ onRefresh()方法是DispatcherServlet入口方法, DispatcherServlet的创建过
   - 调用doService模板方法具体处理请求. 
   - 将LocaleContext和ServletRequestAttributes在请求前设置到了LocaleContextHolder和RequestContextHolder, 并在请求处理完成后恢复. 
   - 请求处理完后发布了ServletRequestHandledEvent事件. 
+  
 - DispatcherServlet: doService方法给request设置了一些属性并将请求交给doDispatch方法具体处理. 
 
 DispatcherServlet中的doDispatch方法完成了SpringMVC中请求处理过程的顶层设计, 它使用了DispatcherServlet中的九大组件完成了具体的请求处理. 
@@ -482,6 +517,7 @@ DispatcherServlet中的doDispatch方法完成了SpringMVC中请求处理过程�
 简单来说这个组件就是根据异常解析出ModelAndView, 然后再交给render方法进行渲染. 因为它在render之前工作的, 解析出ModelAndView之后render才去渲染, 所以它就不能处理render过程中的异常了. 
 
 // TODO 懒了
+
 ### 4.5 总结与补充
 
 // TODO 后面Servlet3.0提供了使用异步处理请求的内容. 

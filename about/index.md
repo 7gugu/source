@@ -12,6 +12,7 @@ title: 关于
 
 常用联系:
 - Telegram:[someexp](https://t.me/someexp)
+- BASE64:aUBzb21lZXhwLmNvbQ==
 - GitHub:[thesomeexp](https://github.com/thesomeexp)
 
 书单: 

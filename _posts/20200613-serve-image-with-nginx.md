@@ -10,7 +10,9 @@ tags:
 urlname: serve-image-with-nginx
 ---
 示例
+
 <!--more-->
+
 // docker挂载
 ~~~
 mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf /home/nginx/www/image /home/nginx/www/image/ /home/nginx/www/image/info_detail

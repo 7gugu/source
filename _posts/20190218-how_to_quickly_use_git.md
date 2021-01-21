@@ -1,7 +1,7 @@
 ---
 title: 如何快速使用Git
 date: 2019-02-18 20:39:13
-updated: 2020-04-30
+updated: 2021-01-20
 tags:
   - Git
   - Note
@@ -10,11 +10,18 @@ original: false
 ---
 快速上手类内容注意更新日期, 因为技术迭代很快教程可能对不上, 以官网为主.
 <!--more-->
+
 # Cues
-自报家门, 生成ssh, 关联远程
+
+自报家门([git教程与配置](https://gitimmersion.com/lab_01.html)), 生成ssh([SSH配置](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)), 关联远程([测试SSH连接](https://docs.github.com/cn/github/authenticating-to-github/testing-your-ssh-connection))
 add, commit, push
+
 # Notes
+
 ## 1.初始化配置
+
+**注: 以下都是陈年文章了, 这边建议直接看Cues里面的超链接.**
+
 安装完Git自报家门:
 ~~~
 git config --global user.name "Your Name"
@@ -24,9 +31,14 @@ win下~目录生成ssh密钥:
 ~~~
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ~~~
+**如果你是团队协作开发, 请不要忘记配置Line Ending相关参数.** 
 关联远程仓库(git默认远程名字叫origin):
 ~~~
 git remote add origin SSH仓库地址
+~~~
+测试SSH连接: 
+~~~
+ssh -T git@github.com
 ~~~
 ## 2.开始使用
 初始化Git仓库:
@@ -169,3 +181,6 @@ git上手难度还是比较高的, 只有理解和多练习了, 才能熟练掌�
 参考资料:
 [Git教程-廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 [git使用简易指南](http://www.bootcss.com/p/git-guide/)
+[https://gitimmersion.com/lab_01.html](https://gitimmersion.com/lab_01.html)
+[Connecting to GitHub with SSH](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
+[测试SSH连接](https://docs.github.com/cn/github/authenticating-to-github/testing-your-ssh-connection)
