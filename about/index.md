@@ -8,13 +8,15 @@ title: 关于
 - 博主认为正常生活在这个世界上并不需要花费太多, 只需要忍受得住商业公司的诱惑. 
 - 博主希望世界是开源, 自由的. 
 
-本站所有作品若标明为原创作品, 原创作品采用[知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by-nc-sa/3.0/cn/)进行许可. 
-
 常用联系:
 - Telegram:[someexp](https://t.me/someexp)
 - BASE64:aUBzb21lZXhwLmNvbQ==
 - GitHub:[thesomeexp](https://github.com/thesomeexp)
 
+如果你需要给我发送比较重要的信息以及数据, 请使用PGP进行加密. Public Key可到[PGP全球目录](https://keyserver.pgp.com)搜索. 
+
 书单: 
-- [工作相关](/post/books-for-work)
-- [非工作相关](/post/the-book-i-read)
+- [计算机相关](/post/books-for-work)
+- [非计算机相关](/post/the-book-i-read)
+
+本站所有作品若标明为原创作品, 原创作品采用[知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by-nc-sa/3.0/cn/)进行许可. 

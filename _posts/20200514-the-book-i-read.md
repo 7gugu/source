@@ -5,9 +5,10 @@ date: 2020-05-14
 updated: 2021-01-01
 tags: 
   - Essay
+  - Book
 urlname: the-book-i-read
 ---
-非工作相关的书单. 工作类的书单请请看[这里这里](/post/books-for-work). 
+非计算机相关的书单. 计算机类的书单请请看[这里这里](/post/books-about-computer-science). 
 <!--more-->
 按照我的阅读顺序来倒序排序的哈. 
 # **before 2020:** 

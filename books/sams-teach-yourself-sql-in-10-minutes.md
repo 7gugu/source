@@ -47,6 +47,10 @@ WHERE子句中使用NOT来否定其后条件的关键字.
 不要过度使用通配符, 如果其它操作符能达到相同目的, 就使用其它操作符. 
 把通配符置于开始处搜索起来是最慢的. 
 
+注意尾空格: 尾空格可能会干扰通配符匹配. 比如保存词anvil时, 如果它后面有一个或多个空格, 那么子句WHERE prod_name LIKE '%anvil'将不会匹配他们. 建议使用函数去掉首尾空格.
+
+注意: %通配符不能匹配NULL.
+
 # 7. 创建计算字段 
 
 作者认为在数据库服务器上完成转换和格式化工作比客户端中完成要快得多. (我自己觉得数据库资源还是比较宝贵的... 如果是IO密集型CPU瓶颈不高感觉这样也好)
@@ -58,7 +62,7 @@ WHERE子句中使用NOT来否定其后条件的关键字.
 
 # 9. 汇总数据 
 
-聚集函数aggregate function): AVG(), COUNT(), MAX(), MIN(), SUM()
+聚集函数(aggregate function): AVG(), COUNT(), MAX(), MIN(), SUM()
 
 COUNT()如果指定列名, 那么会忽略NULL的行, 所以可以使用COUNT(*). 
 
@@ -74,7 +78,8 @@ WHERE在数据分组前进行过滤, HAVING在数据分组后进行过滤.
 作为子查询是SELECT语句只能查询单个列. 
 
 例: 列出所有包含物品RGAN01的订单的所有顾客ID(利用子查询进行过滤): 
-~~~
+
+~~~ sql
 SELECT cust_id
 FROM Orders
 WHERE order_num IN (SELECT order_num
@@ -83,7 +88,8 @@ WHERE prod_id = 'RGAN01');
 ~~~
 
 例: 显示Custemers表中每个顾客的订单总数(作为计算字段): 
-~~~
+
+~~~ sql
 SELECT cust_name,
 cust_state,
 (SELECT COUNT(*)
@@ -96,7 +102,8 @@ ORDER BY cust_name;
 # 12. 联结表 
 
 例: 列出供应商与对应的产品(关系表): 
-~~~
+
+~~~ sql
 SELECT vend_name, prod_name, prod_price
 FROM Vendors, Products
 WHERE Vendors.vend_id = Products.vend_id;
@@ -104,8 +111,9 @@ WHERE Vendors.vend_id = Products.vend_id;
 
 如果联结表时忘记了WHERE子句, 那么就会返回很多数据(笛卡尔积cartesian product也叫叉连接cross join)
 
-目前为止使用的联结称为等值联结(equijoin), 基于两个表之间的相等测试, 也叫内联结(inner join). 下面的SELECT语句返回与上面例子完全相同的数据: 
-~~~
+目前为止使用的联结称为等值联结(equijoin), 基于两个表之间的相等测试, 也叫内联结(inner join). 下面的SELECT语句返回与上面例子完全相同的数据:
+
+~~~ sql
 SELECT vend_name, prod_name, prod_price
 FROM Vendors INNER JOIN Products
 ON Vendors.vend_id = Products.vend_id;
@@ -136,9 +144,83 @@ ON Vendors.vend_id = Products.vend_id;
 
 # 14. 组合查询 
 
-UNION几乎总是完成WHERE条件相同的工作, 所以它默认取消重复的行, 如果不想取消可以用UNION ALL. 
+也就是查询多个表, 将结果作为单个查询结果集返回. UNION几乎总是完成WHERE条件相同的工作, 所以它默认取消重复的行, 如果不想取消可以用UNION ALL. 
 
 # 15. 插入数据
 
-不要使用没有明确给出列的INSERT语句, 给出列能使SQL代码继续发挥作用, 即使表结构发生了变化. 
+插入有几种方式: 
+- 插入完整的行
+- 插入行的一部分
+- 插入某些查询的结果(INSERT SELECT或SELECT INTO)
 
+为了DBMS之间的可移植性, 不要忘记使用INTO关键字. 不要使用没有明确给出列的INSERT语句, 给出列能使SQL代码继续发挥作用, 即使表结构发生了变化. 
+
+INSERT SELECT可以插入多行, INSERT通常直插入一行. 
+SELECT INTO用来将数据复制到一个新表. 
+
+# 16. 更新和删除数据
+
+- 操作表中的特定行
+- 操作表中的所有行
+
+删除某个列的值, 可以设置它为NULL.
+
+无论更新还是删除其实都比较简单, 需要注意的是操作前最好先用SELECT测试一下是否是需要操作的行, 就是注意一下过滤的条件. 还有注意外键. 为了可以执行DELETE注意保留FROM关键字. 
+
+DELETE删除整行, UPDATE可以删除整列, 如果想更快的删除表中所有行, 可以使用TRUNCATE TABLE语句. 
+
+# 17. 创建和操纵表
+
+创建表需要参阅具体的DBMS文档. 
+注: 最好指定NULL / NOT NULL. 
+
+对于用于计算或数据分组的列建议用DEFAULT值而不是NULL列. 
+
+> 复杂的表结构更改一般需要手动删除过程，它涉及以下步骤：
+(1) 用新的列布局创建一个新表；
+(2) 使用 INSERT SELECT 语句（关于这条语句的详细介绍，请参阅第 15
+课）从旧表复制数据到新表。有必要的话，可以使用转换函数和计算
+字段；
+(3) 检验包含所需数据的新表；
+(4) 重命名旧表（如果确定，可以删除它）；
+(5) 用旧表原来的名字重命名新表；
+(6) 根据需要，重新创建触发器、存储过程、索引和外键。
+
+注: 小心使用ALTER TABLE, 应该在改动前做完整的备份(表结构和数据的备份). 
+
+# 18. 使用视图
+
+有点像是Java中的工具类, 封装一下一些可能被用于固定的, 多次的, 格式化的, 而且变量比较少的SELECT语句, 例如隐藏复杂的SQL联结, 或者减少SQL格式化拼接. 不同的DBMS对视图的限制都可能不大同. 
+
+# 19. 使用存储过程
+
+有点像是开发架构中的Service层, 存储过程可以完成一些需要多条语句才能完成的复杂功能, 它简单, 安全, 高性能. 
+
+说明: SQL和其他语言一样也可以写注释, 一般都是推荐写注释的. 所有DBMS都支持的注释是这么写的(两个连接符):
+
+~~~ sql
+-- 注释balabala...
+~~~
+
+# 20. 管理事务处理
+
+- 事务(transaction)指一组SQL语句
+- 回退(rollback)指撤销指定SQL语句的过程
+- 提交(commit)指将未存储的SQL语句结果写入数据库表
+- 保留点(savepoint)指事务处理中设置的临时占位符(placeholder), 可以对它发布回退(与回退整个事务处理不同)
+
+提示: 事务处理用来管理INSERT, UPDATE, DELETE语句, 不能回退SELECT, CREATE, DROP操作.
+
+# 21. 使用游标
+
+有时候需要在检索出来的行中前进或后退一行或多行, 这就是游标的用途. 通常会经历: 声明, 打开(检索), 关闭.
+
+# 22. 高级SQL特性
+
+- 约束
+  - 外键约束
+  - 唯一约束
+  - 检查约束
+- 主键
+- 索引(没有严格的规则要求什么应该索引, 何时索引. 大多数DBMS都提供可以用来确定索引效率的实用程序, 应该经常使用这些实用程序. 定期检查索引. )
+- 触发器(特殊的存储过程. 约束比触发器更快, 尽可能使用约束)
