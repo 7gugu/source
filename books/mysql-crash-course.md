@@ -1,6 +1,9 @@
 ---
 title: MySQL必知必会
 ---
+
+注意: 以下的SQL语句一般都是针对MySQL5+, 不同版本之间可能有差异, 具体请参考官方文档.
+
 # 1.了解SQL
 
 参见 SQL必知必会 第1章. 
@@ -306,7 +309,6 @@ RENAME TABLE table1 TO table2;
 
 # 22.使用视图
 
-
 参见 SQL必知必会 第18章.
 
 性能问题: 如果使用多个联结和过滤创建了复杂的视图或嵌套了视图, 可能会发现性能下降得很厉害, 因此在部署使用了大量视图的应用前, 应该进行测试.
@@ -317,7 +319,6 @@ RENAME TABLE table1 TO table2;
 - 更新时可以先删除再创建, 也可也直接用CREATE OR REPLACE VIEW.
 
 # 23.使用存储过程
-
 
 参见 SQL必知必会 第19章.
 
@@ -426,4 +427,297 @@ END;
 这个存储过程没有做啥事, 就是定义和命名了游标ordernumbers. 存储过程处理完后游标消失(因为它局限于存储过程, 隐含关闭). 逻辑应该写在OPEN cursor和ENDcursor之间, 作者举了个例子我就不摘了.
 
 # 25.使用触发器
+
+触发器是MySQL响应以下语句而自动执行的一条MySQL语句:
+- DELETE
+- INSERT
+- UPDATE
+
+注意: 即使MySQL触发器必须在每个表中唯一, 而不是在每个数据库中唯一, 但考虑到以后的版本可能会使命名规则更为严格, 因此最好还是在数据库范围内使用唯一的触发器名.
+
+创建触发器:
+
+~~~ sql
+CREATE TRIGGER newproduct AFTER INSERT ON products
+FOR EACH ROW 
+BEGIN 
+    SELECT 'Product added';
+END;
+~~~
+
+上面使用CREATE TRIGGER来创建名为newproduct的新触发器. 触发器可以在操作发生前或之后执行, 这里给出了AFTER INSERT, 所以此触发器将在INSERT语句成功执行后执行. FOR EACH ROW表示此代码对每个插入行执行. 在这个例子中是每插入一行后显示一次'Product added'.
+
+注意: 只有表才支持触发器, 视图和临时表是不支持滴.
+
+触发器按每个表每个事件每次地定义, 每个表每个事件每次只允许一个触发器, 因此每个表最多支持6个触发器. 
+
+注意: 如果BEFORE触发器失败, 则MySQL将不执行请求的操作. 如果BEFORE触发器或语句本身失败, MySQL将不执行AFTER触发器(如果有).
+
+删除触发器:
+
+~~~ sql
+DROP TRIGGER newproduct;
+~~~
+
+触发器不能更新或覆盖, 为了修改必须先删除然后重新创建.
+
+INSERT触发器:
+- 在INSERT触发器内, 可以引用一个名为NEW的虚拟表访问插入的行
+- 在BEFORE INSERT触发器中, NEW中的值也可也被更新, 也就是允许修改被插入的值
+- 对于AUTO_INCREMENT列, NEW在INSERT执行前包含0, 在INSERT执行后包含新的自动生成值
+
+通常BEFORE用于数据验证和净化, 保证插入表中的数据确实是需要的数据.
+
+DELETE触发器:
+- 在DELETE触发器代码内, 可以引用一个名为OLD的虚拟表访问被删除的行.
+- OLD中的值全都是只读的, 不能更新
+
+使用BEFORE DELETE触发器的优点(相对于AFTER DELETE触发器来说)为, 如果由于某种原因, 订单不能存档(就是利用触发器将被删除的数据备份), DELETE本身将被放弃(AFTER出错会回滚).
+
+UPDATE触发器:
+- 在UPDATE触发器代码中, 可以使用OLD虚拟表访问UPDATE语句执行前的值, 引用一个名为NEW的虚拟表访问新更新的值
+- 在BEFORE UPDATE触发器中, NEW中的值可能也被更新, 也就是允许更改将要用于UPDATE语句中的值
+- OLD中的值全都是只读的, 不能更新
+
+触发器的一种非常有意义的使用是创建审计跟踪.
+
+# 26.管理事务处理
+
+参见 SQL必知必会 第20章.
+
+MySQL标示事务的开始:
+
+~~~ sql
+START TRANSACTION
+~~~
+
+使用ROLLBACK:
+
+~~~ sql
+SELECT * FROM ordertotals;
+START TRANSACTION;
+DELETE FROM ordertotals;
+SELECT * FROM ordertotals;
+ROLLBACK;
+SELECT * FROM ordertotals;
+~~~
+
+这个例子首先显示ordertotals表不为空, 然后事务内执行删除, 再显示数据已被删除, 然后回滚, 再查看数据不为空.
+
+使用COMMIT:
+一般的MySQL语句都是直接针对数据库执行和编写的(隐含提交implicit commit也就是提交是自动进行的). 但是在事务中不会隐含地提交.
+
+注意: 隐含事务关闭: 当COMMIT或者ROLLBACK语句执行后, 事务会自动关闭.
+
+使用保留点:
+
+对于复杂的事务可能需要部分提交或回退.
+
+~~~ sql
+SAVEPOINT delete1; -- 创建保留点
+-- do something...
+ROLLBACK TO delete1; -- 回退到保留点
+~~~
+
+更改默认提交行为:
+
+为指示MySQL不自动提交更改, 需要使用:
+
+~~~ sql
+SET autocommit=0;
+~~~
+
+autocommit标志决定是否自动提交更改, 不管有没有COMMIT语句. 这个标志是针对每个连接的而不是服务器的.
+
+# 27.全球化和本地化
+
+- 字符集: 字母和符号的集合
+- 编码: 某个字符集成员的内部表示
+- 校对: 规定字符如何比较的指令
+
+~~~ sql
+SHOW CHARACTER SET;
+~~~
+
+显示所有可用的字符集以及每个字符集的描述和默认校对.
+
+~~~ sql
+SHOW COLLATION
+~~~
+
+显示所有可用的校对, 以及它们适用的字符集. 比如latin1对不同的欧洲语言有几种校对(区分大小写_cs, 或者不区分大小写_ci).
+
+通常系统管理在安装时定义一个默认的字符集和校对, 也可也在创建数据库时指定默认的字符集和校对. 使用下面的语句来查看所用的字符集和校对:
+
+~~~ sql
+SHOW VARIABLES LIKE 'character%';
+SHOW VARIABLES LIKE 'collation%';
+~~~
+
+实际上字符集很少是服务器范围(甚至是数据库范围)的设置. 不同的表, 甚至不同的列都可能需要不同的字符集, 而且两者都可以在创建表时指定.
+
+带指定字符集和校对子句的CREATE TABLE:
+
+~~~ sql
+CREATE TABLE mytable
+(
+    column1 INT,
+    column2 VARCHAR(10)
+) DEFAULT CHARACTER SET hebrew
+    COLLATE hebrew_general_ci;
+~~~
+
+如果不指定CHARACTER SET和COLLATE则使用数据库默认.
+
+MySQL允许对每个列设置字符集和校对:
+
+~~~ sql
+CREATE TABLE mytable
+(
+    column1 INT,
+    column2 VARCHAR(10),
+    column3 VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_general_ci
+) DEFAULT CHARACTER SET hebrew
+    COLLATE hebrew_general_ci;
+~~~
+
+如果你需要用与创建表时不同的校对顺序排序特定的SELECT语句, 也可以在语句自身指定:
+
+~~~ sql
+SELECT * FROM customers
+ORDER BY lastname, firstname COLLATE latin1_general_cs;
+~~~
+
+# 28.安全管理
+
+访问控制的目的不仅仅是防止用户的恶意企图, 数据梦魇更为常见的是无意识错误的结果(比如实习的我不小心删错库了, 导师劝我提桶跑路). 通过保证用户不能执行他们不应该执行的语句, 访问控制有助于避免这些情况的发生.
+
+注意: 不要使用root, 应该严肃地对待root登录的使用, 仅在绝对需要时使用它, 不应该在日常的MySQL操作中使用root.
+
+创建用户账号:
+
+~~~ sql
+CREATE USER ben IDENTIFIED BY 'p@$$w0rd';
+~~~
+
+上面创建了ben用户以及制定了文本口令.
+
+注意: GRANT或者INSERT语句也可也创建用户账号, 但为了安全起见一般不建议直接操作MySQL用来存储用户账号信息的表, 对它们的任何毁坏都有可能严重地伤害到MySQL服务器. 因此最好还是用标记和函数来处理这些表.
+
+重命名一个用户账号:
+
+~~~ sql
+RENAME USER ben to bforta;
+~~~
+
+删除用户账号和相关的权限:
+
+~~~ sql
+DROP USER bforta;
+~~~
+
+查看用户访问权限:
+
+~~~ sql
+SHOW GRANTS FOR bforta;
+~~~
+
+我的新创建用户的结果是返回GRANT USAGE ON *.* TO 'bforta'@'%', USAGE表示这个用户根本没有权限(很不直观). 所以那个结果表示在任意数据库和任意表上对任何东西都没有权限.
+
+注意: 用户定义为user@host, MySQL的权限用用户名和主机名结合定义. 如果不指定主机名则使用默认的主机名%.
+
+使用GRANT语句设置权限:
+- 授予的权限
+- 被授予访问权限的数据库或表
+- 用户名
+
+~~~ sql
+GRANT SELECT ON crashcourse.* TO bforta;
+~~~
+
+它允许用户在crashcourse数据库的所有表使用SELECT, 也就是对该数据库中的所有表有只读权限.
+
+GRANT的反操作是REVOKE:
+
+~~~ sql
+REVOKE SELECT ON crashcourse.* FROM bforta;
+~~~
+
+它们可以在几个层次上控制访问权限, 可以参照书给出的表或者官网文档.
+
+更改口令:
+
+~~~ sql
+SET PASSWORD FOR bforta = Password('n3w p@$$w0rd');
+~~~
+
+设置自己的口令:
+
+~~~ sql
+SET PASSWORD = Password('n3w p@$$w0rd');
+~~~
+
+# 29.数据库维护
+
+由于MySQL数据库是基于磁盘的文件, 但是由于这些文件总是处于打开和使用状态, 普通的文件副本备份不一定总是有效. 因此可以使用:
+- mysqldump程序转存数据库内容到外部某个文件.
+- mysqlhotcopy从一个数据库复制所有数据(不是所有引擎都支持)
+- 使用MySQL的BACKUP TABLE或SELECT INTO OUTFILE转存数据到外部某个已存在的文件. 并使用RESTORE TABLE来复原.
+
+注意: 首先刷新未写数据, 为了保证所有数据被写到磁盘(包括索引数据), 可能需要在进行备份前使用FLUSH TABLES语句.
+
+数据维护, 检查表键是否正确:
+
+~~~ sql
+ANALYZE TABLE orders;
+~~~
+
+- CHECK TABLE用来针对许多问题对表进行检查. 
+- CHANGED检查自最后一次检查以来改动过的表
+- EXTENDED执行最彻底的检查
+- FAST只检查未正常关闭的表
+- MEDIUM检查所有被删除的链接并进行键检验
+- QUICK只进行快速扫描
+
+- 如果MyISAM表访问产生不正确和不一致的结果, 可能需要用REPAIR TABLE来修复相应的表, 但这条语句不应该经常使用, 如果经常用那可能会有更大的问题需要解决噢.
+- 如果从一个表中删除大量数据, 应该使用OPTIMIZE TABLE来收回所用的空间, 从而优化表的性能.
+
+诊断启动问题:
+服务器启动问题通常是在MySQL配置或服务器本身进行更改时出现. 因为多数MySQL服务器是以系统进程或服务自动启动的, 所以这些报告错误消息可能看不到, 因此排除问题时应尽量手动启动服务器. 一般是执行mysqld启动, 以下是几个重要滴参数:
+
+~~~
+--help显示帮助
+--safe-mode装载减去某些最佳配置的服务器
+--verbose显示全文本消息
+--version显示版本信息然后退出
+~~~
+
+查看日志文件:
+- 错误日志: 包含启动和关闭问题问题以及任意关键错误的细节
+- 查询日志: 记录所有MySQL活动, 可能很快的变得很大的日志, 不应该长期使用它
+- 二进制日志: 记录更新过(或可能)数据的所有语句
+- 缓慢查询日志: 记录执行缓慢的任何查询, 通常在优化时很有用.
+
+# 30.改善性能
+
+作者说他只是回顾前面的重点, 提供进行性能优化探讨和分析的一个出发点:
+- 对于生产的服务器, MySQL应该遵守它推荐的硬件建议
+- 一般来说生产DBMS应该运行在自己的专用服务器上
+- 默认的预先配置通常很好, 但隔一段时间可能需要调整内存分配, 缓冲区大小等
+- MySQL是一个用户多线程DBMS, 所以这些多线程任务中某一个执行缓慢就会导致所有请求都执行缓慢. 如果遇到显著的性能不良, 可以使用SHOW PROCESSLIST显示所有活动进程(以及线程ID和执行时间). 必要时可以KILL掉它
+- 总是有不止一种方法编写同一条SELECT语句, 应该试验联结, 并, 子查询等找出最佳的方法
+- 使用EXPLAIN语句让MySQL解释它如何执行一条SELECT语句
+- 一般来说存储过程比一条条执行其中的各条MySQL快
+- 应该总是使用正确的数据类型
+- 绝不要检索比需求还多的数据, 换言之不要使用SELECT *(除非真的想要每个列)
+- 有的操作(包括INSERT)支持一个可选的DELAYED关键字, 它立即返回, 一旦有可能就实际执行该操作
+- 在导入数据时, 应该关闭自动提交. 建议删除索引然后导入完成后再重建它们
+- 必须索引数据库表以改善数据检索性能. 通过分析SELECT找出重复的WHERE和ORDER BY子句来确定索引
+- SELECT语句有复杂的OR条件的话, 可以试试多条SELECT和UNION语句来改善性能
+- 索引改善数据检索的性能, 但损害数据插入, 删除和更新的性能(根据需要再添加)
+- LIKE很慢, 最好使用FULLTEXT
+- 数据库是不断变化的实体, 一组优化良好的表一会后可能就面目全非了, 由于表的使用和内容的更改, 理想的优化和配置也会改变
+- 最重要的规则是, 每条规则在某些条件下都会被打破
+
+作者说[https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)有很多提示和技巧.
 

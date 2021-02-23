@@ -1,7 +1,7 @@
 ---
 title: 如何使用windows10
 date: 2020-02-08
-updated: 2020-04-30
+updated: 2021-01-25
 tags:
   - Win10
 urlname: how-to-use-windows10
@@ -11,7 +11,7 @@ original: true
 很多人因为windows的问题找我帮忙, 其实我哪里忙得过来慢慢回答这个庞大的话题, 只好写一篇, 希望你们能从这里找到解决办法. 如有错误请各位大佬轻点指出. 
 <!--more-->
 # 关于系统
-首先是关于安装系统, 强烈建议各位从官网或者itellyou获取相应的系统镜像, 我也写过有关[如何安装win10LTSC](https://someexp.com/post/how_to_installing_win10_ltsc/)的文章, 我还是推荐你们使用微软推荐的安装方法, 请选择适合自己的系统镜像下载并安装. 这里推荐安装win10, 旧版本系统在失去微软支持后系统漏洞很容易被恶意软件以及黑客利用. (ref: [2016/11/2微软宣布全面停售OEM版Win7/8.1系统](https://www.ithome.com/html/win7/269040.htm))
+首先是关于安装系统, 强烈建议各位从官网或者itellyou获取相应的系统镜像, 我也写过有关[如何安装win10LTSC](https://someexp.com/post/how_to_installing_win10_ltsc/)的文章, 我还是推荐你们使用微软推荐的安装方法, 请选择适合自己的系统镜像下载并安装. 这里推荐安装较新版本的win10, 旧版本系统在失去微软支持后系统漏洞很容易被恶意软件以及黑客利用. (ref: [2016/11/2微软宣布全面停售OEM版Win7/8.1系统](https://www.ithome.com/html/win7/269040.htm))
 ## 为什么不用PE, ghost之类的方式安装? 其他地方下载的镜像可以用吗? 
 我本人不了解PE, ghost的安装机制, 不确定这种方式安装的系统安全性. 同样, 来自非官方的镜像的安全性是未知的. 
 ## 如何分区?
@@ -49,19 +49,19 @@ original: true
 通过上面你可以看到我的电脑配置比你们的还低, 多么瞩目的2代i3. 
 我日常使用觉得不错的软件: 
 解压: 7-zip
-浏览器: firefox[https://www.mozilla.org/en-US/firefox/all.html](https://www.mozilla.org/en-US/firefox/all.html), chrome, 新版Edge
+浏览器: firefox[https://www.mozilla.org/en-US/firefox/all.html](https://www.mozilla.org/en-US/firefox/all.html), brave, chrome, 新版Edge, Tor
 截屏: Snipaste
 录屏: OBS Studio
 视频播放器: VLC
 文本编辑器: Notepad++, vscode
 pdf查看器: SumatraPDF
 安全防护: win10自带的Windows Defender
-虚拟机: VMware
+虚拟机: Hyper-V, (自己用Vmware感觉方便点)
 密码管理: KeePass
 磁盘加密: win10自带的BitLocker, Veracrypt
 输入法: RIME
 其他: 7+ Taskbar Tweaker, DocFetcher, WinMerge, Rufus
-以上软件均可绿色安装, 如果你有更好的软件推荐给我, 那么请联系我, 谢谢. 
+以上软件大多可绿色安装, 如果你有更好的软件推荐给我, 那么请联系我, 谢谢. 
 
 # 最后
 我写得不是很详细, 很多细节都没有加, 我希望各位能够善于利用搜索引擎, 解决你们遇到的

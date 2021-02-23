@@ -14,6 +14,10 @@ urlname: books-about-computer-science
 
 # **2021:**
 
+## 高性能MySQL-第3版
+
+[高性能MySQL-笔记](/books/hight-performance-mysql)
+
 ## MySQL必知必会
 
 [MySQL必知必会-笔记](/books/mysql-crash-course)
