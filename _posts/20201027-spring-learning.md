@@ -518,6 +518,33 @@ DispatcherServlet中的doDispatch方法完成了SpringMVC中请求处理过程�
 
 // TODO 懒了
 
+### SpringMVC总结
+
+Spring MVC是Spring的Web MVC模式框架,它主要是围绕处理请求分发的DispatcherServlet来设计的.它的具体流程如图4所示.
+
+![](/picture/2021-03-01-23-18-17.png)
+DispatcherServlet的处理工作流
+
+Spring MVC的处理又和J2EE默认的分请求处理不一样,在这里它又用DispatcherServlet统一进行处理了,而请求如何进行处理又交给了doDispatch()方法来处理,其实就是调用各种相关的组件来各自处理.要解释各组件的处理流程,首先要分清楚三个概念.
+1.Handler
+Handler是处理器,它可以直接对应到MVC中的Controller层,它有很多种表现形式,可以是类也可以是方法,只要可以处理实际请求的就是Handler.比如项目中使用注解@RequestMapping标注的方法就是一个Handler.
+2.HandlerMapping
+HandlerMapping是处理器映射器的意思,它主要用来将请求映射到相应的Handler来处理. 
+3.HandlerAdapter
+HandlerAdapter是处理器适配器,因为Handler可以是多种形式的因此十分灵活,但是Servlet处理请求的方法是固定的,因此需要有这个适配器来将灵活的Handler转换成能供Servlet调用的方式来处理.
+
+同样View和ViewResolver的原理也和上面三个概念的抽象类似,View是用来展示数据的模板,Model是数据,ViewResolver是用来查找使用哪个View模板来渲染的.
+
+因此DispatcherServlet的处理工作流程如下:
+1.客户端向服务器发送请求(Incoming request).
+2.请求被前端控制器(Front controller主要是DispatcherServlet)捕获,组件HandlerMapping根据URI(请求资源标识符)获得相关的Handler.
+3.DispatcherServlet将使用适合的HandlerAdapter来处理获得的Handler.(如果成功获得HandlerAdapter那就会执行相应Interceptor的preHandle()方法)
+4.HandlerAdapter使用Handler处理请求.(在此之前根据配置Spring会帮你做一些格外的工作,比如提取request作为Handler的入参,数据转换,数据格式化,数据验证等.处理完后执行相应Interceptor的postHandle()方法)
+5.Controller(也就是Handler被)执行完之后返回一个model对象.
+6.前端控制器根据返回的model对象和view来选择合适的视图解析器(ViewResolver).
+7.视图解析器通过model来对响应(response)进行渲染.
+8.前端控制器根据返回的渲染结果返回给客户端
+
 ### 4.5 总结与补充
 
 // TODO 后面Servlet3.0提供了使用异步处理请求的内容. 

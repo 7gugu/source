@@ -1,7 +1,7 @@
 ---
 title: Java基础笔记--学习Java语言--接口和继承
 date: 2020-03-30 
-updated: 2020-04-30
+updated: 2021-03-02
 tags:
   - Java
 urlname: java-basic-notes-learning-the-java-language-interfaces-and-inheritance
@@ -45,7 +45,7 @@ public interface GroupedInterface extends Interface1, Interface2, Interface3 {
 
 ## Java中的继承
 
-当你想创建一个新类时, 已经有一个类包含了你想要的代码, 你可以继承这个已经存在的类. 继承之后你可以复用一些父类的成员变量而不需要重新写. 子类继承所有父类字段(成员变量, 成员方法, 嵌套类等, 前提是父类的成员被设计为public或者protected, 如果不在同一包下, private字段是无法被继承的), 而构造器并不属于这个范围, 但子类可以调用父类构造器. 
+当你想创建一个新类时, 已经有一个类包含了你想要的代码, 你可以继承这个已经存在的类. 继承之后你可以复用一些父类的成员变量而不需要重新写. 子类继承所有父类字段(成员变量, 成员方法, 嵌套类等, 前提是父类的成员被设计为public或者protected, 或者不加修饰, 而private字段是无法被继承的), 而构造器并不属于这个范围, 但子类可以调用父类构造器. 
 
 ### 对象转换
 
@@ -131,7 +131,7 @@ The instance method in Cat
 
 ### 接口方法
 
-接口中的默认方法和抽象方法的继承类似于实例方法. 然而, 当超级类或者接口提供多个方法签名相同的方法时, Java编译器会根据一下两个原则来解决方法名冲突的问题: 
+接口中的默认方法和抽象方法的继承类似于实例方法. 然而, 当超级类或者接口提供多个方法签名相同的方法时, Java编译器会根据以下两个原则来解决方法名冲突的问题: 
 - 1. 实例方法要优先于接口默认方法
 官方举例: 
 ~~~
@@ -320,25 +320,25 @@ super(parameter list);
 ## 作为父类的Object
 
 在java.lang包里的Object类, 坐在所有类层次树的顶端. 每个类都是他的后代, 直接或者不直接. 每个你用或者写的类, 都继承Object的方法. 你不需要使用任何这些方法, 但是如果你选择使用它, 那么你可能需要在你的特定类覆盖它. 在本章将讨论继承自Object的方法. 
-- protected Object clone() throws CloneNotSupportedException
-创建和返回一个对象复制品
-- public boolean equals(Object obj)
-表明对象是否"equal to"另外一个对象
-- protected void finalize() throws Throwable
-当垃圾收集器garbage collection 确定没有引用这个对象时, 该对象的这个方法被垃圾收集器调用
-- public final Class getClass()
-返回一个对象的运行时类
-- public int hashCode()
-返回该对象的hash code值
-- public String toString()
-返回一个对象的字符串表示
+
+~~~ java
+protected Object clone() throws CloneNotSupportedException// 创建和返回一个对象复制品
+public boolean equals(Object obj)// 表明对象是否"equal to"另外一个对象
+protected void finalize() throws Throwable// 当垃圾收集器garbage collection 确定没有引用这个对象时, 该对象的这个方法被垃圾收集器调用
+public final Class getClass()// 返回一个对象的运行时类, 如果是.class是编译时确定
+public int hashCode()// 返回该对象的hash code值
+public String toString()// 返回一个对象的字符串表示
+~~~
 
 对象的notify, notifyAll, 和wait方法都参与同步程序的线程活动, 它们将会在后面的章节讨论而不是这里. 他们有五个这种方法: 
-- public final void notify()
-- public final void notifyAll()
-- public final void wait()
-- public final void wait(long timeout)
-- public final void wait(long timeout, int nanos)
+
+~~~ java
+public final void notify()
+public final void notifyAll()
+public final void wait()
+public final void wait(long timeout)
+public final void wait(long timeout, int nanos)
+~~~
 注: 这些方法都有微妙的方面, 特别是clone方法. 
 
 ### clone()方法
