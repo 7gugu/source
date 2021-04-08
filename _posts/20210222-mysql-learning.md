@@ -7,7 +7,7 @@ tags:
   - MySQL
 urlname: mysql-learning
 ---
-快来学习一下MySQL吧.
+快来学习一下MySQL5.6吧.
 <!--more-->
 # MySQL架构和基础
 

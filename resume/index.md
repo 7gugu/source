@@ -28,6 +28,10 @@ title: 简历
 - [SpringBoot + Vue.js + JPA (2019.04至2019.11)](https://github.com/thesomeexp/parking_info)
 它使用 Thymeleaf 模板框架混合 Vue.js 做前端, Bootstrap做页面美化, 使用GeoHash做停车场坐标存储和查询, Redis做中间缓存以降低数据库压力, Shiro框架做用户和管理员的权限控制. 
 
+# 实习经历
+
+### 广州趣米网络科技有限公司/Java后台开发/2020.08-2020.11
+
 # 教育经历: 
 
 ### 岭南师范学院(本科)/计算机科学与技术/2017-至今

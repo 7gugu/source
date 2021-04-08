@@ -788,4 +788,337 @@ The negative **couldn't (could not)** is possible in all situations.
 
 2. We also use **could** (not **can**) for actions that are not realistic. 
 
-3. 
+3. We also use **could** (not **can**) to say that something(a situation or a happening) is possible now or in the future. The meaning is similar to **might** or **may**.
+
+4. We use **could have** (done) to talk about the past.
+Something **could have** happened = it was possible but did not happen.
+
+5. We use **couldn't** to say that something would not be possible.
+For the past we use **couldn't have**(done).
+
+27.3
+2 A: I spent a very boring evening at home yesterday.
+B: Why did you stay at home? You **could have gone** out with us.(past)
+3 A: Have you seen this job advertised in the paper? You **could apply** for it.
+B: What sort of job? Show me the advertisement.
+4 A: How was your exam? Was it difficult?
+B: It wasn't so bad. It **could have been** worse.
+
+27.4
+4 We managed to find the restaurant you recommended, but we **couldn't have found** it without the map that you drew for us.(past)
+
+# Unit 28
+
+## Must and can't
+
+1. You can use **must** to say that you believe something is certain.
+You can use **can't** to say that you believe something is not possible.
+
+I/you/he + must/can't + be(tired/hungry/at work etc.)/be(doing/going/joking)/do/get/know/have
+
+2. For the past we use **must have**(done) and **can't have**(done)
+
+I/you/he + must/can't + have + been(asleep)/been(doing)/gone/got/known
+
+28.2
+3 Sarah knows a lot about films. She must **go** to the cinema a lot.
+4 I left my bike outside the house last night and now it's gone. Somebody must **stolen** it. (steal, stole, stolen)
+5 'How old is Ted?' 'He's older than me. He must **be** at least 40.'
+6 I didn't hear the phone ring. I must **have been** asleep.
+7 A: You're going on holiday soon. You must **be looking** forward to it.(Looking forward to)
+8 The police have closed the road, so we have to go a different way. There must **have been** an accident.
+9 I'm sure you know this song. You must **have heard** it before.
+10 There is a man walking behind us. He has been walking behind us for the last 20 minutes. He must **be following** us.
+
+# Unit 29
+
+## May and might 1
+
+1. We use **may** or **might** to say that something is possible. 
+The negative forms are **may not** and **might not**.
+
+2. For the past we use **may have**(done) or **might have**(done).
+
+3. **Could** is similar to **may** and **might**.
+But **couldn't**(not possible) is different from **may not** and **might not**.(it's possible)
+
+29.1
+3 She might be working
+4 She might want to be alone
+5 She might have been ill yesterday
+6 She might have gone home early
+7 She might have had to go home early
+10 She might not be working
+11 She might not have been feeling well yesterday
+
+29.2
+3 A:Who was the man we saw with Anna yesterday?
+B:I'm not sure. It may have been her brother.
+5 'Is Sarah here?' 'I can't see her. She may not have come yet.'
+
+29.3
+2 She might be watching TV
+3 You might have left it in the restaurant(leave, leaved, left)
+4 He might have gone to bed early
+He might not have heard the doorbell
+He might have been in the shower
+
+29.4
+4 couldn't have been an accident
+5 couldn't have tried
+6 might not have been American
+
+## May and might 2
+
+1. We use **may** and **might** to talk about possible actions or happenings in the future.
+
+The negative forms are **may not** and **might not**(mightn't).
+
+Compare **will**(for sure) and **may/might**(possible).
+
+2. Usually you can use **may** or **might**.
+But we use only **might**(not **may**) when the situation is not real.
+
+3. There is a continuous form: **may**/**might be -ing**. Compare this with **will be -ing**.
+We also use **may**/**might be -ing** for possible plans.
+But you can also say 'I **might go**/I **may go** ...' with little difference in meaning.
+
+4. We **might as well** do something = We should do it because there is no better alternative. There is no reason not to do it.
+
+**May as well** is also possible.
+
+30.1
+2 I might buy a Honda
+3 He might come on Saturday. (might be 不用三单加s)
+4 I might hang it in the dining room.
+5 She might go to university
+
+# Unit 31
+
+## Have to and must
+
+1. I **have to** do something = it is necessary to do it, I am obliged to do it.
+
+We use **do**/**does**/**did** in questions and negative sentences.
+
+You can say **I'll have to**..., **I'm going to have to** ... and **I might**/**I may have to** ...
+
+2. **Must** is similar to **have to**.
+
+You can use **must** or **have to** to give your own opinion.(what you think/to recommend)
+
+We use **have to**(not usually **must**) to say what someone is obliged to do. The speaker is not giving his/her own opinion.
+
+But **must** is used in written rules and instructions.
+
+You cannot use **must** to talk about the past.
+
+3. **Mustn't** and **don't have to** are completely different.
+
+You **mustn't** do something = it is necessary that you do not do it. (so don't do it)
+
+You **don't have to** do something = you don't need to do it(but you can if you want)
+
+4. You can use **have got to** instead of **have to**.
+
+31.1
+5 How old **do you have to be** to drive in your country? 
+9 'The bus was late again.' 'How long **did you have to wait?'
+10 There was nobody to help me. I **had to do** everything by myself.
+
+31.2
+7 A man was injured in the accident, but he **didn't have to go** to hospital because it wasn't serious.
+
+31.4
+6 You **mustn't** forget what I told you. It's very important.
+
+# Unit 32
+
+## Must mustn't needn't
+
+1. **Must** and **mustn't**
+You **must** do something = it is necessary that you do it.
+You **mustn't** do something = it is necessary that you do not do it.
+
+2. **Needn't** and **don't need to**
+You **needn't** do something = it's not necessary to do it.(but you can if you like)
+You can also use **don't**/**doesn't** need to.
+Remember that we say **don't need to do**/**doesn't need to do**, but **needn't do**(without **to**).
+
+3. **Needn't have** (done)
+They **needn't have reserved** a table = They reserved a table, but this was not necessary.(Because the restaurant is almost empty)
+
+Compare **needn't** (do) and **didn't need to** (do)
+Everything will be OK. You **needn't worry**. (it is not necessary)
+Everything was OK. You **needn't have worried**. (you worried, but it was not necessary)
+
+4. **Needn't have** (done) and **didn't need to** (do)
+He **needn't have done** something = he did it, but now we know that it was not necessary.
+He **didn't need to** do something = it was not necessary to do it. It doesn't matter whether he did it or not.
+**He didn't have to** ... is also possible in these examples.
+
+32.4
+3 I'll be all right. You needn't worry about me.
+6 I didn't need to go out, so I stayed at home.
+
+# Unit 33
+
+## Should 1
+
+1. You **should do** something = it is a good thing to do or the right thing to do. You can use **should** to give advice or to give an opinion.
+
+We often use **should** with **I think**/**I don't think**/**Do you think** ... ?
+
+You **shouldn't** do something = it isn't a good thing to do.
+
+**Should** is not as strong as **must** or **have to**.
+
+2. You can use **should** when something is not right or what you expect.
+
+We also use **should** to say that we expect something to happen.
+
+3. You **should have done** something = you didn't do it, but it would have been the right thing to do.
+
+You **shouldn't have done** something = you did it, but it was the wrong thing to do.
+
+Compare **should** (do) and **should have** (done).
+
+4. **Ought to** ...
+You can use **ought to** instead of **should** in the sentences on this page. We say 'ought **to** do' (with to)
+
+33.4
+4 The shop should be open.
+5 She shouldn't be doing 50.
+6 I should have written down her address.
+8 I should have been looking where I was going.
+
+# Unit 34
+
+## Should 2
+
+1. You can use **should** after:
+**insist**, **recommend**, **suggest**, **demand**, **propose**
+also
+**It's important**/**vital**/**necessary**/**essential** that ... **should** ...
+
+2. You can also leave out **should** in the sentences in section A.
+This form (be/do/apologise etc.) is called the *subjunctive*. It is the same as the *infinitive*.(without **to**). You can also use normal present and past tenses.
+
+3. After **suggest**, you cannot use **to** ... 
+You can also use **-ing** after **suggest**.
+
+4. You can use **should** after a number of adjectives, especially:
+**strange**, **odd**, **funny**, **typical**, **natural**, **interesting**, **surprised**, **surprising**
+
+5. You can say '**If** something **should** happen ...'.
+
+6. You can use **I should** ... / **I shouldn't** ... to give somebody advice.
+
+34.4
+5 Should there be any problems, I'm sure we'll be able to solve them.
+6 Should anyone ask, just say that you don't know.
+
+# Unit 35
+
+## Had better / It's time ...
+
+1. **Had better** (I'd better / you'd better etc.)
+
+**I'd better do** something = it is advisable to do it. If I don't do it, there will be a problem or a danger.
+
+The negative is **I'd better not** (=I had better not).
+
+Remember that:
+The form is '**had** better' (usually 'I'**d** better / you'**d** better' etc. in spoken English).
+**Had** is normally past, but the meaning of **had better** is present or future, not past.
+We say 'I'd better **do**' (not to do)
+
+2. **Had better** and **should**
+**Had better** is similar to **should**, but not exactly the same. We use **had better** only for a specific situation, not for things in general. You can use **should** in all types of situations to give an opinion or give advice.
+
+Also, with **had better**, there is always a danger or a problem if you don't follow the advice.
+**Should** means only 'it is a good thing to do'.
+
+3. **It's time** ...
+You can say **It's time** (for somebody) **to** ...
+When we use **it's time** + past (we **went** / I **did** / they **were** etc.), the meaning is present, not past.
+**It's time** somebody **did** something = they should have already done it or started it. We often use this structure to criticise or to complain.
+You can also say **It's about time** ... . This makes the criticism stronger.
+
+35.3
+We'd better leave as soon as possible, hadn't we?
+2 It's time something was done about the problem.
+I think it's about time you thought about other people instead of only thinking about yourself.
+
+35.4
+2 It's time I had a holiday
+4 It's time I had a party
+5 It's time some changes were made
+6 It's time he tried something else
+
+# Unit 36
+
+## Would
+
+1. We use **would**(**'d**) / **wouldn't** when we imagine a situation or action (= we think of something that is not real)
+
+We use **would have** (**done**) when we imagine situations or actions in the past (= things that didn't happen)
+
+Compare **would** (**do**). (now)
+and **would have** (**done**). (past)
+
+We often use **would** in sentences with **if**.
+
+2. Compare **will** (**'ll**) and **would** (**'d**)
+Sometimes **would** / **wouldn't** is the past of **will** / **won't**.
+Somebody **wouldn't do** something = he/she refused to do it.
+
+3. You can also use **would** to talk about things that happened regularly in the past.
+With this meaning, **would** is similar to **used to**.
+
+36.2
+3 It's a pity you couldn't come to the party last night. You would have enjoyed.
+
+# Unit 37
+
+## Can/Could/Would you ... ?
+
+1. Asking people to do things (requests)
+We use **can** or **could** to ask people to do things.
+Note that we say **Do you think** you **could** ... ? (not can)
+We also use **will** and **would** to ask people to do things (but **can**/**could** are more usual)
+
+2. Asking for things
+To ask for something, we use **Can I have** ... ? / **Could I have** ... ? or **Can I get** ... ?
+**May I have** ... ? is also possible.
+
+3. Asking to do things
+To ask to do something, we use **can**, **could** or **may**.
+**May** is more formal than **can** or **could**.
+To ask to do something, you can also say **Do you mind if I** ... ? or **Is it all right**/**Is it OK if I** ... ?
+
+4. Offering to do things.
+To offer to do something, we use **Can I** ... ?
+
+5. Offering and inviting
+To offer or to invite, we use **Would you like** ... ? (not Do you like)
+**I'd like** ... is a polite way of saying what you want.
+
+37.1
+2 Could I leave a message for her, please?
+3 Could you tell me how to get to the station, please?
+4 Could I try on there trousers, please?
+5 Could I give/offer you a lift, please?
+
+37.3
+2 I don't know how to charge the battery. Could you show me?
+3 Would you like a seat. / Can I offer you a seat?
+4 Would you slow down
+5 May I have the bill
+6 Would you like to borrow it
+
+# Unit 38
+
+## If I do ... and If I did ...
+
+1. When we imagine something that will not happen, or we don't 
