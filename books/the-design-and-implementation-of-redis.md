@@ -1,5 +1,5 @@
 ---
-title: Redis设计与实现
+title: Redis设计与实现 笔记
 ---
 配套网站: [redisbook.com](http://redisbook.com/)
 

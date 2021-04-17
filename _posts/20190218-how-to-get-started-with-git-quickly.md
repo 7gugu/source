@@ -5,7 +5,7 @@ updated: 2021-01-20
 tags:
   - Git
   - Note
-urlname: how_to_quickly_use_git
+urlname: how-to-get-started-with-git-quickly
 original: false
 ---
 快速上手类内容注意更新日期, 因为技术迭代很快教程可能对不上, 以官网为主.

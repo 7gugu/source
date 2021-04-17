@@ -4,7 +4,7 @@ date: 2019-03-07
 updated: 2020-04-30
 tags: 
   - Win10
-urlname: how_to_use_win10_script_to_auto_switch_ip
+urlname: how-to-use-win10-script-to-auto-switch-ip
 original: true
 ---
 平常带电脑去教室上课,然后要修改电脑的ip之类的挺麻烦的,在一些大佬的帮助下然后算是写的第一个脚本吧.

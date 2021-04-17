@@ -4,7 +4,7 @@ date: 2018-06-22
 updated: 2020-04-30
 tags:
   - Note
-urlname: about_dpi_and_ppi_of_image
+urlname: about-dpi-and-ppi-of-image
 original: false
 ---
 摘录. 

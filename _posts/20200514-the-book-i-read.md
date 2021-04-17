@@ -11,6 +11,13 @@ urlname: the-book-i-read
 非计算机相关的书单. 计算机类的书单请请看[这里这里](/post/books-about-computer-science). 
 <!--more-->
 按照我的阅读顺序来倒序排序的哈. 
+
+# **before 2021:** 
+
+## 语言学的邀请(Samuel Hayakawa, Alan Hayakawa)
+
+当时是问大佬如果只让他推荐一本书, 他会推荐什么? 然后他就推荐了这本. 这是 2021 年我读的第一本, 也是目前来说最推荐的一本, 列入我的人生必读清单的一本. 主要是围绕我们熟悉而又陌生的语言. 文后附了 11 页的参考文献.
+
 # **before 2020:** 
 
 ## 谁动了我的奶酪 Who Moved My Cheese? [美] 斯宾塞·约翰逊

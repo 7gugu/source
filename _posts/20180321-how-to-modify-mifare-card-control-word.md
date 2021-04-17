@@ -4,7 +4,7 @@ date: 2018-03-21
 updated: 2021-01-29
 tags:
   - RFID
-urlname: how_to_modify_mifare_card_control_word
+urlname: how-to-modify-mifare-card-control-word
 original: true
 ---
 控制字为4个字节,共32位,扇区中的每个块的存取条件是由密码和控制字共同决定的,在控制字中每个块都有相应的三个控制位.这三个控制位的值各为0或1.我们以控制字7F078869为例子.<!--more-->

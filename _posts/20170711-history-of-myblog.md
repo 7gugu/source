@@ -4,7 +4,7 @@ date: 2017-07-11
 updated: 2021-01-21
 tags: 
   - Blog
-urlname: history_of_myblog
+urlname: history-of-myblog
 original: true
 ---
 记录博客的修改历史. 

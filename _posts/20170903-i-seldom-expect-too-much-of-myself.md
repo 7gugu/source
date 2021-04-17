@@ -4,7 +4,7 @@ date: 2017-09-03
 updated: 2017-09-03 
 tags:
   - Essay
-urlname: i_seldom_expect_too_much_of_myself
+urlname: i-seldom-expect-too-much-of-myself
 original: true
 ---
 我很少对自己抱太高期望，当然也不意味着我没有期望。当高期望碰到不好的结果时，便会影响个人的心情，所以我对自己的期望并不会很高。<!--more-->

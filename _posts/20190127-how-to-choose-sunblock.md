@@ -4,7 +4,7 @@ date: 2019-01-27 09:48:04
 updated: 2020-04-30
 tags:
   - Lifestyle
-urlname: how_to_choose_sunblock
+urlname: how-to-choose-sunblock
 original: true
 ---
 在我被晒黑前我从未对防晒重视过.正确的防晒可以让我们避免很多皮肤类疾病.以下是较为简短的总结.

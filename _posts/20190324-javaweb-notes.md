@@ -6,7 +6,7 @@ tags:
   - Java
   - Java Web
   - Note
-urlname: javaweb_notes
+urlname: javaweb-notes
 original: true
 ---
 老旧的javaweb笔记

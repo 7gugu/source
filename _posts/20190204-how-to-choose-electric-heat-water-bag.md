@@ -4,7 +4,7 @@ date: 2019-02-04
 updated: 2020-04-30
 tags: 
   - Lifestyle
-urlname: how_to_choose_electric_heat_water_bag
+urlname: how-to-choose-electric-heat-water-bag
 original: true
 ---
 就是看看买暖水袋有什么要注意的.

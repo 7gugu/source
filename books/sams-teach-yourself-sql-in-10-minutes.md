@@ -1,5 +1,5 @@
 ---
-title: SQL必知必会
+title: SQL必知必会 笔记
 ---
 # 1. 了解SQL
 

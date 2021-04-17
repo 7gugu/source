@@ -4,7 +4,7 @@ date: 2018-09-08
 updated: 2020-04-30
 tags: 
   - Virtual Machine
-urlname: how_to_open_hot_spot_by_using_vmware_virtual_machine
+urlname: how-to-open-hot-spot-by-using-vmware-virtual-machine
 original: true
 ---
 其实这件事捣鼓了两三个月了,在Ubuntu,CentOS,TinyCore都不会用的情况下考虑回旧版的windows.<!--more-->

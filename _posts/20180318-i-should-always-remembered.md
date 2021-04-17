@@ -4,7 +4,7 @@ date: 2018-03-18
 updated: 2020-04-30
 tags:
   - Essay
-urlname: i_should_always_remembered
+urlname: i-should-always-remembered
 original: true
 ---
 大一已步入第二个学期,这个时候的我在想些什么呢.

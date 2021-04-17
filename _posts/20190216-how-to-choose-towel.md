@@ -4,7 +4,7 @@ date: 2019-02-16 16:16:11
 updated: 2020-04-30
 tags:
   - Lifestyle
-urlname: how_to_choose_towel
+urlname: how-to-choose-towel
 original: true
 ---
 最近想买毛巾,不知道有哪些需要注意的地方,上网搜搜有什么好的推荐先.

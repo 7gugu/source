@@ -4,7 +4,7 @@ date: 2018-10-20
 updated: 2020-10-19
 tags:
   - Phone
-urlname: how_to_manually_sideload_ota_update_package_in_pixel
+urlname: how-to-manually-sideload-ota-update-package-with-pixel
 original: true
 ---
 这几天手机老是出问题,刷刷看看能不能解决吧.<!--more-->

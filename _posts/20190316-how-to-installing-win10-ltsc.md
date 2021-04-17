@@ -4,7 +4,7 @@ date: 2019-03-16
 updated: 2021-01-25
 tags: 
   - Win10
-urlname: how_to_installing_win10_ltsc
+urlname: how-to-installing-win10-ltsc
 original: true
 ---
 安装环境:一台装了固态把光驱换成机械的装了win10 1809版的有点问题的华硕笔记本,然后

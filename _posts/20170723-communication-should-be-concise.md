@@ -4,7 +4,7 @@ date: 2017-07-23
 updated: 2020-04-30 
 tags:
   - Essay
-urlname: communication_should_be_concise
+urlname: communication-should-be-concise
 original: true
 ---
 人的生命时间有限，在没有通讯工具的古代，人们的思想交流方式主要有说话和书信两种，而“说话”这一方式传达信息是比较快的，能节省不必要的时间。<!--more-->
