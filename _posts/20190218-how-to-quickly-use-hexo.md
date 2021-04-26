@@ -5,7 +5,7 @@ updated: 2020-04-30
 tags:
   - Hexo
   - Note
-urlname: how_to_quickly_use_hexo
+urlname: how-to-quickly-use-hexo
 original: false
 ---
 快速上手类内容注意更新日期, 因为技术迭代很快教程可能对不上, 以官网为主.

@@ -1121,4 +1121,6 @@ To offer or to invite, we use **Would you like** ... ? (not Do you like)
 
 ## If I do ... and If I did ...
 
-1. When we imagine something that will not happen, or we don't 
+1. When we imagine something that will not happen, or we don't expect that it will happen, we use **if** + past.
+
+2. We do not normally use **would** in the **if**-part of the sentence.
