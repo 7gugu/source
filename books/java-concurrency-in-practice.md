@@ -6,17 +6,19 @@ title: Java并发编程实战 笔记
 
 ## 1.2 线程的优势
 
-线程能更好地模拟人类的工作方式和交互方式, 比如烧水时人可以做其他事. 在GUI应用程序中线程可以提高用户界面的响应灵敏度. 在服务器应用程序中线程可以提升资源利用率以及系统吞吐率. 线程还可以简化JVM的实现, 垃圾收集器通常在一个或者多个专门的线程中运行.
+线程能更好地模拟人类的工作方式和交互方式, 比如烧水时人可以做其他事. 在 GUI 应用程序中线程可以提高用户界面的响应灵敏度. 在服务器应用程序中线程可以提升资源利用率以及系统吞吐率. 线程还可以简化 JVM 的实现, 垃圾收集器通常在一个或者多个专门的线程中运行.
 - 发挥多处理器的强大能力
-- 建模的简单性(通常线程只完成单一的简单任务, 所以逻辑上会简单些)
-- 异步事件的简化处理(作者认为服务器中使用多线程处理请求以及使用同步I/O会降低应用程序的开发难度. 而单线程服务器应用必须使用非阻塞I/O, 这种I/O的复杂性要远高于同步I/O)
+- 建模的简单性 (通常线程只完成单一的简单任务, 所以逻辑上会简单些)
+- 异步事件的简化处理 (作者认为服务器中使用多线程处理请求以及使用同步 I/O 会降低应用程序的开发难度. 而单线程服务器应用必须使用非阻塞 I/O, 这种 I/O 的复杂性要远高于同步 I/O)
 - 响应更灵敏的用户界面
 
 ## 1.3 线程带来的的风险
 
+如果没有同步, 无论是编译器, 硬件还是运行时, 都可以随意安排操作的执行时间和顺序, 例如对寄存器或者处理器中的变量进行缓存, 而这些缓存的变量对于其他线程来说是暂时 (甚至永久) 不可见的.
+
 ### 安全性问题(永远不发生糟糕的事情)
 
-执行顺序不可预测. 容易产生竞态条件(Race Condition). 因为多个线程要共享相同的内存地址空间, 并且是并发运行, 因此它们可能会访问或修改其他线程正在使用的变量. 要使多线程程序的行为可以预测, 必须对共享变量的访问操作进行协同, 而Java提供了各种同步机制来协同这种访问.
+执行顺序不可预测. 容易产生竞态条件 (Race Condition). 因为多个线程要共享相同的内存地址空间, 并且是并发运行, 因此它们可能会访问或修改其他线程正在使用的变量. 要使多线程程序的行为可以预测, 必须对共享变量的访问操作进行协同, 而Java提供了各种同步机制来协同这种访问.
 
 ### 活跃性问题(某件正确的事情最终会发生)
 
@@ -24,14 +26,33 @@ title: Java并发编程实战 笔记
 
 ### 性能问题(某件正确的事情尽快发生)
 
-线程会带来某种程度的运行时开销. 当线程调度器临时挂起活跃线程并转而运行另一个线程时, 就会频繁的出现上下文切换(Context Switch)操作. 当线程共享数据时, 必须使用同步机制, 而这些机制往往会抑制某些编译器优化. 所有这些因素都将带来格外的性能开销.
+线程会带来某种程度的运行时开销. 当线程调度器临时挂起活跃线程并转而运行另一个线程时, 就会频繁的出现上下文切换 (Context Switch) 操作, CPU 时间将更多地花在线程调度而不是线程运行上. 当线程共享数据时, 必须使用同步机制, 而这些机制往往会抑制某些编译器优化. 所有这些因素都将带来格外的性能开销.
+
+(不理解: 当某个框架在应用程序中引入并发性时, 通常不可能将并发性仅局限于框架代码, 因为框架本身会回调 (Callback) 应用程序的代码, 而这些代码将访问应用程序的状态. 同样, 对线程安全性的需求也不能局限于被调用的代码, 而是要延伸到需要访问这些代码所访问的程序状态的所有代码路径. 因此, 对线程安全性的需求将在程序中蔓延开来.)
 
 # 2. 线程安全性(第一部分)
+
+三种方式修复多线程访问可变状态变量没有使用同步出现的错误:
+- 不在线程之间共享该状态变量
+- 将状态变量修改为不可变的变量
+- 在访问状态变量时使用同步
+
+## 2.1 什么是线程安全性
+
+线程安全的定义中, 最核心的概念是正确性. 正确性的含义是, 某个类的行为与其规范完全一致. 在良好的规范中通常会定义各种不变性条件来约束对象的状态, 以及定义各种后验条件来描述对象操作的结果. 我们通常不会编写详细的规范证实这些类正确工作, 但这不妨碍我们确信"类的代码可以工作", 这种"代码可信性"非常接近我们对正确性的理解, 也就是近似地定义为"所见即所知 (we know it when we see it)". 
+对"正确性"给出了较为清晰的定义后, 就可以定义线程安全性: 当多个线程访问某个类时, 这个类始终都能表现出正确的行为, 那么就称这个类是线程安全的. 
+
+在线程安全类的对象实例上执行的任何串行或并行操作都不会使对象处于无效状态.
+在线程安全类中封装了必要的同步机制, 因此客户端无须进一步采取同步措施.
+
+### 无状态对象一定是线程安全的
+
+如果一个类不包含任何域, 也不包含任何其他类中域的引用. 计算过程中的临时状态仅存在于线程栈上的局部变量中, 并且只能由正在执行的线程访问, 线程访问无状态对象的行为并不会影响其他线程中操作的正确性, 因此无状态对象是线程安全的.
 
 ## 2.2 原子性
 
 我们把"先检查后执行"(延迟初始化)和"读取-修改-写入"(递增运算)等操作称为复合操作, Java中提供了加锁机制来使上面的操作以原子方式执行. 
-对于计数器的自增, 作者使用 java.util.concurrent.atomic 包中的AtomicLong来代替原来的long类型, 从而确保了对计数器状态的访问操作是原子的.
+对于计数器的自增, 作者使用 java.util.concurrent.atomic 包中的AtomicLong来代替原来的long类型, 从而确保了对计数器状态的访问操作是原子的. 但当状态变量的数量由一个变为多个时, 并不会像状态变量数量由零个变为一个那样简单.
 
 ## 2.3 加锁机制
 
@@ -39,10 +60,19 @@ Java提供了一种内置的锁机制来支持原子性: 同步代码块(Synchro
 - 一个作为锁的对象引用(如果是静态方法, 则是Class对象作为锁)
 - 一个作为由这个锁保护的代码块
 
+~~~ java
+synchronized (lock) {
+    // 同步代码块
+}
+~~~
+
+- 以关键字 synchronized 来修饰的方法就是一种横跨整个方法体的同步代码块, 其中该同步代码块的锁就是方法调用所在的对象.
+- 静态的 synchronized 方法以 Class 对象作为锁.
+
 每个Java对象都可以作为一个实现同步的锁, 这些锁被称为**内置锁**(Intrinsic Lock)或**监视器锁**(Monitor Lock). 获得内置锁的唯一途径就是进入由这个锁保护的同步代码块或方法. 线程在进入同步代码块前会自动获得锁, 在退出或者抛出异常时自动释放锁. Java的内置锁相当于一种互斥锁, 线程A尝试获取线程B持有的锁时必须等待或者阻塞, 如果B永远不释放锁, 那么A会永远等下去.
 
 内置锁是**可重入的**, 如果某个线程试图获得一个已经由它自己持有的锁, 那么这个请求就会成功. "重入"意味着获取锁的操作粒度是"线程", 而不是"调用"(这和POSIX线程的粒度不同). 重入的一种实现方法是, 为每个锁关联一个**获取计数值**和一个**所有者线程**. 当计数值为0时, 这个锁就被认为是没有任何线程持有. 当线程请求一个未被持有的锁时, JVM将记下锁的持有者, 并将获取计数值置为1, 如果同一个线程再次获取这个锁, 计数值将递增, 而当线程退出同步代码块时, 计数器会相应地递减.
-重入避免了死锁的发生.
+子类覆盖并调用父类synchronized修饰的方法, 其实是获取它自己持有的锁, 如果内置锁不支持重入, 那就会导致死锁的发生, 而内置锁的可重入避免了这种死锁的发生.
 
 ## 2.4 用锁来保护状态
 
@@ -61,6 +91,8 @@ if (!vector.contains(element)) {
 对于同步代码块的合理大小, 需要在各种设计需求之间进行权衡, 包括安全性(这个需求必须得到满足), 简单性和性能. 当执行时间较长的计算或者可能无法快速完成的操作时(例如网络I/O或控制台I/O), 一定不要持有锁.
 
 # 3. 对象的共享
+
+通常, 我们无法确保执行读操作的线程能适时地看到其他线程写入的值, 有时甚至是根本不可能的事情. 为了确保一个线程修改了对象状态后, 其他线程能够看到发生的状态变化, 必须使用同步机制.
 
 ## 3.1 可见性
 
@@ -95,7 +127,7 @@ public class NoVisibility {
 - NoVisibility可能会持续循环下去, 因为读线程可能永远都看不到ready的值.
 - NoVisibility可能会输出0, 因为读线程可能只看到了写入ready的值, 但没有看到之后写入number的值.(这种现象可能是因为JVM编译器做了相应的优化, 比如重排序(Reordering)导致的.)
 
-### 失效数据
+### 3.1.1 失效数据
 
 失效数据类似于脏读, 读到错误的数据严重时会导致安全问题或活跃性问题. 比如错误的对象引用, 链表指针...
 以下是非线程安全的可变整数类(不要这么做):
@@ -109,7 +141,7 @@ public class MutableInteger {
 }
 ~~~
 
-以下是线程安全的可变整数类:
+以下是线程安全的可变整数类, 仅对 set 方法进行同步是不够的, 调用 get 的线程仍然会看见失效值:
 
 ~~~ java
 public class SynchronizedInteger {
@@ -125,15 +157,15 @@ public class SynchronizedInteger {
 }
 ~~~
 
-### 非原子的64位操作
+### 非原子的 64 位操作
 
 在线程没有同步的情况下读取变量时, 可能会得到一个**失效值**, 但它至少是一个合法的(正确的)失效值, 而不是随机值. 这种安全保证也被称之为**最低安全性**(out-of-thin-airsafety). 这适用于绝大多数变量.
 
-而对于非volatile类型的64位数值变量(double和long), JVM会允许将64位的读操作和写操作分解为两个32位的操作, 所以很有可能读到不匹配的高32位和低32位, 导致产生**随机值**而不是**失效值**. 所以在多线程中使用可变的long或者double等类型的变量也是不安全的, 建议用关键字volatile修饰或用锁保护.
+而对于非 volatile 类型的 64 位数值变量( double 和 long ), JVM 会允许将 64 位的读操作和写操作分解为两个 32 位的操作, 所以很有可能读到不匹配的高 32 位和低 32 位, 导致产生**随机值**而不是**失效值**. 所以在多线程中使用可变的 long 或者 double 等类型的变量也是不安全的, 建议用关键字 volatile 修饰或用锁保护.
 
-### Volatile变量
+### Volatile 变量
 
-Java提供了一种稍弱的同步机制, 即volatile变量, 用来确保变量的更新操作通知到其他线程. 把变量声明为volatile后, 编译器和运行时会注意到这个变量是共享滴, 因此不会把它和其它操作一起重排序, 在读取volatile类型变量时总会返回最新写入的值, 它也不会加锁, 因此不会使得执行线程阻塞. 因此它比synchronized关键字更轻量.
+Java 提供了一种稍弱的同步机制, 即 volatile 变量, 用来确保变量的更新操作通知到其他线程. 把变量声明为 volatile 后, 编译器和运行时会注意到这个变量是共享滴, 因此不会把它和其它操作一起重排序, 在读取 volatile 类型变量时总会返回最新写入的值, 它也不会执行加锁操作, 因此不会使得执行线程阻塞. 因此它比 synchronized 关键字更轻量.
 
 一种volatile变量的典型用法:
 
@@ -145,17 +177,17 @@ volatile boolean asleep;
     }
 ~~~
 
-上面实例中通过数绵羊的方法进入休眠状态, 为了使得实例正确执行, asleep必须为volatile变量. 否则, 当asleep被另一个线程修改时, 执行判断的线程却发现不了(没错, 这又是JVM的锅. 对于服务器应用, JVM会执行更多的优化, 例如将循环体中未更改的变量提升到循环体外部. 因此无论在开发还是测试阶段, 启动JVM时一定都要指定-server命令行选项. 比如上面的代码, 因为asleep在循环中未被更改, 可能会被server模式下的JVM提到循环体外部, 这会导致无限循环.). 看到这你可能就理解了可见性的意思了吧?
+上面实例中通过数绵羊的方法进入休眠状态, 为了使得实例正确执行, asleep 必须为 volatile 变量. 否则, 当asleep被另一个线程修改时, 执行判断的线程却发现不了(没错, 这又是 JVM 的锅. 对于服务器应用, JVM 会执行更多的优化, 例如将循环体中未更改的变量提升到循环体外部. 因此无论在开发还是测试阶段, 启动 JVM 时一定都要指定 -server 命令行选项. 比如上面的代码, 因为 asleep 在循环中未被更改, 可能会被 server 模式下的 JVM 提到循环体外部, 这会导致无限循环.). 看到这你可能就理解了可见性的意思了吧?
 
-加锁机制既可以确保可见性又可以确保原子性, 而volatile变量只能确保可见性. 也因此volatile变量通常用作某个操作完成, 发生中断或者状态的标志. 当且仅当满足以下所有条件时, 才应该使用volatile变量:
+加锁机制既可以确保可见性又可以确保原子性, 而 volatile 变量只能确保可见性. 也因此 volatile 变量通常用作某个操作完成, 发生中断或者状态的标志. 当且仅当满足以下所有条件时, 才应该使用 volatile 变量:
 - 对变量的写入操作不依赖变量的当前值, 或者你只能确保只有单个线程更新变量的值.
 - 该变量不会与其他状态变量一起纳入不变性条件中.
 - 在访问变量时不需要加锁
 
 ## 3.2 发布与逸出
 
-**发布**(Publish)一个对象的意思是指, 使对象能够在当前作用域之外的代码中使用. 在很多情况下, 我们要确保对象以及内部状态不被发布. 发布内部状态可能会破坏封装性, 并使得程序难以维持不变性条件. 例如在对象构造完成之前就发布该对象, 就会破坏线程安全性.
-当某个不应该发布的对象被发布时, 这种情况就被称为**逸出**(Escape).
+**发布** (Publish) 一个对象的意思是指, 使对象能够在当前作用域之外的代码中使用. 在很多情况下, 我们要确保对象以及内部状态不被发布. 发布内部状态可能会破坏封装性, 并使得程序难以维持不变性条件. 例如在对象构造完成之前就发布该对象, 就会破坏线程安全性.
+当某个不应该发布的对象被发布时, 这种情况就被称为**逸出** (Escape) .
 
 发布对象最简单的方法是将对象的引用保存到一个公有的静态变量中, 以便任何类和线程都能看到该对象.
 
@@ -167,7 +199,7 @@ volatile boolean asleep;
     }
 ~~~
 
-当发布某个对象时, 可能会间接发布其他对象, 比如上面的knownSecrets集合就可以添加其他对象的引用, 其它线程可以遍历这个集合获取对象的引用.
+当发布某个对象时, 可能会间接发布其他对象, 比如上面的 knownSecrets 集合就可以添加其他对象的引用, 其它线程可以遍历这个集合获取对象的引用.
 同样, 如果从非私有方法中返回一个引用, 那么同样会发布返回的对象.
 比如下面就发布了本应为私有的状态数组.(不要这么做):
 
@@ -184,34 +216,9 @@ public class UnsafeStates {
 
 一个对象被发布后, 误用发布引用的风险始终存在, 这就是需要使用封装的主要原因: 封装能够使得对程序的正确性进行分析变得可能, 并使得无意中破坏设计约束条件变得更难.
 
-在往下写笔记之前先看一个例子:
+对于一个类 C 来说, 类 C 的 "外部 (Alien) 方法" 是指行为并不完全由 C 来规定的方法, 包括其他类中定义的方法以及类 C 中可以被改写的方法 (既不是私有 private 方法也不是 final 方法). 当把一个对象传递给某个外部方法时, 就相当于发布了这个对象.
 
-~~~ java
-class Foo {
-    public Foo() {
-        doSomething();
-    }
-    public void doSomething() {}
-}
-class Bar extends Foo {
-    @Override
-    public void doSomething() {
-        new EscapeTest(this);
-    }
-}
-public class EscapeTest {
-    public EscapeTest(Foo foo) {
-        foo.doSomething(); // "this" escape
-    }
-    public static void main(String[] args) {
-        new Bar();
-    }
-}
-~~~
-
-上面的代码运行会出错, 因为Foo构造方法中使用了自身的方法导致this逸出了, 因为Bar对象在构造函数中还没有初始化完成却被调用了, 这就是看得明白的this逸出例子.
-
-看懂了上面就可以看作者给出的隐式地使this引用逸出(不要这么做):
+作者给出的隐式地使 this 引用逸出例子(不要这么做):
 
 ~~~ java
 public class ThisEscape {
@@ -234,9 +241,83 @@ public class ThisEscape {
 }
 ~~~
 
-上面的例子中, 当ThisEscape发布EventListener时, 也隐含地发布了ThisEscape实例本身, 因为在这个内部类的实例中包含了对ThisEscape实例的隐含引用. 它不应该在构造函数返回前逸出.
+上面的例子中, 当 ThisEscape 发布 EventListener 时, 也隐含地发布了 ThisEscape 实例本身, 因为在这个内部类的实例中包含了对 ThisEscape 实例的隐含引用(反编译后你会发现 EventListener 这个内部类中包含了其外部类 ThisEscape 的引用, 所以内部类中才能调用外部类中的 doSomething() 方法). 它不应该在构造函数返回前逸出.
 
-使用工厂方法来防止this引用在构造过程中逸出:
+如果你和我一样第一眼看不懂上面的例子, 可以运行一下我自己写的实例, 看完跑一下下面这段程序你就知道啥是 this 隐式逸出了:
+
+~~~ java
+public class ThisEscape {
+    private final int num;
+
+    public ThisEscape(EventSource source) throws InterruptedException {
+        System.out.println("构造中");
+        source.registerListener(new EventListener() {
+            @Override
+            public void onEvent() {
+                // this 从匿名内部类中逸出了, 其它线程可以通过 EventSource 拿到该匿名内部类
+                doSomething();
+            }
+        });
+        System.out.println("依然在构造中... 构造未完成... ");
+        // 未完成构造, 但是已经逸出
+        Thread.sleep(3000L);
+        num = 42;
+    }
+
+    void doSomething() {
+        if (num != 42) {
+            System.out.println("检测到未构造完成的 ThisEscape 逸出 " + new Date() + "num: " + num);
+        }
+    }
+
+    static class EventSource {
+        private final List<EventListener> listeners = new ArrayList<>();
+
+        public synchronized void registerListener(EventListener e) {
+            listeners.add(e);
+        }
+
+        public synchronized EventListener get() {
+            if (listeners.size() > 0) {
+                return listeners.get(0);
+            }
+            return null;
+        }
+    }
+
+    interface EventListener {
+        void onEvent();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        EventSource eventSource = new EventSource();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("监听线程启动");
+                while (true) {
+                    EventListener eventListener = eventSource.get();
+                    if (eventListener != null) {
+                        System.out.println("其它线程获取到");
+                        eventListener.onEvent();
+                        break;
+                    }
+                }
+            }
+        }).start();
+        Thread.sleep(1000L);
+        new ThisEscape(eventSource);
+        System.out.println("构造完成");
+    }
+
+}
+~~~
+
+在构造过程中使 this 引用逸出的一个常见错误是, 在构造函数中启动一个线程. 当对象在其构造函数中创建一个线程时, 无论是显式创建(通过将它传给构造函数)还是隐式创建(由于 Thread 或 Runnable 是该对象的一个内部类), this 引用都会被新创建的线程共享. 在对象尚未完全构造之前, 新的线程就可以看见它. 在构造函数中创建线程并没有错误, 但最好不要立即启动它, 而是通过一个 start 或 initialize 方法来启动.
+
+在构造函数中调用一个可改写的实例方法时(既不是 private 方法, 也不是 final 方法), 同样会导致 this 引用在构造过程中逸出.
+
+如果想在构造函数中注册一个事件监听器或启动线程, 那么可以使用 private 构造函数和一个工厂方法, 从而避免不正确的构造过程:
 
 ~~~ java
 public class SafeListener {
@@ -267,31 +348,108 @@ public class SafeListener {
 }
 ~~~
 
+如果你和我一样也不明白上面为什么能防止 this 隐式逸出, 恭喜你, 我也写好了一段小例子供你参考: 
+
+~~~ java
+public class NoThisEscape {
+    private final EventListener safeListener;
+    private final int num;
+
+    private NoThisEscape() throws InterruptedException {
+        System.out.println("构造中");
+        this.safeListener = new EventListener() {
+            @Override
+            public void onEvent() {
+                // 虽然这里也有 this, 但是这个是 private 构造方法, 再构造完成之前没有逸出
+                doSomething();
+            }
+        };
+        System.out.println("依然在构造中... 构造未完成... ");
+        // 未完成构造
+        Thread.sleep(3000L);
+        num = 42;
+    }
+
+    public static NoThisEscape newInstance(EventSource source) throws InterruptedException {
+        NoThisEscape safe = new NoThisEscape();
+        System.out.println("构造完成");
+        source.registerListener(safe.safeListener);
+        return safe;
+    }
+
+    void doSomething() {
+        if (num != 42) {
+            System.out.println("检测到未构造完成的 ThisEscape 逸出 " + new Date() + "num: " + num);
+        }
+    }
+
+    static class EventSource {
+        private final List<EventListener> listeners = new ArrayList<>();
+
+        public synchronized void registerListener(EventListener e) {
+            listeners.add(e);
+        }
+
+        public synchronized EventListener get() {
+            if (listeners.size() > 0) {
+                return listeners.get(0);
+            }
+            return null;
+        }
+    }
+
+    interface EventListener {
+        void onEvent();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        EventSource eventSource = new EventSource();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("监听线程启动");
+                while (true) {
+                    EventListener eventListener = eventSource.get();
+                    if (eventListener != null) {
+                        System.out.println("其它线程获取到");
+                        eventListener.onEvent();
+                        break;
+                    }
+                }
+            }
+        }).start();
+        Thread.sleep(1000L);
+        NoThisEscape.newInstance(eventSource);
+    }
+
+}
+~~~
+
 ## 3.3 线程封闭
 
-当访问共享的可变数据时, 通常需要使用同步, 而一种避免同步的方式就是不共享数据. 比如仅在单线程内访问数据, 就不需要同步. 这种技术就称为**线程封闭**(Thread Confinement). 当某个对象封闭在一个线程中时, 将自动实现线程安全性, 即使被封闭的对象本身不是线程安全的.
+当访问共享的可变数据时, 通常需要使用同步, 而一种避免同步的方式就是不共享数据. 比如仅在单线程内访问数据, 就不需要同步. 这种技术就称为**线程封闭** (Thread Confinement). 当某个对象封闭在一个线程中时, 将自动实现线程安全性, 即使被封闭的对象本身不是线程安全的.
 
-线程封闭技术一种常见应用是JDBC(Java Database Connectivity)的Connection对象. JDBC规范并不要求Connection对象必须是线程安全的, 但连接池在分配一个Connection对象之后, 在该对象返回之前, 连接池不会再将它分配给其它线程, 而对于Servlet请求或EJB调用等都是由单个线程采用同步的方式来处理, 因此这种连接管理模式在处理请求时隐含地将Connection对象封闭在线程中.
+线程封闭技术一种常见应用是 JDBC (Java Database Connectivity) 的 Connection 对象. JDBC 规范并不要求 Connection 对象必须是线程安全的, 但连接池在分配一个 Connection 对象之后, 在该对象返回之前, 连接池不会再将它分配给其它线程, 而对于 Servlet 请求或 EJB 调用等都是由单个线程采用同步的方式来处理, 因此这种连接管理模式在处理请求时隐含地将 Connection 对象封闭在线程中.
 
-Java语言没有提供强制线程封闭的功能, 所以线程封闭必须在程序中实现. Java语言以及核心库提供了一些机制来帮助维持线程封闭性, 例如局部变量和ThreadLocal类. 即便如此, 程序员仍然需要负责确保封闭在线程中的对象不会从线程中逸出.
+Java 语言没有提供强制线程封闭的功能, 所以线程封闭必须在程序中实现. Java 语言以及核心库提供了一些机制来帮助维持线程封闭性, 例如局部变量和 ThreadLocal 类. 即便如此, 程序员仍然需要负责确保封闭在线程中的对象不会从线程中逸出.
 
-### Ad-hoc线程封闭
+### 3.3.1 Ad-hoc线程封闭
 
-Ad-hoc线程封闭是指, 维护线程封闭性的职责完全由程序实现来承担, 然而这是非常脆弱的, 因此在程序中尽少使用它.
+Ad-hoc 线程封闭是指, 维护线程封闭性的职责完全由程序实现来承担, 然而这是非常脆弱的, 因此在程序中尽少使用它.
 
-### 栈封闭
+### 3.3.2 栈封闭
 
-栈封闭是线程封闭的一种特例, 在栈封闭中, 只能通过局部变量才能访问对象. 局部变量位于执行线程的栈中, 其它线程无法访问这个栈, 因此栈封闭(也被称为线程内部使用或线程局部使用, 与核心库中的ThreadLocal不一样)比Ad-hoc线程封闭更易于维护.
+栈封闭是线程封闭的一种特例, 在栈封闭中, 只能通过局部变量才能访问对象. 局部变量位于执行线程的栈中, 其它线程无法访问这个栈, 因此栈封闭(也被称为线程内部使用或线程局部使用, 与核心库中的 ThreadLocal 不一样)比 Ad-hoc 线程封闭更易于维护.
 
-对于**基本类型**的**局部变量**, 无论如何都不会破坏栈封闭性, 因为任何方法都无法获得对**基本类型的引用**, 因此Java语言的这种语义就确保了基本类型的局部变量始终封闭在线程内.
+对于**基本类型**的**局部变量**, 无论如何都不会破坏栈封闭性, 因为任何方法都无法获得对**基本类型的引用**, 因此 Java 语言的这种语义就确保了基本类型的局部变量始终封闭在线程内.
 
 而对于维持**对象引用**的栈封闭性时, 程序员需要多做一些工作以确保这个被引用对象不会逸出.
 
-### ThreadLocal类
+### ThreadLocal 类
 
-维持线程封闭性的一种更规范的方法是使用ThreadLocal, 它能使线程中的某个值与保存的线程关联起来. ThreadLocal提供了get和set等访问接口或方法, 这些方法为使用该变量的线程都存有一份独立的副本, 因此get总是返回由当前执行线程在调用set时设置的最新值.
+维持线程封闭性的一种更规范的方法是使用 ThreadLocal, 它能使线程中的某个值与保存的线程关联起来. ThreadLocal 提供了 get 和 set 等访问接口或方法, 这些方法为使用该变量的线程都存有一份独立的副本, 因此 get 总是返回由当前执行线程在调用 set 时设置的最新值.
 
-ThreadLocal对象通常用于防止对可变的单实例变量(Singleton)或全局变量进行共享. 例如在单线程应用中需要维持一个全局的数据库连接, 并在启动时初始化这个连接对象, 从而避免在调用每个方法时都要传递一个Connection对象. 通过将JDBC的连接保存到ThreadLocal中, 每个线程都会拥有属于自己的连接, 如下面代码中的ConnectionHolder所示:
+ThreadLocal 对象通常用于防止对可变的单实例变量 (Singleton) 或全局变量进行共享. 例如在单线程应用中需要维持一个全局的数据库连接, 并在启动时初始化这个连接对象, 从而避免在调用每个方法时都要传递一个 Connection 对象. 通过将 JDBC 的连接保存到 ThreadLocal 中, 每个线程都会拥有属于自己的连接, 如下面代码中的 ConnectionHolder 所示:
 
 ~~~ java
     private static ThreadLocal<Connection> connectionHolder
@@ -305,21 +463,21 @@ ThreadLocal对象通常用于防止对可变的单实例变量(Singleton)或全�
     }
 ~~~
 
-当某个线程初次调用ThreadLocal.get方法时, 就会调用initialValue方法来获取初始值. 从概念上可以把ThreadLocal<T>视为包含了Map<Thread, T>对象, 其中保存了特定于该线程的值, 但ThreadLocal的实现并不是这样的. 这些特定于线程的值保存在Thread对象中, 当线程终止后, 这些值会作为垃圾回收.
+当某个线程初次调用 ThreadLocal.get 方法时, 就会调用 initialValue 方法来获取初始值. 从概念上可以把 ThreadLocal<T> 视为包含了 Map<Thread, T> 对象, 其中保存了特定于该线程的值, 但 ThreadLocal 的实现并不是这样的. 这些特定于线程的值保存在 Thread 对象中, 当线程终止后, 这些值会作为垃圾回收.
 
 当某个频繁执行的操作需要一个临时对象, 而同时又希望避免在每次执行时都重新分配该临时对象, 就可以使用这项技术, 例如缓冲区. 这种机制很方便, 它还能避免在调用每个方法时传递上下文信息, 但是这种机制也会让代码耦合在一起, 因此在使用时要格外小心.
 
 ## 3.4 不变性
 
-满足同步需求的另一种方法是使用不可变对象(Immutable Object). 不可变对象一定是线程安全的.
+满足同步需求的另一种方法是使用不可变对象 (Immutable Object). 不可变对象一定是线程安全的.
 
 不可变对象只有一种状态, 并且该状态由构造函数来控制.
-在Java语言规范和内存模型中没有给出不可变性的正式定义, 但不可变性不等于将对象中所有的域都声明为final类型, 即使对象中所有的域都是final类型的, 这个对象也仍然是可变的, 因为在final类型的域中可以保存可变对象的引用. 而不定义成final的不可变类型例子也有, 例如String会把散列值计算推迟到第一次调用hash Code时进行, 当且仅当每次计算结果相同时(因为基于一个不可变的状态)才可以这么做, 而自己在编写代码时还是不要这么做吧.
+在 Java 语言规范和内存模型中没有给出不可变性的正式定义, 但不可变性不等于将对象中所有的域都声明为 final 类型, 即使对象中所有的域都是 final 类型的, 这个对象也仍然是可变的, 因为在 final 类型的域中可以保存可变对象的引用. 而不定义成 final 的不可变类型例子也有, 例如 String 会把散列值计算推迟到第一次调用 hash Code 时进行, 当且仅当每次计算结果相同时(因为基于一个不可变的状态)才可以这么做, 而自己在编写代码时还是不要这么做吧.
 
 当满足以下条件时, 对象才是不可变的:
 - 对象创建以后其状态就不能修改
-- 对象的所有域都是final类型
-- 对象是正确创建的(在对象创建期间, this引用没有逸出)
+- 对象的所有域都是 final 类型
+- 对象是正确创建的(在对象创建期间, this 引用没有逸出)
 
 在可变对象基础上构建不可变类:
 
@@ -341,13 +499,13 @@ public final class ThreeStooges {
 
 由于程序的状态在不断地改变, 你可能以为需要使用不可变对象的地方不多, 但实际情况并非如此. 在**不可变的对象**与**不可变的对象引用**之间存在着差异(一个是指实例化出来的对象不可变, 一个是指引用不可变). 保存在不可变对象中的程序状态仍然可以更新, 即通过将一个保存新状态的实例来"替换"原有的不可变对象.
 
-### Final域
+### 3.4.1 Final 域
 
-在Java中, final域能确保初始化过程的安全性, 从而可以不受限制地访问不可变对象, 并在共享这些对象时无需同步.
+在 Java 中, final 域能确保初始化过程的安全性, 从而可以不受限制地访问不可变对象, 并在共享这些对象时无需同步.
 
 正如"除非需要更高的可见性, 否则应将所有的域都声明为私有域"是一个良好的编程习惯. "除非需要某个域是可变的, 否则应将其声明为final域"也是良好的编程习惯.
 
-###  使用volatile类型来发布不可变对象
+### 3.4.2 使用 volatile 类型来发布不可变对象
 
 在某些情况下, 不可变对象能提供一种弱形式的原子性. 每当需要对一组相关数据以原子方式执行某个操作时, 就可以考虑创建一个不可变的类来包含这些数据, 比如下面的对数值以及其因数分解结果进行缓存的不可变容器类:
 
@@ -372,7 +530,7 @@ class OneValueCache {
 
 对于在访问和更新多个相关变量时出现的竞争条件问题, 可以通过将这些变量全部保存在一个不可变对象中来消除. 如果是一个可变的对象, 那么就必须使用锁来确保原子性. 如果是一个不可变的对象, 那么当线程获得了对该对象的引用后, 就不必担心另一个线程会修改对象的状态. 如果要更新这些变量, 那么可以创建一个新的容器对象, 但其它使用原有对象的线程仍然会看到对象处于一致的状态.
 
-下面的VolatileCachedFactorizer类使用了OneValueCache容器来保存缓存的数值以及因数. 当一个线程将volatile类型的cache设置为引用一个新的OneValueCache时, 其它线程就会立即看到新缓存的数据. 使用指向不可变容器对象的volatile类型引用以缓存最新的结果:
+下面的 VolatileCachedFactorizer 类使用了 OneValueCache 容器来保存缓存的数值以及因数. 当一个线程将 volatile 类型的 cache 设置为引用一个新的 OneValueCache 时, 其它线程就会立即看到新缓存的数据. 使用指向不可变容器对象的 volatile 类型引用以缓存最新的结果:
 
 ~~~ java
 public class VolatileCachedFactorizer implements Servlet {
@@ -390,7 +548,7 @@ public class VolatileCachedFactorizer implements Servlet {
 }
 ~~~
 
-与cache相关的操作不会相互干扰, 因为OneValueCache是不可变的. 通过使用包含多个状态变量的容器对象来维持不变性条件, 并使用一个volatile类型的引用来确保可见性, 使得VolatileCachedFactorizer在没有显式地使用锁的情况下仍然是线程安全的.
+与 cache 相关的操作不会相互干扰, 因为 OneValueCache 是不可变的. 通过使用包含多个状态变量的容器对象来维持不变性条件, 并使用一个 volatile 类型的引用来确保可见性, 使得 VolatileCachedFactorizer 在没有显式地使用锁的情况下仍然是线程安全的.
 
 ## 3.5 安全发布
 
@@ -403,47 +561,47 @@ public class VolatileCachedFactorizer implements Servlet {
     }
 ~~~
 
-### 不正确的发布: 正确的对象被破坏
+### 3.5.1 不正确的发布: 正确的对象被破坏
 
-由于未被正确发布, 这个类可能会出现故障:
+由于未被正确发布(像上面代码中的发布), 这个类可能会出现故障:
 
 ~~~ java
 public class Holder {
     private int n;
     public Holder(int n) { this.n = n; } // 不正确发布
     public void assertSanity() {
-        if (n != n) {
+        if (n != n) { 
             throw new AssertionError("This statement is false.");
         }
     }
 }
 ~~~
 
-在assertSanity方法中, 某个线程可能第一次读取的n为失效值(比如Object构造函数会在子类构造函数运行之前先将默认值写入所有的域), 然后第二次读取n是其他线程的更新值, 这样就会抛出上面定义的异常.
+在 assertSanity 方法中, 某个线程可能第一次读取的 n 为失效值(比如 Object 构造函数会在子类构造函数运行之前先将默认值写入所有的域), 然后第二次读取 n 是其他线程的更新值, 这样就会抛出上面定义的异常.
 
-### 不可变对象与初始化安全性
+### 3.5.2 不可变对象与初始化安全性
 
-由于不可变对象是一种非常重要的对象, 因此Java内存模型为不可变对象的共享提供了一种特殊的初始化安全性保证(可能不会像上面那样受Object对象构造器影响吧). 如果上面的Holder对象是不可变的, 那么即使Holder没有被正确地发布, 在assertSanity中也不会抛出AssertionError.
+由于不可变对象是一种非常重要的对象, 因此Java内存模型为不可变对象的共享提供了一种特殊的初始化安全性保证(也就是 final 关键字). 如果上面的 Holder 对象是不可变的, 那么即使 Holder 没有被正确地发布, 在 assertSanity 中也不会抛出 AssertionError. 但如果 final 类型的域所指向的是可变对象, 那么在访问这些域所指向的对象的状态时仍然需要同步.
 
-### 安全发布的常用模式
+### 3.5.3 安全发布的常用模式
 
 可变对象必须通过安全的方式来发布, 这通常意味着在发布和使用该对象的线程时都必须使用同步.
 
 要安全地发布一个对象, 对象的引用以及对象的状态必须同时对其他线程可见. 一个正确构造的对象可以通过以下方式来安全地发布:
 - 在静态初始化函数中初始化一个对象引用
-- 将对象的引用保存到volatile类型的域或者AtomicReference对象中
-- 将对象的引用保存到某个正确构造对象的final类型域中
+- 将对象的引用保存到 volatile 类型的域或者 AtomicReference 对象中
+- 将对象的引用保存到某个正确构造对象的 final 类型域中
 - 将对象的引用保存到一个由锁保护的域中
 
 线程安全库中的容器类提供了以下的安全发布保证:
 - 键值
-  - 放入Hashtable, ConcurrentMap或Collections.synchronizedMap()中, 可以安全地将它发布给任何从这个容器中访问它的线程(无论是直接访问还是通过迭代器访问)
-- List和Set
-  - 放入Vector, CopyOnWriteArrayList, CopyOnWriteArraySet, Collections.synchronizedSet()中.
-- Queue(队列)
-  - 放入BlockingQueue或者ConcurrentLinkedQueue中.
+  - 放入 Hashtable, ConcurrentMap 或 Collections.synchronizedMap() 中, 可以安全地将它发布给任何从这个容器中访问它的线程(无论是直接访问还是通过迭代器访问)
+- List 和 Set
+  - 放入 Vector, CopyOnWriteArrayList, CopyOnWriteArraySet, Collections.synchronizedSet() 中.
+- Queue (队列)
+  - 放入 BlockingQueue 或者 ConcurrentLinkedQueue 中.
 
-类库中的其它数据传递机制(例如Future和Exchanger)同样能实现安全发布.
+类库中的其它数据传递机制(例如 Future 和 Exchanger )同样能实现安全发布.
 
 通常, 要发布一个静态构造的对象, 最简单和最安全的方式是使用静态的初始化器:
 
@@ -451,20 +609,20 @@ public class Holder {
 public static Holder holder = new Holder(42);
 ~~~
 
-静态初始化器由JVM在类的初始化阶段执行, 由于在JVM内部存在着同步机制, 因此通过这种方式初始化的任何对象都可以被安全地发布.
+静态初始化器由 JVM 在类的初始化阶段执行, 由于在 JVM 内部存在着同步机制, 因此通过这种方式初始化的任何对象都可以被安全地发布.
 
-### 事实不可变对象
+### 3.5.4 事实不可变对象
 
 如果对象从技术上来看是可变的, 但其状态在发布后不会再改变, 那么把这种对象称之为**事实不可变对象**(Effectively Immutable Object). 在这些对象发布后, 程序只需要将它们视为不可变对象即可. 使用这种对象可以简化开发过程, 同时还能由于减少了同步而提高性能.
 
-### 可变对象
+### 3.5.5 可变对象
 
 如果对象在构造后可以修改, 那么安全发布只能确保"发布当时"状态的可见性. 对于可变对象, 不仅在发布对象时需要使用同步, 而且在每次对象访问时同样需要使用同步来确保后续修改操作的可见性. 
 - 不可变对象可以通过任意机制来发布
 - 事实不可变对象必须通过安全方式来发布
 - 可变对象必须通过安全方式来发布, 并且必须是线程安全的或者由某个锁保护起来
 
-### 安全地共享对象
+### 3.5.6 安全地共享对象
 
 当发布一个对象时, 必须明确地说明对象的访问方式.
 在并发编程中使用和共享对象时, 可以使用一些实用的策略:

@@ -1124,3 +1124,49 @@ To offer or to invite, we use **Would you like** ... ? (not Do you like)
 1. When we imagine something that will not happen, or we don't expect that it will happen, we use **if** + past.
 
 2. We do not normally use **would** in the **if**-part of the sentence.
+
+But you can use **if** ... **would** when you ask somebody to do something.
+
+3. In the other part of the sentence (not the **if**-part) we use **would**(**'d**) / **wouldn't**.
+
+**Could** and **might** are also possible.
+
+38.1
+7 You're in a lift. There is an emergency button. Nobody is going to press it. Which do you say?
+What would happen if somebody pressed that button?
+
+38.2
+3 Don't lend Amy your car. If she **asked** me, I wouldn't lend her mine.
+6 What would you do if you were in a lift and it stopped between floors?
+
+38.3
+2 If he did driving test now, he would be fail.
+5 If we invited Ben to the party, we would have to invite his friends too.
+6 If I told him what happened, he would not believe me.
+
+# Unit 39
+
+## If I knew ... I wish I knew
+
+1. When we imagine a situation like this, we use **if** + past (**if** I **knew** / **if** you **were** / **if** we **didn't** etc.).
+But the meaning is present, *not* past.
+
+2. We use the past in the same way after **wish** (I **wish** I **knew** / I **wish** you **were** etc.). We use **wish** to say that we regret something, that something is not as we would like it to be.
+
+3. If I **were** / if I **was**
+After **if** and **wish**, you can use **were** instead of **was** (**if I were** / I **wish it were** etc.).
+**If I was** / **I wish it was** are also possible.
+
+4. We do not normally use **would** in the **if**-part of the sentence or after **wish**.
+
+Sometimes **wish** ... **would** is possible: **I wish you would listen**.
+
+5. **Could** sometimes means 'would be able to' and sometimes 'was/were able to'.
+
+39.1
+4 We don't need a car at present, but we would need a car if **we lived** in the country.
+8 If I were you, **I wouldn't wait**. **I would go** now.
+9 You're always tired. If **you didn't go** to bed so late every night, you wouldn't be tired all the time.
+10 I think there are too many cars. If **there weren't** so many cars, **there wouldn't be** so much pollution.
+
+39.2
