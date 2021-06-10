@@ -1,5 +1,5 @@
 ---
-title: 傻傻分不清的Cookie和Session
+title: Cookie和Session
 original: true
 date: 2021-03-16
 updated: 2021-03-16

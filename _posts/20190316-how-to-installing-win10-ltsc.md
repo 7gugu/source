@@ -1,7 +1,7 @@
 ---
 title: 如何安装纯净的win10LTSC
 date: 2019-03-16 
-updated: 2021-01-25
+updated: 2021-06-11
 tags: 
   - Win10
 urlname: how-to-installing-win10-ltsc
@@ -10,7 +10,7 @@ original: true
 安装环境:一台装了固态把光驱换成机械的装了win10 1809版的有点问题的华硕笔记本,然后
 第一次装LTSC啦.
 <!--more-->
-当然还是在一些大佬的帮助下才顺利的装好.因为LTSC版本占用的资源比较低, 所以才考虑安装.
+当然还是在一些大佬的帮助下才顺利的装好.因为LTSC版本占用的资源比较低, 所以才考虑安装.(后来发现N版LTSC更不错)
 # 1.下载win10LTSC镜像文件
 首先需要下载LTSC版本的镜像,在这里建议大家去[itellyou.cn](https://msdn.itellyou.cn/)下载,点开网址,在'操作系统'下
 就能看到win....LTSC 2019之类的了,选择与自己电脑位数对应的版本,大家可以用迅雷之类

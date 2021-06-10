@@ -7,7 +7,7 @@
 
 >财富是自动增长的资产；钱是用时间换取的社会回报；地位是你的社会层级中的位置。追求财富，不要追求钱和地位。
 
-> 创造财富是一项正和博弈（positive-sum game）。追求社会地位是零和博弈（zero-sum game），因为你要通过把别人比下去才能赢。攻击或鄙夷创造财富的人，往往热衷于追求社会地位。
+>创造财富是一项正和博弈（positive-sum game）。追求社会地位是零和博弈（zero-sum game），因为你要通过把别人比下去才能赢。攻击或鄙夷创造财富的人，往往热衷于追求社会地位。
 
 >钱可以在物质世界里买到自由，但不会让你变得更好。它只能帮你解决外部的问题。
 
@@ -16,3 +16,5 @@
 >Sometimes, some fear can be good. When you are afraid things are going to get worse if you don't do something, it can prompt you into action. But it is not good when you are so afraid that it keeps you from doing anything.
 
 >我还有改变的可能性。一想起这一点，我就心潮澎湃。| 北野武
+
+>只有生活得到很好的保障，竞争不激烈的环境，才可能有这样的事情。人们做一件事不是单纯为了利益和胜负。
