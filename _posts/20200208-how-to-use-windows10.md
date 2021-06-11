@@ -11,7 +11,7 @@ original: true
 很多人因为windows的问题找我帮忙, 其实我哪里忙得过来慢慢回答这个庞大的话题, 只好写一篇, 希望你们能从这里找到解决办法. 如有错误请各位大佬轻点指出. 
 <!--more-->
 # 关于系统
-首先是关于安装系统, 强烈建议各位从官网或者itellyou获取相应的系统镜像, 我也写过有关[如何安装win10LTSC](https://someexp.com/post/how-to-installing-win10-ltsc/)的文章, 我还是推荐你们使用微软推荐的安装方法, 请选择适合自己的系统镜像下载并安装. 这里推荐安装较新版本的win10, 旧版本系统在失去微软支持后系统漏洞很容易被恶意软件以及黑客利用. (ref: [2016/11/2微软宣布全面停售OEM版Win7/8.1系统](https://www.ithome.com/html/win7/269040.htm))
+首先是关于安装系统, 强烈建议各位从官网或者itellyou获取相应的系统镜像, 我也写过有关[如何安装win10LTSC](/post/how-to-installing-win10-ltsc/)的文章, 我还是推荐你们使用微软推荐的安装方法, 请选择适合自己的系统镜像下载并安装. 这里推荐安装较新版本的win10, 旧版本系统在失去微软支持后系统漏洞很容易被恶意软件以及黑客利用. (ref: [2016/11/2微软宣布全面停售OEM版Win7/8.1系统](https://www.ithome.com/html/win7/269040.htm))
 ## 为什么不用PE, ghost之类的方式安装? 其他地方下载的镜像可以用吗? 
 我本人不了解PE, ghost的安装机制, 不确定这种方式安装的系统安全性. 同样, 来自非官方的镜像的安全性是未知的. 
 ## 如何分区?
@@ -22,7 +22,10 @@ original: true
 # 关于软件
 个人建议所有软件都在微软商店下载, 在安装和使用软件时请谨慎选择在UAC(User Account Control)面前点击'是', 也就是win10在安装一些软件时弹出来的这样的窗口:
 ![UAC窗口](/picture/20200208-0.png)
-如果点了'是', 该程序就能在你的电脑为所欲为. 很多网上下载的程序都会这样, 给电脑装一大堆无用软件甚至修改系统相关配置信息.如果你确实需要安装这个软件, 那就承担相应的后果. 
+如果点了'是', 该程序就能在你的电脑为所欲为. 很多网上下载的程序都会这样, 给电脑装一大堆无用软件甚至修改系统相关配置信息.如果你确实需要安装这个软件, 那就承担相应的后果. 如果你和我一样装软件有UAC强迫症, 那么可以[使用Scoop](/post/how-to-get-started-with-scoop-quickly)来安装软件. 除了安装好, 如果对软件不信任, 那可以新建一个账户来运行, 或者丢虚拟机中运行.
+~~~
+runas /user:"USERNAME" /savecred "Full path of file"
+~~~
 ## 我下载的软件默认安装在哪里?
 一般自己下载的软件都可以选择安装路径, 而一位[不愿意透露的大佬](https://www.v2ex.com/member/lm902)跟我说默认他们的路径是: 
 - 大量数据放在~/AppData/Local
@@ -49,7 +52,7 @@ original: true
 通过上面你可以看到我的电脑配置比你们的还低, 多么瞩目的2代i3. 
 我日常使用觉得不错的软件: 
 解压: 7-zip
-浏览器: firefox[https://www.mozilla.org/en-US/firefox/all.html](https://www.mozilla.org/en-US/firefox/all.html), brave, chrome, 新版Edge, Tor
+浏览器: firefox(别下载到某智版本)[https://www.mozilla.org/en-US/firefox/all.html](https://www.mozilla.org/en-US/firefox/all.html), brave, chrome, 新版Edge, Tor
 截屏: Snipaste
 录屏: OBS Studio
 视频播放器: VLC

@@ -9,7 +9,6 @@ urlname: how-to-use-android
 original: true
 ---
 不知道你是不是从 [如何使用windows10](/post/how-to-use-windows10) 过来的呢?
-
 <!--more-->
 
 # 关于系统

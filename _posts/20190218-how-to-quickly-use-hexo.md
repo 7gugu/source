@@ -70,7 +70,7 @@ hexo d
 ~~~
 **Bold**
 ~~~
-[超链接](http://someexp.com/post/hexo_commonly_used_commands/):
+[超链接](/post/how-to-quickly-use-hexo/):
 ~~~
 [content](link_address)
 <a href="目标文件路径及全称" target="_blank">链接文本</a>
