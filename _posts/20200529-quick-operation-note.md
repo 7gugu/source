@@ -290,3 +290,11 @@ TABLE_SCHEMA = 'admin' and table_name = 'sys_menu';
 ## 抠出照片的文字
 
 选择 -> 色彩范围 -> 然后选择选'阴影', 下面选'灰度', 容易看些. 
+
+# Windows 10
+
+## 使用其他用户运行
+
+~~~
+runas /user:{USERNAME} /savecred {Full path of file}
+~~~
